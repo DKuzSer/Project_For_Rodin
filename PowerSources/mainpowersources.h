@@ -15,6 +15,11 @@ public:
     MainPowerSources(QWidget *parent = nullptr);
     ~MainPowerSources();
 
+private slots:
+    void on_PushButton_Calculate_clicked();
+
+    void on_PushButton_Reference_clicked();
+
 private:
     Ui::MainPowerSources *ui;
 };
