@@ -2,6 +2,8 @@
 #define MAINPOWERSOURCES_H
 
 #include <QMainWindow>
+#include "Rectifiers.h"
+#include "Filters.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainPowerSources; }
@@ -15,10 +17,16 @@ public:
     MainPowerSources(QWidget *parent = nullptr);
     ~MainPowerSources();
 
+    QWidget* object_page1 = nullptr;
+
 private slots:
     void on_PushButton_Calculate_clicked();
 
     void on_PushButton_Reference_clicked();
+
+    void on_PushButton_Rectifiers_clicked();
+
+    void on_PushButton_Filters_clicked();
 
 private:
     Ui::MainPowerSources *ui;

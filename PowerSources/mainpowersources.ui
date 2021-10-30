@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
-    <height>551</height>
+    <width>721</width>
+    <height>565</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -371,7 +371,7 @@
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QFrame" name="">
+       <widget class="QFrame" name="frame">
         <property name="frameShape">
          <enum>QFrame::Panel</enum>
         </property>
@@ -812,9 +812,9 @@
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="horizontalFrame">
+             <widget class="QFrame" name="horizontalFrame_page1">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::Panel</enum>
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_2"/>
              </widget>
@@ -850,7 +850,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>705</width>
+     <width>721</width>
      <height>21</height>
     </rect>
    </property>

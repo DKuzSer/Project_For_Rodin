@@ -9,13 +9,19 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Filters.cpp \
+    Rectifiers.cpp \
     main.cpp \
     mainpowersources.cpp
 
 HEADERS += \
+    Filters.h \
+    Rectifiers.h \
     mainpowersources.h
 
 FORMS += \
+    Filters.ui \
+    Rectifiers.ui \
     mainpowersources.ui
 
 TRANSLATIONS += \
