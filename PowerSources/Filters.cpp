@@ -6,6 +6,8 @@ Filters::Filters(QWidget *parent) :
     ui(new Ui::Filters)
 {
     ui->setupUi(this);
+
+    ui->ComboBox_DevicesF->addItem("Баттерворта", BUTTERWORTH);
 }
 
 Filters::~Filters()

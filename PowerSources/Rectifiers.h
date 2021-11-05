@@ -2,6 +2,7 @@
 #define RECTIFIERS_H
 
 #include <QWidget>
+#include "constans.h"
 
 namespace Ui {
 class Rectifiers;

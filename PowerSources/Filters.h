@@ -2,6 +2,7 @@
 #define FILTERS_H
 
 #include <QWidget>
+#include "constans.h"
 
 namespace Ui {
 class Filters;

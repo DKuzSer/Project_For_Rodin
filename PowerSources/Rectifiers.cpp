@@ -6,6 +6,8 @@ Rectifiers::Rectifiers(QWidget *parent) :
     ui(new Ui::Rectifiers)
 {
     ui->setupUi(this);
+
+    ui->ComboBox_DevicesR->addItem("Однополупериодный", ONEPERIODCIRCUIT);
 }
 
 Rectifiers::~Rectifiers()

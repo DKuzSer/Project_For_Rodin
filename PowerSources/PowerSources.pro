@@ -17,6 +17,7 @@ SOURCES += \
 HEADERS += \
     Filters.h \
     Rectifiers.h \
+    constans.h \
     mainpowersources.h
 
 FORMS += \
