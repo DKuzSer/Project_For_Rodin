@@ -9,9 +9,11 @@ class RectifiersOnePeriodCircuit : public RectifiersAbstract
 {
 public:
     RectifiersOnePeriodCircuit();
+
     void SetBaseValue(double _f, double _I0, double _Rn);
     void FFilters(int number);
     void Calculate();
+
     double Inductor(double Rh,double f,double Kp);
     double Capacitor(double Rh,double f,double Kp);
 

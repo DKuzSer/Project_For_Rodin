@@ -3,6 +3,7 @@
 
 #include "RectifiersOnePeriodCircuit.h"
 
+
 Rectifiers::Rectifiers(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Rectifiers)
@@ -105,6 +106,13 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
             ui->Label_OutPut3->setVisible(false);
             ui->DoubleSpinBoxR_OutPut3->setVisible(false);
 
+            mapCircuit.load(":/image/img/ROPCircuit1.jpg");
+            mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
+            ui->Label_PixMapCircuit->setPixmap(mapCircuit);
+            ui->Label_PixMapCircuit->setScaledContents(true);
+            ui->Label_PixMapProperties->setPixmap(mapProperties);
+            ui->Label_PixMapProperties->setScaledContents(true);
+
         break;
 
         case 1:
@@ -117,6 +125,13 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
             ui->Label_OutPut3->setText("C, мкФ:");
             ui->DoubleSpinBoxR_OutPut3->setVisible(true);
 
+            mapCircuit.load(":/image/img/ROPCircuit2.jpg");
+            mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
+            ui->Label_PixMapCircuit->setPixmap(mapCircuit);
+            ui->Label_PixMapCircuit->setScaledContents(true);
+            ui->Label_PixMapProperties->setPixmap(mapProperties);
+            ui->Label_PixMapProperties->setScaledContents(true);
+
         break;
 
         case 2:
@@ -128,6 +143,13 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
             ui->Label_OutPut3->setVisible(true);
             ui->Label_OutPut3->setText("L, мГн:");
             ui->DoubleSpinBoxR_OutPut3->setVisible(true);
+
+            mapCircuit.load(":/image/img/ROPCircuit3.jpg");
+            mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
+            ui->Label_PixMapCircuit->setPixmap(mapCircuit);
+            ui->Label_PixMapCircuit->setScaledContents(true);
+            ui->Label_PixMapProperties->setPixmap(mapProperties);
+            ui->Label_PixMapProperties->setScaledContents(true);
 
         break;
     }

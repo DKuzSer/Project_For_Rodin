@@ -17,15 +17,15 @@ void RectifiersOnePeriodCircuit::FFilters(int number)
     switch(number)
     {
         case 0:
-            flagFilters = 0;
+            flagFilters = 0; // нет фильтра
         break;
 
         case 1:
-            flagFilters = 1;
+            flagFilters = 1; // С фильтр
         break;
 
         case 2:
-            flagFilters = 2;
+            flagFilters = 2; // L фильтр
         break;
     }
 }

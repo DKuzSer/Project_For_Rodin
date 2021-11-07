@@ -2,4 +2,10 @@
     <qresource prefix="/icon">
         <file>img/battery.png</file>
     </qresource>
+    <qresource prefix="/image">
+        <file>img/ROPCircuit1.jpg</file>
+        <file>img/ROPCircuit2.jpg</file>
+        <file>img/ROPCircuit3.jpg</file>
+        <file>img/ROPCircuitProperties.jpg</file>
+    </qresource>
 </RCC>

@@ -2,6 +2,7 @@
 #define RECTIFIERS_H
 
 #include <QWidget>
+#include <QPixmap>
 #include "constans.h"
 #include "RectifiersAbstract.h"
 
@@ -18,6 +19,9 @@ public:
     ~Rectifiers();
 
     RectifiersAbstract* object_work = nullptr;
+
+    QPixmap mapCircuit;
+    QPixmap mapProperties;;
 
 private slots:
     void on_ComboBox_DevicesR_currentIndexChanged(int index); // функция обработки выбора устройства
