@@ -1,6 +1,7 @@
 #ifndef CONSTANS_H
 #define CONSTANS_H
 
+#define PI 3.141592653589793
 
 #define ONEPERIODCIRCUIT 0
 

@@ -11,12 +11,16 @@ CONFIG += c++11
 SOURCES += \
     Filters.cpp \
     Rectifiers.cpp \
+    RectifiersAbstract.cpp \
+    RectifiersOnePeriodCircuit.cpp \
     main.cpp \
     mainpowersources.cpp
 
 HEADERS += \
     Filters.h \
     Rectifiers.h \
+    RectifiersAbstract.h \
+    RectifiersOnePeriodCircuit.h \
     constans.h \
     mainpowersources.h
 

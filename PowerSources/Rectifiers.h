@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "constans.h"
+#include "RectifiersAbstract.h"
 
 namespace Ui {
 class Rectifiers;
@@ -15,6 +16,15 @@ class Rectifiers : public QWidget
 public:
     explicit Rectifiers(QWidget *parent = nullptr);
     ~Rectifiers();
+
+    RectifiersAbstract* object_work = nullptr;
+
+private slots:
+    void on_ComboBox_DevicesR_currentIndexChanged(int index); // функция обработки выбора устройства
+
+    void on_ComboBox_OutPutF_currentIndexChanged(int index);
+
+    void on_PushButton_Calculate_clicked();
 
 private:
     Ui::Rectifiers *ui;
