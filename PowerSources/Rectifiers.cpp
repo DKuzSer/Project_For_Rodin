@@ -169,6 +169,12 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             double value_3 = ui->DoubleSpinBoxR_InPut3->value();
             double value_4 = ui->DoubleSpinBoxR_InPut4->value();
             double value_5 = ui->DoubleSpinBoxR_InPut5->value();
+
+            double freq = value_1; //Копирую в другие переменные, чтобы у нас была
+            double Current0 = value_2; // возможность юзать их в рассчетах
+            double Current_dop = value_3;// так как в дальнейшем они будут принимать другие значения
+            double Resistance = value_4;
+            double Pulse = value_5;
             //--------------------------------------------------
 
             bool flagF = ui->ComboBox_OutPutF->currentIndex();
@@ -194,6 +200,79 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             ui->DoubleSpinBoxR_OutPut2->setValue(value_2);
             ui->DoubleSpinBoxR_OutPut3->setValue(value_3);
 
+            //-------------------------------------------------------
+            //делаем график
+
+            chrt = new QChart;
+            ui->graphicsView->setChart(chrt);
+            chrt->setTitle("График");
+
+            QValueAxis *axisX = new QValueAxis;
+            axisX->setRange(0,2/freq);
+            axisX->setTickCount(11);
+            axisX->setLabelFormat("%.2lf");
+
+            QValueAxis *axisY = new QValueAxis;
+            axisY->setRange(-1.5*value_2,1.5*value_2);
+            axisY->setTickCount(11);
+            axisY->setLabelFormat("%.2lf");
+
+
+            //QLineSeries* series1 = new QLineSeries();// входное напряжение, изменяющее по закону синуса
+            QLineSeries* series2 = new QLineSeries(); //без фильтров
+            //QLineSeries* series3 = new QLineSeries(); // кондер
+            //QLineSeries* series4 = new QLineSeries(); // катушка
+
+            double T = 1./freq;
+            int n = 0; //счетчик для задания условия переодичности
+            for (double i=0;i<=2*T;i = i+0.00001)
+            {
+                //series1->append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                if(flagF == 0) // без катушки и кондера
+                {
+                    if((0+T*n)<i<(T/2+T*n))
+                    {
+                        series2->append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                    }else{
+                        //series2->append(i, 0);
+                    }
+                }
+                if(flagF == 1) // кондер
+                {
+                    if((0+T*n)<i<(T/2+T*n))
+                    {
+                        //series3->append(i, 1.7*qSin(2*M_PI*i/37+M_PI/5));
+                    }else{
+                        //series3->append(i, 1.7*qSin(2*M_PI*i/37+M_PI/5));
+                    }
+                }
+                else   // катушка
+                {
+                    if((0+T*n)<i<(T/2+T*n))
+                    {
+                        //series4->append(i, 1.7*qSin(2*M_PI*i/37+M_PI/5));
+                    }else{
+                        //series4->append(i, 1.7*qSin(2*M_PI*i/37+M_PI/5));
+                    }
+                }
+                n++; //увеличиваем счетчик
+            }
+
+            //chrt->addSeries(series1);
+            chrt->addSeries(series2);
+            //chrt->addSeries(series3);
+            //chrt->addSeries(series4);
+
+           // chrt->setAxisX(axisX,series1);
+            //chrt->setAxisY(axisY,series1);
+            chrt->setAxisX(axisX,series2);
+            chrt->setAxisY(axisY,series2);
+            //chrt->setAxisX(axisX,series3);
+            //chrt->setAxisY(axisY,series3);
+            //chrt->setAxisX(axisX,series4);
+            //chrt->setAxisY(axisY,series4);
+
+            //-------------------------------------------------------
         break;
     }
 }
