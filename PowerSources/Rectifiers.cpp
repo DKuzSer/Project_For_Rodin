@@ -18,6 +18,7 @@ Rectifiers::Rectifiers(QWidget *parent) :
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Rectifiers::~Rectifiers()
 {
+    delete chrt;
     delete object_work;
     delete ui;
 }
@@ -162,6 +163,19 @@ void Rectifiers::on_PushButton_Calculate_clicked()
     {
         case ONEPERIODCIRCUIT:
 
+            if(chrt == nullptr)
+            {
+                chrt = new QChart();
+                ui->graphicsView->setChart(chrt);
+                chrt->setTitle("График");
+            }
+            else
+            {
+                axisX->deleteLater();
+                axisY->deleteLater();
+                chrt->removeAllSeries();
+            }
+
             //переписываем в удобный формат
             //--------------------------------------------------
             double value_1 = ui->DoubleSpinBoxR_InPut1->value();
@@ -203,20 +217,15 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             //-------------------------------------------------------
             //делаем график
 
-            chrt = new QChart;
-            ui->graphicsView->setChart(chrt);
-            chrt->setTitle("График");
-
-            QValueAxis *axisX = new QValueAxis;
+            axisX = new QValueAxis;
             axisX->setRange(0,2/freq);
             axisX->setTickCount(11);
             axisX->setLabelFormat("%.2lf");
 
-            QValueAxis *axisY = new QValueAxis;
-            axisY->setRange(-1.5*value_2,1.5*value_2);
+            axisY = new QValueAxis;
+            axisY->setRange(-0.5,1.5*value_2);
             axisY->setTickCount(11);
             axisY->setLabelFormat("%.2lf");
-
 
             //QLineSeries* series1 = new QLineSeries();// входное напряжение, изменяющее по закону синуса
             QLineSeries* series2 = new QLineSeries(); //без фильтров
@@ -225,16 +234,18 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
             double T = 1./freq;
             int n = 0; //счетчик для задания условия переодичности
-            for (double i=0;i<=2*T;i = i+0.00001)
+            for (double i = 0;i <= 2*T;i = i+0.00001)
             {
                 //series1->append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
                 if(flagF == 0) // без катушки и кондера
                 {
-                    if((0+T*n)<i<(T/2+T*n))
+                    if(sqrt(2)*value_2*sin(2*M_PI*freq*i) > 0)
                     {
                         series2->append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
-                    }else{
-                        //series2->append(i, 0);
+                    }
+                    else
+                    {
+                        series2->append(i, 0);
                     }
                 }
                 if(flagF == 1) // кондер
@@ -242,7 +253,9 @@ void Rectifiers::on_PushButton_Calculate_clicked()
                     if((0+T*n)<i<(T/2+T*n))
                     {
                         //series3->append(i, 1.7*qSin(2*M_PI*i/37+M_PI/5));
-                    }else{
+                    }
+                    else
+                    {
                         //series3->append(i, 1.7*qSin(2*M_PI*i/37+M_PI/5));
                     }
                 }
@@ -251,7 +264,9 @@ void Rectifiers::on_PushButton_Calculate_clicked()
                     if((0+T*n)<i<(T/2+T*n))
                     {
                         //series4->append(i, 1.7*qSin(2*M_PI*i/37+M_PI/5));
-                    }else{
+                    }
+                    else
+                    {
                         //series4->append(i, 1.7*qSin(2*M_PI*i/37+M_PI/5));
                     }
                 }

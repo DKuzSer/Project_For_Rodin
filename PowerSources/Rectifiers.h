@@ -34,7 +34,9 @@ private slots:
 private:
     Ui::Rectifiers *ui;
 
-    QChart *chrt;
+    QChart *chrt = nullptr;
+    QValueAxis *axisX = nullptr;
+    QValueAxis *axisY = nullptr;
 };
 
 #endif // RECTIFIERS_H
