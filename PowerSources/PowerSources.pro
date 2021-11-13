@@ -11,6 +11,7 @@ CONFIG += c++11
 
 SOURCES += \
     Filters.cpp \
+    MyCharts.cpp \
     Rectifiers.cpp \
     RectifiersAbstract.cpp \
     RectifiersOnePeriodCircuit.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     Filters.h \
+    MyCharts.h \
     Rectifiers.h \
     RectifiersAbstract.h \
     RectifiersOnePeriodCircuit.h \

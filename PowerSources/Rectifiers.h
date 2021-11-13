@@ -5,7 +5,7 @@
 #include <QPixmap>
 #include "constans.h"
 #include "RectifiersAbstract.h"
-#include <QtCharts>
+#include "MyCharts.h"
 
 namespace Ui {
 class Rectifiers;
@@ -34,9 +34,7 @@ private slots:
 private:
     Ui::Rectifiers *ui;
 
-    QChart *chrt = nullptr;
-    QValueAxis *axisX = nullptr;
-    QValueAxis *axisY = nullptr;
+    MyCharts *chrt = nullptr;
 };
 
 #endif // RECTIFIERS_H

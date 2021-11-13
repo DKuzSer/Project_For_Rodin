@@ -165,16 +165,12 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
             if(chrt == nullptr)
             {
-                chrt = new QChart();
+                chrt = new MyCharts();
                 ui->graphicsView->setChart(chrt);
                 chrt->setTitle("График");
             }
             else
-            {
-                axisX->deleteLater();
-                axisY->deleteLater();
-                chrt->removeAllSeries();
-            }
+                chrt->DeleteChart();
 
             //переписываем в удобный формат
             //--------------------------------------------------
@@ -217,39 +213,26 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             //-------------------------------------------------------
             //делаем график
 
-            axisX = new QValueAxis;
-            axisX->setRange(0,2/freq);
-            axisX->setTickCount(11);
-            axisX->setLabelFormat("%.2lf");
-
-            axisY = new QValueAxis;
-            axisY->setRange(-0.5,1.5*value_2);
-            axisY->setTickCount(11);
-            axisY->setLabelFormat("%.2lf");
-
-            //QLineSeries* series1 = new QLineSeries();// входное напряжение, изменяющее по закону синуса
-            QLineSeries* series2 = new QLineSeries(); //без фильтров
-            QLineSeries* series3 = new QLineSeries(); // кондер
-            QLineSeries* series4 = new QLineSeries(); // катушка
+            QLineSeries series; //без фильтров
 
             double T = 1./freq;
             double n = 0; //счетчик для задания условия переодичности
-            for (double i = 0;i <= 2*T;i = i+0.00001)
+            for (double i = 0.0; i <= 2.*T; i = i + 0.00001)
             {
                 if (5*T/4 < i && i < 5*T/4+0.00001)
                 {
                     n=n+1.0;
                 }
-                //series1->append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+
                 if(chose == 0) // без катушки и кондера
                 {
                     if(sqrt(2)*value_2*sin(2*M_PI*freq*i) > 0)
                     {
-                        series2->append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                        series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
                     }
                     else
                     {
-                        series2->append(i, 0);
+                        series.append(i, 0);
                     }
                 }
                 if(chose == 1) // кондер
@@ -257,39 +240,29 @@ void Rectifiers::on_PushButton_Calculate_clicked()
                     if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))) && (T/4<i))
                     {
 
-                        series3->append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
+                        series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
                     }
                     else
                     {
-                        series3->append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                        series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
                     }
                 }
                 if (chose == 2)   // катушка
                 {
                     if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance/(value_3*pow(10,(-3))))) && (T/4<i))
                     {
-                        series4->append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-3)))));
+                        series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-3)))));
                     }
                     else
                     {
-                        series4->append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                        series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
                     }
                 }
             }
 
-            //chrt->addSeries(series1);
-            chrt->addSeries(series2);
-            chrt->addSeries(series3);
-            chrt->addSeries(series4);
-
-           // chrt->setAxisX(axisX,series1);
-            //chrt->setAxisY(axisY,series1);
-            chrt->setAxisX(axisX,series2);
-            chrt->setAxisY(axisY,series2);
-            chrt->setAxisX(axisX,series3);
-            chrt->setAxisY(axisY,series3);
-            chrt->setAxisX(axisX,series4);
-            chrt->setAxisY(axisY,series4);
+            chrt->Create2DChart(series.points());
+            chrt->PropertiesAxis("X", 0, 2/freq, 11, "%.2lf");
+            chrt->PropertiesAxis("Y", -0.5, 1.5*value_2, 11, "%.2lf");
 
             //-------------------------------------------------------
         break;
