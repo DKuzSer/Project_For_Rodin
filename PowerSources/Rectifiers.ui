@@ -40,7 +40,7 @@
      <item>
       <widget class="QTabWidget" name="TabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="Tab_PageCircuit">
         <attribute name="title">
@@ -83,6 +83,11 @@
         <attribute name="title">
          <string>График</string>
         </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QChartView" name="graphicsView"/>
+         </item>
+        </layout>
        </widget>
       </widget>
      </item>
@@ -155,6 +160,9 @@
                <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>
                  <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_InPut1">
+                  <property name="maximum">
+                   <double>10000.000000000000000</double>
+                  </property>
                   <property name="value">
                    <double>50.000000000000000</double>
                   </property>
@@ -371,6 +379,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QGraphicsView</extends>
+   <header>qchartview.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

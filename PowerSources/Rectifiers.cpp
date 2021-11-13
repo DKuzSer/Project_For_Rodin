@@ -18,6 +18,7 @@ Rectifiers::Rectifiers(QWidget *parent) :
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Rectifiers::~Rectifiers()
 {
+    delete chrt;
     delete object_work;
     delete ui;
 }
@@ -162,6 +163,15 @@ void Rectifiers::on_PushButton_Calculate_clicked()
     {
         case ONEPERIODCIRCUIT:
 
+            if(chrt == nullptr)
+            {
+                chrt = new MyCharts();
+                ui->graphicsView->setChart(chrt);
+                chrt->setTitle("График");
+            }
+            else
+                chrt->DeleteChart();
+
             //переписываем в удобный формат
             //--------------------------------------------------
             double value_1 = ui->DoubleSpinBoxR_InPut1->value();
@@ -169,11 +179,16 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             double value_3 = ui->DoubleSpinBoxR_InPut3->value();
             double value_4 = ui->DoubleSpinBoxR_InPut4->value();
             double value_5 = ui->DoubleSpinBoxR_InPut5->value();
-            //--------------------------------------------------
 
-            bool flagF = ui->ComboBox_OutPutF->currentIndex();
+            double freq = value_1; //Копирую в другие переменные, чтобы у нас была
+            double Current0 = value_2; // возможность юзать их в рассчетах
+            double Current_dop = value_3;// так как в дальнейшем они будут принимать другие значения
+            double Resistance = value_4;
+            double Pulse = value_5;
+            //--------------------------------------------------
+            int chose = ui->ComboBox_OutPutF->currentIndex();
             object_work->SetBaseValue(value_1, value_2, value_4);        // передаём данные в расчётный класс
-            object_work->FFilters(flagF);                                // передаём данные флага установки фильтра на выходе
+            object_work->FFilters(chose);                              // передаём данные флага установки фильтра на выходе
             object_work->Idop = value_3;
             object_work->Kp = value_5;
             object_work->Calculate();
@@ -182,11 +197,12 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             //--------------------------------------------------
             value_1 = object_work->m;
             value_2 = object_work->Ud_input;
-            if(flagF != 0)
+            if(chose != 0)
             {
-                if(1)
+                if(chose == 1)
                     value_3 = object_work->C;
-                else value_3 = object_work->L;
+                else
+                    value_3 = object_work->L;
             }
             //--------------------------------------------------
 
@@ -194,6 +210,61 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             ui->DoubleSpinBoxR_OutPut2->setValue(value_2);
             ui->DoubleSpinBoxR_OutPut3->setValue(value_3);
 
+            //-------------------------------------------------------
+            //делаем график
+
+            QLineSeries series; //без фильтров
+
+            double T = 1./freq;
+            double n = 0; //счетчик для задания условия переодичности
+            for (double i = 0.0; i <= 2.*T; i = i + 0.00001)
+            {
+                if (5*T/4 < i && i < 5*T/4+0.00001)
+                {
+                    n=n+1.0;
+                }
+
+                if(chose == 0) // без катушки и кондера
+                {
+                    if(sqrt(2)*value_2*sin(2*M_PI*freq*i) > 0)
+                    {
+                        series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                    }
+                    else
+                    {
+                        series.append(i, 0);
+                    }
+                }
+                if(chose == 1) // кондер
+                {
+                    if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))) && (T/4<i))
+                    {
+
+                        series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
+                    }
+                    else
+                    {
+                        series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                    }
+                }
+                if (chose == 2)   // катушка
+                {
+                    if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance/(value_3*pow(10,(-3))))) && (T/4<i))
+                    {
+                        series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-3)))));
+                    }
+                    else
+                    {
+                        series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                    }
+                }
+            }
+
+            chrt->Create2DChart(series.points());
+            chrt->PropertiesAxis("X", 0, 2/freq, 11, "%.2lf");
+            chrt->PropertiesAxis("Y", -0.5, 1.5*value_2, 11, "%.2lf");
+
+            //-------------------------------------------------------
         break;
     }
 }
