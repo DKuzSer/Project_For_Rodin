@@ -191,10 +191,8 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             double Pulse = value_5;
             //--------------------------------------------------
             int chose = ui->ComboBox_OutPutF->currentIndex();
-            bool flagF = ui->ComboBox_OutPutF->currentIndex();
             object_work->SetBaseValue(value_1, value_2, value_4);        // передаём данные в расчётный класс
-            object_work->FFilters(chose);
-            object_work->FFilters(flagF);                                // передаём данные флага установки фильтра на выходе
+            object_work->FFilters(chose);                              // передаём данные флага установки фильтра на выходе
             object_work->Idop = value_3;
             object_work->Kp = value_5;
             object_work->Calculate();
@@ -203,11 +201,12 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             //--------------------------------------------------
             value_1 = object_work->m;
             value_2 = object_work->Ud_input;
-            if(flagF != 0)
+            if(chose != 0)
             {
-                if(1)
+                if(chose == 1)
                     value_3 = object_work->C;
-                else value_3 = object_work->L;
+                else
+                    value_3 = object_work->L;
             }
             //--------------------------------------------------
 
@@ -267,9 +266,9 @@ void Rectifiers::on_PushButton_Calculate_clicked()
                 }
                 if (chose == 2)   // катушка
                 {
-                    if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance/(value_3*pow(10,(-6))))) && (T/4<i))
+                    if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance/(value_3*pow(10,(-3))))) && (T/4<i))
                     {
-                        series4->append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-6)))));
+                        series4->append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-3)))));
                     }
                     else
                     {
