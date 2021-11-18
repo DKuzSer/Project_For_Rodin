@@ -180,15 +180,15 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             double value_4 = ui->DoubleSpinBoxR_InPut4->value();
             double value_5 = ui->DoubleSpinBoxR_InPut5->value();
 
-            double freq = value_1; //Копирую в другие переменные, чтобы у нас была
-            double Current0 = value_2; // возможность юзать их в рассчетах
-            double Current_dop = value_3;// так как в дальнейшем они будут принимать другие значения
+            double freq = value_1;                                      //Копирую в другие переменные, чтобы у нас была
+            double Current0 = value_2;                                  // возможность юзать их в рассчетах
+            double Current_dop = value_3;                               // так как в дальнейшем они будут принимать другие значения
             double Resistance = value_4;
             double Pulse = value_5;
             //--------------------------------------------------
             int chose = ui->ComboBox_OutPutF->currentIndex();
-            object_work->SetBaseValue(value_1, value_2, value_4);        // передаём данные в расчётный класс
-            object_work->FFilters(chose);                              // передаём данные флага установки фильтра на выходе
+            object_work->SetBaseValue(value_1, value_2, value_4);       // передаём данные в расчётный класс
+            object_work->FFilters(chose);                               // передаём данные флага установки фильтра на выходе
             object_work->Idop = value_3;
             object_work->Kp = value_5;
             object_work->Calculate();
@@ -213,7 +213,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             //-------------------------------------------------------
             //делаем график
 
-            QLineSeries series; //без фильтров
+            QLineSeries series;
 
             double T = 1./freq;
             double n = 0; //счетчик для задания условия переодичности
