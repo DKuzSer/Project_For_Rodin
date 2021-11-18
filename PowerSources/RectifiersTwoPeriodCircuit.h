@@ -17,7 +17,7 @@ public:
     double Inductor(double Rh,double f,double Kp);
     double Capacitor(double Rh,double f,double Kp);
 
-    bool flagFilters = 0; // 0 - нет фильтра, 1 - C фильтр, 2 - L фильтр
+    bool flagFilters = 0; // 0 - РЅРµС‚ С„РёР»СЊС‚СЂР°, 1 - C С„РёР»СЊС‚СЂ, 2 - L С„РёР»СЊС‚СЂ
 };
 
 #endif // RECTIFIERSTWOPERIODCIRCUIT_H

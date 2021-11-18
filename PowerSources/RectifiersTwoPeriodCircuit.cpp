@@ -1,4 +1,4 @@
-#include "rectifierstwoperiodcircuit.h"
+#include "RectifiersTwoPeriodCircuit.h"
 
 RectifiersTwoPeriodCircuit::RectifiersTwoPeriodCircuit()
 {

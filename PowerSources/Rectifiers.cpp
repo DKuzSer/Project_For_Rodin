@@ -2,8 +2,7 @@
 #include "ui_Rectifiers.h"
 
 #include "RectifiersOnePeriodCircuit.h"
-#include "rectifierstwoperiodcircuit.h"
-
+#include "RectifiersTwoPeriodCircuit.h"
 
 Rectifiers::Rectifiers(QWidget *parent) :
     QWidget(parent),
@@ -44,19 +43,19 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             //настройки входных данных
             //----------------------------------------------
             ui->Label_InPut1->setVisible(true);
-            ui->Label_InPut1->setText("Частота напряжения на входе, f, Гц:");
+            ui->Label_InPut1->setText("f (Частота напряжения на входе), Гц:");
             ui->DoubleSpinBoxR_InPut1->setVisible(true);
 
             ui->Label_InPut2->setVisible(true);
-            ui->Label_InPut2->setText("Средний выпрямленный ток на нагрузке, I0, А:");
+            ui->Label_InPut2->setText("I0 (Средний выпрямленный ток на нагрузке), А:");
             ui->DoubleSpinBoxR_InPut2->setVisible(true);
 
             ui->Label_InPut3->setVisible(true);
-            ui->Label_InPut3->setText("Допустимый ток на диоде, Iдоп, А:");
+            ui->Label_InPut3->setText("Iдоп (Допустимый ток на диоде), А:");
             ui->DoubleSpinBoxR_InPut3->setVisible(true);
 
             ui->Label_InPut4->setVisible(true);
-            ui->Label_InPut4->setText("Сопротивление нагрузки, Rн, Ом:");
+            ui->Label_InPut4->setText("Rн (Сопротивление нагрузки), Ом:");
             ui->DoubleSpinBoxR_InPut4->setVisible(true);
 
             ui->Label_InPut6->setVisible(false);
@@ -66,11 +65,11 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             //настройки выходных данных
             //----------------------------------------------
             ui->Label_OutPut1->setVisible(true);
-            ui->Label_OutPut1->setText("Количество диодов, m, шт:");
+            ui->Label_OutPut1->setText("m (Количество диодов), шт:");
             ui->DoubleSpinBoxR_OutPut1->setVisible(true);
 
             ui->Label_OutPut2->setVisible(true);
-            ui->Label_OutPut2->setText("Действующее напряжение на вторичной обмотке, Uд, В:");
+            ui->Label_OutPut2->setText("Uд (Действующее напряжение на вторичной обмотке), В:");
             ui->DoubleSpinBoxR_OutPut2->setVisible(true);
 
             ui->Label_OutPut3->setVisible(false);
@@ -105,19 +104,19 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             //настройки входных данных
             //----------------------------------------------
             ui->Label_InPut1->setVisible(true);
-            ui->Label_InPut1->setText("Требуемое напряжение на нагрузке, Uн, В:");
+            ui->Label_InPut1->setText("Uн (Требуемое напряжение на нагрузке), В:");
             ui->DoubleSpinBoxR_InPut1->setVisible(true);
 
             ui->Label_InPut2->setVisible(true);
-            ui->Label_InPut2->setText("Сопротивление нагрузки, Rн, Ом:");
+            ui->Label_InPut2->setText("Rн (Сопротивление нагрузки), Ом:");
             ui->DoubleSpinBoxR_InPut2->setVisible(true);
 
             ui->Label_InPut3->setVisible(false);
-            ui->Label_InPut3->setText("Сопротивление нагрузки, Rн, Ом:");
+            ui->Label_InPut3->setText("Rн (Сопротивление нагрузки), Ом:");
             ui->DoubleSpinBoxR_InPut3->setVisible(false);
 
             ui->Label_InPut4->setVisible(false);
-            ui->Label_InPut4->setText("Сопротивление нагрузки, Rн, Ом:");
+            ui->Label_InPut4->setText("Rн (Сопротивление нагрузки), Ом:");
             ui->DoubleSpinBoxR_InPut4->setVisible(false);
 
             ui->Label_InPut6->setVisible(false);
@@ -127,15 +126,15 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             //настройки выходных данных
             //----------------------------------------------
             ui->Label_OutPut1->setVisible(true);
-            ui->Label_OutPut1->setText("Напряжение на вторичной обмотке, U2, В:");
+            ui->Label_OutPut1->setText("U2 (Напряжение на вторичной обмотке), В:");
             ui->DoubleSpinBoxR_OutPut1->setVisible(true);
 
             ui->Label_OutPut2->setVisible(true);
-            ui->Label_OutPut2->setText("Максимальный ток диода, Iд, А:");
+            ui->Label_OutPut2->setText("Iд (Максимальный ток диода), А:");
             ui->DoubleSpinBoxR_OutPut2->setVisible(true);
 
             ui->Label_OutPut3->setVisible(true);
-            ui->Label_OutPut3->setText("Обратное напряжение на диоде, Uобр, В:");
+            ui->Label_OutPut3->setText("Uобр (Обратное напряжение на диоде), В:");
             ui->DoubleSpinBoxR_OutPut3->setVisible(true);
 
             ui->Label_OutPut4->setVisible(false);
@@ -158,6 +157,7 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
 void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
 {
     int index2 = ui->ComboBox_DevicesR->currentIndex();
+
     if (index2 == ONEPERIODCIRCUIT)// условие обработки выбора устройства
     {
             switch(index) // условие обработки выбора фильтра на выходе выпрямителя
@@ -165,7 +165,7 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 case 0:
                     ui->Label_InPut5->setVisible(true);
                     ui->DoubleSpinBoxR_InPut5->setVisible(true);
-                    ui->Label_InPut5->setText("Коэффициент пульсаций, Kp :");
+                    ui->Label_InPut5->setText("Kp (Коэффициент пульсаций):");
 
                     object_work->Kp = 1.57;
                     ui->DoubleSpinBoxR_InPut5->setValue(object_work->Kp);
@@ -186,7 +186,7 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 case 1:
                     ui->Label_InPut5->setVisible(true);
                     ui->DoubleSpinBoxR_InPut5->setVisible(true);
-                    ui->Label_InPut5->setText("Kp :");
+                    ui->Label_InPut5->setText("Kp (Коэффициент пульсаций):");
                     ui->DoubleSpinBoxR_InPut5->setEnabled(true);
 
                     ui->Label_OutPut3->setVisible(true);
@@ -205,7 +205,7 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 case 2:
                     ui->Label_InPut5->setVisible(true);
                     ui->DoubleSpinBoxR_InPut5->setVisible(true);
-                    ui->Label_InPut5->setText("Kp :");
+                    ui->Label_InPut5->setText("Kp (Коэффициент пульсаций):");
                     ui->DoubleSpinBoxR_InPut5->setEnabled(true);
 
                     ui->Label_OutPut3->setVisible(true);
@@ -239,7 +239,8 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             {
                 chrt = new MyCharts();
                 ui->graphicsView->setChart(chrt);
-                chrt->setTitle("График");
+                chrt->setTitle("Выходное напряжение на нагрузке");
+                chrt->legend()->hide();
             }
             else
                 chrt->DeleteChart();
@@ -257,7 +258,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             //--------------------------------------------------
             int chose = ui->ComboBox_OutPutF->currentIndex();
             object_work->SetBaseValue(value_1, value_2, value_4);        // передаём данные в расчётный класс
-            object_work->FFilters(chose);                              // передаём данные флага установки фильтра на выходе
+            object_work->FFilters(chose);                                // передаём данные флага установки фильтра на выходе
             object_work->Idop = value_3;
             object_work->Kp = value_5;
             object_work->Calculate();

@@ -15,12 +15,6 @@ void MyCharts::Create2DChart(QList<QPointF> series0)
     series = new QLineSeries();
     axisX = new QValueAxis;
     axisY = new QValueAxis;
-//    for(int i = 0; i < (int)series0.pointsVector().size(); i++)
-//    {
-//        double x = series->pointsVector()
-//        series->append(i,series0[i]);
-
-//    }
     series->append(series0);
 
     this->addSeries(series);

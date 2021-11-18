@@ -15,9 +15,9 @@ SOURCES += \
     Rectifiers.cpp \
     RectifiersAbstract.cpp \
     RectifiersOnePeriodCircuit.cpp \
+    RectifiersTwoPeriodCircuit.cpp \
     main.cpp \
-    mainpowersources.cpp \
-    rectifierstwoperiodcircuit.cpp
+    mainpowersources.cpp
 
 HEADERS += \
     Filters.h \
@@ -25,9 +25,9 @@ HEADERS += \
     Rectifiers.h \
     RectifiersAbstract.h \
     RectifiersOnePeriodCircuit.h \
+    RectifiersTwoPeriodCircuit.h \
     constans.h \
-    mainpowersources.h \
-    rectifierstwoperiodcircuit.h
+    mainpowersources.h
 
 FORMS += \
     Filters.ui \
