@@ -538,29 +538,6 @@
              <string>Справка</string>
             </property>
            </widget>
-           <widget class="QPushButton" name="pushButton_6">
-            <property name="minimumSize">
-             <size>
-              <width>86</width>
-              <height>74</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>86</width>
-              <height>74</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>ГОСТ тип А</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Не назначено</string>
-            </property>
-           </widget>
           </widget>
          </item>
          <item>

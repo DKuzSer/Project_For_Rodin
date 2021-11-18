@@ -2,6 +2,7 @@
 #include "ui_Rectifiers.h"
 
 #include "RectifiersOnePeriodCircuit.h"
+#include "rectifierstwoperiodcircuit.h"
 
 
 Rectifiers::Rectifiers(QWidget *parent) :
@@ -14,6 +15,7 @@ Rectifiers::Rectifiers(QWidget *parent) :
     ui->Label_OutPutF->setVisible(false);   // установление невидимыми параметра установки фильтра на выходе выпрямителя
 
     ui->ComboBox_DevicesR->addItem("Однополупериодный", ONEPERIODCIRCUIT); // добавление однополупериодного выпрямителя в окно устройств
+    ui->ComboBox_DevicesR->addItem("Мостовая схема (схема Греца)", TWOPERIODCIRCUIT);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Rectifiers::~Rectifiers()
@@ -42,19 +44,19 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             //настройки входных данных
             //----------------------------------------------
             ui->Label_InPut1->setVisible(true);
-            ui->Label_InPut1->setText("f, Гц:");
+            ui->Label_InPut1->setText("Частота напряжения на входе, f, Гц:");
             ui->DoubleSpinBoxR_InPut1->setVisible(true);
 
             ui->Label_InPut2->setVisible(true);
-            ui->Label_InPut2->setText("I0, А:");
+            ui->Label_InPut2->setText("Средний выпрямленный ток на нагрузке, I0, А:");
             ui->DoubleSpinBoxR_InPut2->setVisible(true);
 
             ui->Label_InPut3->setVisible(true);
-            ui->Label_InPut3->setText("Iдоп, А:");
+            ui->Label_InPut3->setText("Допустимый ток на диоде, Iдоп, А:");
             ui->DoubleSpinBoxR_InPut3->setVisible(true);
 
             ui->Label_InPut4->setVisible(true);
-            ui->Label_InPut4->setText("Rн, Ом:");
+            ui->Label_InPut4->setText("Сопротивление нагрузки, Rн, Ом:");
             ui->DoubleSpinBoxR_InPut4->setVisible(true);
 
             ui->Label_InPut6->setVisible(false);
@@ -64,11 +66,11 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             //настройки выходных данных
             //----------------------------------------------
             ui->Label_OutPut1->setVisible(true);
-            ui->Label_OutPut1->setText("m, шт:");
+            ui->Label_OutPut1->setText("Количество диодов, m, шт:");
             ui->DoubleSpinBoxR_OutPut1->setVisible(true);
 
             ui->Label_OutPut2->setVisible(true);
-            ui->Label_OutPut2->setText("Uд, В:");
+            ui->Label_OutPut2->setText("Действующее напряжение на вторичной обмотке, Uд, В:");
             ui->DoubleSpinBoxR_OutPut2->setVisible(true);
 
             ui->Label_OutPut3->setVisible(false);
@@ -87,72 +89,142 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             ui->ComboBox_OutPutF->addItem("L фильтр", 2);
 
         break;
+
+        case TWOPERIODCIRCUIT:
+            if(object_work != nullptr)
+            {
+                delete object_work;
+                object_work = new  RectifiersTwoPeriodCircuit();
+            }
+            else
+                object_work = new  RectifiersTwoPeriodCircuit();
+
+            ui->ComboBox_OutPutF->setVisible(true);
+            ui->Label_OutPutF->setVisible(true);
+
+            //настройки входных данных
+            //----------------------------------------------
+            ui->Label_InPut1->setVisible(true);
+            ui->Label_InPut1->setText("Требуемое напряжение на нагрузке, Uн, В:");
+            ui->DoubleSpinBoxR_InPut1->setVisible(true);
+
+            ui->Label_InPut2->setVisible(true);
+            ui->Label_InPut2->setText("Сопротивление нагрузки, Rн, Ом:");
+            ui->DoubleSpinBoxR_InPut2->setVisible(true);
+
+            ui->Label_InPut3->setVisible(false);
+            ui->Label_InPut3->setText("Сопротивление нагрузки, Rн, Ом:");
+            ui->DoubleSpinBoxR_InPut3->setVisible(false);
+
+            ui->Label_InPut4->setVisible(false);
+            ui->Label_InPut4->setText("Сопротивление нагрузки, Rн, Ом:");
+            ui->DoubleSpinBoxR_InPut4->setVisible(false);
+
+            ui->Label_InPut6->setVisible(false);
+            ui->DoubleSpinBoxR_InPut6->setVisible(false);
+            //----------------------------------------------
+
+            //настройки выходных данных
+            //----------------------------------------------
+            ui->Label_OutPut1->setVisible(true);
+            ui->Label_OutPut1->setText("Напряжение на вторичной обмотке, U2, В:");
+            ui->DoubleSpinBoxR_OutPut1->setVisible(true);
+
+            ui->Label_OutPut2->setVisible(true);
+            ui->Label_OutPut2->setText("Максимальный ток диода, Iд, А:");
+            ui->DoubleSpinBoxR_OutPut2->setVisible(true);
+
+            ui->Label_OutPut3->setVisible(true);
+            ui->Label_OutPut3->setText("Обратное напряжение на диоде, Uобр, В:");
+            ui->DoubleSpinBoxR_OutPut3->setVisible(true);
+
+            ui->Label_OutPut4->setVisible(false);
+            ui->DoubleSpinBoxR_OutPut4->setVisible(false);
+            ui->Label_OutPut5->setVisible(false);
+            ui->DoubleSpinBoxR_OutPut5->setVisible(false);
+            ui->Label_OutPut6->setVisible(false);
+            ui->DoubleSpinBoxR_OutPut6->setVisible(false);
+            //----------------------------------------------
+
+            ui->ComboBox_OutPutF->clear();
+            ui->ComboBox_OutPutF->addItem("Нет", 0);
+            ui->ComboBox_OutPutF->addItem("C фильтр", 1);
+
+    break;
     }
 
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
 {
-    switch(index) // условие обработки выбора фильтра на выходе выпрямителя
+    int index2 = ui->ComboBox_DevicesR->currentIndex();
+    if (index2 == ONEPERIODCIRCUIT)// условие обработки выбора устройства
     {
-        case 0:
-            ui->Label_InPut5->setVisible(true);
-            ui->DoubleSpinBoxR_InPut5->setVisible(true);
-            ui->Label_InPut5->setText("Kp :");
+            switch(index) // условие обработки выбора фильтра на выходе выпрямителя
+            {
+                case 0:
+                    ui->Label_InPut5->setVisible(true);
+                    ui->DoubleSpinBoxR_InPut5->setVisible(true);
+                    ui->Label_InPut5->setText("Коэффициент пульсаций, Kp :");
 
-            object_work->Kp = 1.57;
-            ui->DoubleSpinBoxR_InPut5->setValue(object_work->Kp);
-            ui->DoubleSpinBoxR_InPut5->setEnabled(false);
+                    object_work->Kp = 1.57;
+                    ui->DoubleSpinBoxR_InPut5->setValue(object_work->Kp);
+                    ui->DoubleSpinBoxR_InPut5->setEnabled(false);
 
-            ui->Label_OutPut3->setVisible(false);
-            ui->DoubleSpinBoxR_OutPut3->setVisible(false);
+                    ui->Label_OutPut3->setVisible(false);
+                    ui->DoubleSpinBoxR_OutPut3->setVisible(false);
 
-            mapCircuit.load(":/image/img/ROPCircuit1.jpg");
-            mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
-            ui->Label_PixMapCircuit->setPixmap(mapCircuit);
-            ui->Label_PixMapCircuit->setScaledContents(true);
-            ui->Label_PixMapProperties->setPixmap(mapProperties);
-            ui->Label_PixMapProperties->setScaledContents(true);
+                    mapCircuit.load(":/image/img/ROPCircuit1.jpg");
+                    mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
+                    ui->Label_PixMapCircuit->setPixmap(mapCircuit);
+                    ui->Label_PixMapCircuit->setScaledContents(true);
+                    ui->Label_PixMapProperties->setPixmap(mapProperties);
+                    ui->Label_PixMapProperties->setScaledContents(true);
 
-        break;
+                break;
 
-        case 1:
-            ui->Label_InPut5->setVisible(true);
-            ui->DoubleSpinBoxR_InPut5->setVisible(true);
-            ui->Label_InPut5->setText("Kp :");
-            ui->DoubleSpinBoxR_InPut5->setEnabled(true);
+                case 1:
+                    ui->Label_InPut5->setVisible(true);
+                    ui->DoubleSpinBoxR_InPut5->setVisible(true);
+                    ui->Label_InPut5->setText("Kp :");
+                    ui->DoubleSpinBoxR_InPut5->setEnabled(true);
 
-            ui->Label_OutPut3->setVisible(true);
-            ui->Label_OutPut3->setText("C, мкФ:");
-            ui->DoubleSpinBoxR_OutPut3->setVisible(true);
+                    ui->Label_OutPut3->setVisible(true);
+                    ui->Label_OutPut3->setText("C, мкФ:");
+                    ui->DoubleSpinBoxR_OutPut3->setVisible(true);
 
-            mapCircuit.load(":/image/img/ROPCircuit2.jpg");
-            mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
-            ui->Label_PixMapCircuit->setPixmap(mapCircuit);
-            ui->Label_PixMapCircuit->setScaledContents(true);
-            ui->Label_PixMapProperties->setPixmap(mapProperties);
-            ui->Label_PixMapProperties->setScaledContents(true);
+                    mapCircuit.load(":/image/img/ROPCircuit2.jpg");
+                    mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
+                    ui->Label_PixMapCircuit->setPixmap(mapCircuit);
+                    ui->Label_PixMapCircuit->setScaledContents(true);
+                    ui->Label_PixMapProperties->setPixmap(mapProperties);
+                    ui->Label_PixMapProperties->setScaledContents(true);
 
-        break;
+                break;
 
-        case 2:
-            ui->Label_InPut5->setVisible(true);
-            ui->DoubleSpinBoxR_InPut5->setVisible(true);
-            ui->Label_InPut5->setText("Kp :");
-            ui->DoubleSpinBoxR_InPut5->setEnabled(true);
+                case 2:
+                    ui->Label_InPut5->setVisible(true);
+                    ui->DoubleSpinBoxR_InPut5->setVisible(true);
+                    ui->Label_InPut5->setText("Kp :");
+                    ui->DoubleSpinBoxR_InPut5->setEnabled(true);
 
-            ui->Label_OutPut3->setVisible(true);
-            ui->Label_OutPut3->setText("L, мГн:");
-            ui->DoubleSpinBoxR_OutPut3->setVisible(true);
+                    ui->Label_OutPut3->setVisible(true);
+                    ui->Label_OutPut3->setText("L, мГн:");
+                    ui->DoubleSpinBoxR_OutPut3->setVisible(true);
 
-            mapCircuit.load(":/image/img/ROPCircuit3.jpg");
-            mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
-            ui->Label_PixMapCircuit->setPixmap(mapCircuit);
-            ui->Label_PixMapCircuit->setScaledContents(true);
-            ui->Label_PixMapProperties->setPixmap(mapProperties);
-            ui->Label_PixMapProperties->setScaledContents(true);
+                    mapCircuit.load(":/image/img/ROPCircuit3.jpg");
+                    mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
+                    ui->Label_PixMapCircuit->setPixmap(mapCircuit);
+                    ui->Label_PixMapCircuit->setScaledContents(true);
+                    ui->Label_PixMapProperties->setPixmap(mapProperties);
+                    ui->Label_PixMapProperties->setScaledContents(true);
 
-        break;
+                break;
+        }
+    }
+    if (index2 == TWOPERIODCIRCUIT)
+    {
+
     }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -180,11 +252,8 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             double value_4 = ui->DoubleSpinBoxR_InPut4->value();
             double value_5 = ui->DoubleSpinBoxR_InPut5->value();
 
-            double freq = value_1; //Копирую в другие переменные, чтобы у нас была
-            double Current0 = value_2; // возможность юзать их в рассчетах
-            double Current_dop = value_3;// так как в дальнейшем они будут принимать другие значения
+            double freq = value_1; //Копирую в другие переменные
             double Resistance = value_4;
-            double Pulse = value_5;
             //--------------------------------------------------
             int chose = ui->ComboBox_OutPutF->currentIndex();
             object_work->SetBaseValue(value_1, value_2, value_4);        // передаём данные в расчётный класс
