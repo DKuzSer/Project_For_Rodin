@@ -298,11 +298,11 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         double Resistance = value_4;
 
         int chose = ui->ComboBox_OutPutF->currentIndex();
-        object_work->SetBaseValue2(value_1, value_2, value_4);        // передаём данные в расчётный класс
-        object_work->FFilters2(chose);                                // передаём данные флага установки фильтра на выходе
+        object_work->SetBaseValue(value_1, value_2, value_4);        // передаём данные в расчётный класс
+        object_work->FFilters(chose);                                // передаём данные флага установки фильтра на выходе
         object_work->Idop = value_3;
         object_work->Kp = value_5;
-        object_work->Calculate2();
+        object_work->Calculate();
 
         //переписываем в удобный формат
         //--------------------------------------------------

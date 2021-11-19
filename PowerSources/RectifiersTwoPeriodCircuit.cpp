@@ -5,14 +5,14 @@ RectifiersTwoPeriodCircuit::RectifiersTwoPeriodCircuit()
 
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void RectifiersTwoPeriodCircuit::SetBaseValue2(double _f, double _I0, double _Rn)
+void RectifiersTwoPeriodCircuit::SetBaseValue(double _f, double _I0, double _Rn)
 {
     f = _f;
     I0 = _I0;
     Rn = _Rn;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void RectifiersTwoPeriodCircuit::FFilters2(int number)
+void RectifiersTwoPeriodCircuit::FFilters(int number)
 {
     switch(number)
     {
@@ -30,17 +30,17 @@ void RectifiersTwoPeriodCircuit::FFilters2(int number)
     }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-double RectifiersTwoPeriodCircuit::Capacitor2(double Rn,double f,double Kp)
+double RectifiersTwoPeriodCircuit::Capacitor(double Rn,double f,double Kp)
 {
     return (double)1000000*((Kp*1.73-1)/(4*f*Rn*Kp*1.73)); // результат в мкФ
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-double RectifiersTwoPeriodCircuit::Inductor2(double Rn,double f,double Kp)
+double RectifiersTwoPeriodCircuit::Inductor(double Rn,double f,double Kp)
 {
     return (double)1000*((Rn/(4*PI*f))*sqrt(pow((0.667/Kp),2)-1)); // результат в мГн
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void RectifiersTwoPeriodCircuit::Calculate2()
+void RectifiersTwoPeriodCircuit::Calculate()
 {
 
     double T = 1/f;
@@ -58,7 +58,7 @@ void RectifiersTwoPeriodCircuit::Calculate2()
     {
         U2m = U0*(1+Kp);
         Ud_input = U2m/sqrt(2);
-        C = Capacitor2(Rn,f,Kp);
-        L = Inductor2(Rn,f,Kp);
+        C = Capacitor(Rn,f,Kp);
+        L = Inductor(Rn,f,Kp);
     }
 }
