@@ -2,8 +2,8 @@
 #define MAINPOWERSOURCES_H
 
 #include <QMainWindow>
-#include "Rectifiers.h"
-#include "Filters.h"
+#include "Rectifiers/Rectifiers.h"
+#include "Filters/Filters.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainPowerSources; }
