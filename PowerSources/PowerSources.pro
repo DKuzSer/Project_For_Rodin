@@ -10,28 +10,32 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Filters.cpp \
+    Filters\Filters.cpp \
+    Filters\FiltersAbstract.cpp \
+    Filters\FiltersButterworth.cpp \
     MyCharts.cpp \
-    Rectifiers.cpp \
-    RectifiersAbstract.cpp \
-    RectifiersOnePeriodCircuit.cpp \
-    RectifiersTwoPeriodCircuit.cpp \
+    Rectifiers\Rectifiers.cpp \
+    Rectifiers\RectifiersAbstract.cpp \
+    Rectifiers\RectifiersOnePeriodCircuit.cpp \
+    Rectifiers\RectifiersTwoPeriodCircuit.cpp \
     main.cpp \
     mainpowersources.cpp
 
 HEADERS += \
-    Filters.h \
+    Filters\Filters.h \
+    Filters\FiltersAbstract.h \
+    Filters\FiltersButterworth.h \
     MyCharts.h \
-    Rectifiers.h \
-    RectifiersAbstract.h \
-    RectifiersOnePeriodCircuit.h \
-    RectifiersTwoPeriodCircuit.h \
+    Rectifiers\Rectifiers.h \
+    Rectifiers\RectifiersAbstract.h \
+    Rectifiers\RectifiersOnePeriodCircuit.h \
+    Rectifiers\RectifiersTwoPeriodCircuit.h \
     constans.h \
     mainpowersources.h
 
 FORMS += \
-    Filters.ui \
-    Rectifiers.ui \
+    Filters\Filters.ui \
+    Rectifiers\Rectifiers.ui \
     mainpowersources.ui
 
 TRANSLATIONS += \

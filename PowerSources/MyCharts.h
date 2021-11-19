@@ -13,9 +13,9 @@ public:
     QValueAxis* axisX = nullptr;
     QValueAxis* axisY = nullptr;
 
-    void Create2DChart(QList<QPointF>);
-    void PropertiesAxis(QString nameAxis, double rangeLow, double rangeHigh, double count, QString format);
-    void DeleteChart();
+    void Create2DChart(QList<QPointF>);                                                                             // создание графика 2D
+    void PropertiesAxis(QString nameAxis, double rangeLow, double rangeHigh, double count, QString format);         // свойства осей
+    void DeleteChart();                                                                                             // удаление графика
 
 };
 
