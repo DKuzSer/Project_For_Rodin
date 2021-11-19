@@ -10,12 +10,12 @@ class RectifiersTwoPeriodCircuit : public RectifiersAbstract
 public:
     RectifiersTwoPeriodCircuit();
 
-    void SetBaseValue(double _f, double _I0, double _Rn);
-    void FFilters(int number);
-    void Calculate();
+    void SetBaseValue2(double _f, double _I0, double _Rn);
+    void FFilters2(int number);
+    void Calculate2();
 
-    double Inductor(double Rh,double f,double Kp);
-    double Capacitor(double Rh,double f,double Kp);
+    double Inductor2(double Rh,double f,double Kp);
+    double Capacitor2(double Rh,double f,double Kp);
 
     bool flagFilters = 0; // 0 - РЅРµС‚ С„РёР»СЊС‚СЂР°, 1 - C С„РёР»СЊС‚СЂ, 2 - L С„РёР»СЊС‚СЂ
 };
