@@ -278,6 +278,16 @@ void Rectifiers::on_PushButton_Calculate_clicked()
     int index = ui->ComboBox_DevicesR->currentIndex();
     if (index == TWOPERIODCIRCUIT)
     {
+        if(chrt == nullptr)
+        {
+            chrt = new MyCharts();
+            ui->graphicsView->setChart(chrt);
+            chrt->setTitle("Выходное напряжение на нагрузке");
+            chrt->legend()->hide();
+        }
+        else
+            chrt->DeleteChart();
+
         double value_1 = ui->DoubleSpinBoxR_InPut1->value();
         double value_2 = ui->DoubleSpinBoxR_InPut2->value();
         double value_3 = ui->DoubleSpinBoxR_InPut3->value();
@@ -310,6 +320,52 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
         ui->DoubleSpinBoxR_OutPut2->setValue(value_2);
         ui->DoubleSpinBoxR_OutPut3->setValue(value_3);
+
+        //-------------------------------------------------------
+
+        QLineSeries series; //без фильтров
+
+        double T = 1./freq;
+        double n = 0; //счетчик для задания условия переодичности
+        for (double i = 0.0; i <= 2.*T; i = i + 0.00001)
+        {
+            if (5*T/4 < i && i < 5*T/4+0.00001)
+            {
+                n=n+1.0;
+            }
+
+            if(chose == 0) // без катушки и кондера
+            {
+                series.append(i, fabs(sqrt(2)*value_2*sin(2*M_PI*freq*i)));
+            }
+            if(chose == 1) // кондер
+            {
+                if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))) && (T/4<i))
+                {
+
+                    series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
+                }
+                else
+                {
+                    series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                }
+            }
+            if (chose == 2)   // катушка
+            {
+                if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance/(value_3*pow(10,(-3))))) && (T/4<i))
+                {
+                    series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-3)))));
+                }
+                else
+                {
+                    series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                }
+            }
+        }
+
+        chrt->Create2DChart(series.points());
+        chrt->PropertiesAxis("X", 0, 2/freq, 11, "%.2lf");
+        chrt->PropertiesAxis("Y", -0.5, 1.5*value_2, 11, "%.2lf");
 
         //-------------------------------------------------------
     }
