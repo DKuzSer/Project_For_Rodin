@@ -5,6 +5,8 @@
 
 #define ONEPERIODCIRCUIT 0
 
+#define TWOPERIODCIRCUIT 1
+
 #define BUTTERWORTH 0
 
 #endif // CONSTANS_H
