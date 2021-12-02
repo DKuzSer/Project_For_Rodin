@@ -47,17 +47,17 @@ void RectifiersTwoPeriodCircuit::Calculate()
     double omega = 2*PI*f;
 
     U0 = I0*Rn;
-    U2m = PI*U0/sqrt(8);
-    Ud_input = U2m/sqrt(2);
+    Um_input = PI*U0/sqrt(8);
+    Ud_input = Um_input/sqrt(2);
 
-    double Uobr = sqrt(2)*U2m;
+    double Uobr = sqrt(2)*Um_input;
 
     double Iobr = PI*I0/2;
 
     if(flagFilters != 0)                              // Вычисление C или L выходного фильтра
     {
-        U2m = U0*(1+Kp);
-        Ud_input = U2m/sqrt(2);
+        Um_input = U0*(1+Kp);
+        Ud_input = Um_input/sqrt(2);
         C = Capacitor(Rn,f,Kp);
         L = Inductor(Rn,f,Kp);
     }

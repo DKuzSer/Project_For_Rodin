@@ -178,6 +178,8 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                     ui->DoubleSpinBoxR_InPut5->setEnabled(false);
 
                     ui->Label_OutPut3->setVisible(false);
+                    ui->DoubleSpinBoxR_OutPut1->setEnabled(false);
+                    ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                     ui->DoubleSpinBoxR_OutPut3->setVisible(false);
 
                     mapCircuit.load(":/image/img/ROPCircuit1.jpg");
@@ -193,11 +195,16 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                     ui->Label_InPut5->setVisible(true);
                     ui->DoubleSpinBoxR_InPut5->setVisible(true);
                     ui->Label_InPut5->setText("Kp (Коэффициент пульсаций):");
+                    ui->DoubleSpinBoxR_InPut5->setMaximum(1.57);
+                    ui->DoubleSpinBoxR_InPut5->setMinimum(0);
                     ui->DoubleSpinBoxR_InPut5->setEnabled(true);
 
                     ui->Label_OutPut3->setVisible(true);
                     ui->Label_OutPut3->setText("C, мкФ:");
                     ui->DoubleSpinBoxR_OutPut3->setVisible(true);
+                    ui->DoubleSpinBoxR_OutPut1->setEnabled(false);
+                    ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
+                    ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
                     mapCircuit.load(":/image/img/ROPCircuit2.jpg");
                     mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
@@ -212,11 +219,16 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                     ui->Label_InPut5->setVisible(true);
                     ui->DoubleSpinBoxR_InPut5->setVisible(true);
                     ui->Label_InPut5->setText("Kp (Коэффициент пульсаций):");
+                    ui->DoubleSpinBoxR_InPut5->setMaximum(1.57);
+                    ui->DoubleSpinBoxR_InPut5->setMinimum(0);
                     ui->DoubleSpinBoxR_InPut5->setEnabled(true);
 
                     ui->Label_OutPut3->setVisible(true);
                     ui->Label_OutPut3->setText("L, мГн:");
                     ui->DoubleSpinBoxR_OutPut3->setVisible(true);
+                    ui->DoubleSpinBoxR_OutPut1->setEnabled(false);
+                    ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
+                    ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
                     mapCircuit.load(":/image/img/ROPCircuit3.jpg");
                     mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
@@ -243,6 +255,9 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
 
                 ui->Label_OutPut3->setVisible(false);
                 ui->DoubleSpinBoxR_OutPut3->setVisible(false);
+                ui->DoubleSpinBoxR_OutPut1->setEnabled(false);
+                ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
+                ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
             break;
 
@@ -250,11 +265,16 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 ui->Label_InPut5->setVisible(true);
                 ui->DoubleSpinBoxR_InPut5->setVisible(true);
                 ui->Label_InPut5->setText("Kp (Коэффициент пульсаций):");
+                ui->DoubleSpinBoxR_InPut5->setMaximum(0.667);
+                ui->DoubleSpinBoxR_InPut5->setMinimum(0);
                 ui->DoubleSpinBoxR_InPut5->setEnabled(true);
 
                 ui->Label_OutPut3->setVisible(true);
                 ui->Label_OutPut3->setText("C, мкФ:");
                 ui->DoubleSpinBoxR_OutPut3->setVisible(true);
+                ui->DoubleSpinBoxR_OutPut1->setEnabled(false);
+                ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
+                ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
             break;
 
@@ -262,11 +282,16 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 ui->Label_InPut5->setVisible(true);
                 ui->DoubleSpinBoxR_InPut5->setVisible(true);
                 ui->Label_InPut5->setText("Kp (Коэффициент пульсаций):");
+                ui->DoubleSpinBoxR_InPut5->setMaximum(0.667);
+                ui->DoubleSpinBoxR_InPut5->setMinimum(0);
                 ui->DoubleSpinBoxR_InPut5->setEnabled(true);
 
                 ui->Label_OutPut3->setVisible(true);
                 ui->Label_OutPut3->setText("L, мГн:");
                 ui->DoubleSpinBoxR_OutPut3->setVisible(true);
+                ui->DoubleSpinBoxR_OutPut1->setEnabled(false);
+                ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
+                ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
             break;
         }
@@ -336,29 +361,29 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
             if(chose == 0) // без катушки и кондера
             {
-                series.append(i, fabs(sqrt(2)*value_2*sin(2*M_PI*freq*i)));
+                series.append(i*1000, fabs(sqrt(2)*value_2*sin(2*M_PI*freq*i)));
             }
             if(chose == 1) // кондер
             {
                 if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))) && (T/4<i))
                 {
 
-                    series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
+                    series.append(i*1000, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
                 }
                 else
                 {
-                    series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                    series.append(i*1000, sqrt(2)*value_2*sin(2*M_PI*freq*i));
                 }
             }
             if (chose == 2)   // катушка
             {
                 if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance/(value_3*pow(10,(-3))))) && (T/4<i))
                 {
-                    series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-3)))));
+                    series.append(i*1000, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-3)))));
                 }
                 else
                 {
-                    series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                    series.append(i*1000, sqrt(2)*value_2*sin(2*M_PI*freq*i));
                 }
             }
         }
@@ -371,105 +396,133 @@ void Rectifiers::on_PushButton_Calculate_clicked()
     }
     if (index == ONEPERIODCIRCUIT) // условие обработки выбора устройства
     {
-            if(chrt == nullptr)
-            {
-                chrt = new MyCharts();
-                ui->graphicsView->setChart(chrt);
-                chrt->setTitle("Выходное напряжение на нагрузке");
-                chrt->legend()->hide();
-            }
+        if(chrt == nullptr)
+        {
+            chrt = new MyCharts();
+            ui->graphicsView->setChart(chrt);
+            chrt->setTitle("Выходное напряжение на нагрузке");
+            chrt->legend()->hide();
+        }
+        else if(object_work->flagCalculate == false)
+        {
+            chrt->DeleteChart();
+        }
+
+        //переписываем в удобный формат
+        //--------------------------------------------------
+        double value_1 = ui->DoubleSpinBoxR_InPut1->value();
+        double value_2 = ui->DoubleSpinBoxR_InPut2->value();
+        double value_3 = ui->DoubleSpinBoxR_InPut3->value();
+        double value_4 = ui->DoubleSpinBoxR_InPut4->value();
+        double value_5 = ui->DoubleSpinBoxR_InPut5->value();
+
+
+        double freq = value_1; //Копирую в другие переменные
+        double Resistance = value_4;
+        double Uaverage = Resistance * value_2;
+        //--------------------------------------------------
+        int chose = ui->ComboBox_OutPutF->currentIndex();
+        object_work->SetBaseValue(value_1, value_2, value_4);        // передаём данные в расчётный класс
+        object_work->FFilters(chose);                                // передаём данные флага установки фильтра на выходе
+        object_work->Idop = value_3;
+        object_work->Kp = value_5;
+        object_work->Calculate();
+
+        if(object_work->flagCalculate == true)
+        {
+            QMessageBox::information(this,"Ошибка","Данные параметры нельзя реализовать");
+            return;
+        }
+
+        //переписываем в удобный формат
+        //--------------------------------------------------
+        value_1 = object_work->m;
+        value_2 = object_work->Ud_input;
+        if(chose != 0)
+        {
+            if(chose == 1)
+                value_3 = object_work->C;
             else
-                chrt->DeleteChart();
+                value_3 = object_work->L*1000; // приведение к мГн
+        }
+        //--------------------------------------------------
 
-            //переписываем в удобный формат
-            //--------------------------------------------------
-            double value_1 = ui->DoubleSpinBoxR_InPut1->value();
-            double value_2 = ui->DoubleSpinBoxR_InPut2->value();
-            double value_3 = ui->DoubleSpinBoxR_InPut3->value();
-            double value_4 = ui->DoubleSpinBoxR_InPut4->value();
-            double value_5 = ui->DoubleSpinBoxR_InPut5->value();
+        ui->DoubleSpinBoxR_OutPut1->setValue(value_1);
+        ui->DoubleSpinBoxR_OutPut2->setValue(value_2);
+        ui->DoubleSpinBoxR_OutPut3->setValue(value_3);
 
-            double freq = value_1; //Копирую в другие переменные
-            double Resistance = value_4;
-            //--------------------------------------------------
-            int chose = ui->ComboBox_OutPutF->currentIndex();
-            object_work->SetBaseValue(value_1, value_2, value_4);        // передаём данные в расчётный класс
-            object_work->FFilters(chose);                                // передаём данные флага установки фильтра на выходе
-            object_work->Idop = value_3;
-            object_work->Kp = value_5;
-            object_work->Calculate();
+        //-------------------------------------------------------
+        //делаем график
 
-            //переписываем в удобный формат
-            //--------------------------------------------------
-            value_1 = object_work->m;
-            value_2 = object_work->Ud_input;
-            if(chose != 0)
+        QLineSeries series;
+        QLineSeries series_average;
+
+        double T = 1./freq;
+        double n = 0; //счетчик для задания условия переодичности
+        for (double i = 0.0; i <= 2.*T; i = i + 0.00001)
+        {
+            if (5*T/4 < i && i < 5*T/4+0.00001)
             {
-                if(chose == 1)
-                    value_3 = object_work->C;
+                n=n+1.0;
+            }
+            if(chose == 0) // без катушки и кондера
+            {
+                if(sqrt(2)*value_2*sin(2*M_PI*freq*i) > 0)
+                {
+                    series.append(i*1000, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                    series_average.append(i*1000, Uaverage);
+                }
                 else
-                    value_3 = object_work->L;
+                {
+                    series.append(i*1000, 0);
+                    series_average.append(i*1000, Uaverage);
+                }
             }
-            //--------------------------------------------------
-
-            ui->DoubleSpinBoxR_OutPut1->setValue(value_1);
-            ui->DoubleSpinBoxR_OutPut2->setValue(value_2);
-            ui->DoubleSpinBoxR_OutPut3->setValue(value_3);
-
-            //-------------------------------------------------------
-            //делаем график
-
-            QLineSeries series; //без фильтров
-
-            double T = 1./freq;
-            double n = 0; //счетчик для задания условия переодичности
-            for (double i = 0.0; i <= 2.*T; i = i + 0.00001)
+            if(chose == 1) // кондер
             {
-                if (5*T/4 < i && i < 5*T/4+0.00001)
+                if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))) && (T/4<i))
                 {
-                    n=n+1.0;
-                }
 
-                if(chose == 0) // без катушки и кондера
-                {
-                    if(sqrt(2)*value_2*sin(2*M_PI*freq*i) > 0)
-                    {
-                        series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
-                    }
-                    else
-                    {
-                        series.append(i, 0);
-                    }
+                    series.append(i*1000, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
+                    series_average.append(i*1000, Uaverage);
                 }
-                if(chose == 1) // кондер
+                else
                 {
-                    if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))) && (T/4<i))
-                    {
-
-                        series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
-                    }
-                    else
-                    {
-                        series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
-                    }
-                }
-                if (chose == 2)   // катушка
-                {
-                    if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance/(value_3*pow(10,(-3))))) && (T/4<i))
-                    {
-                        series.append(i, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-3)))));
-                    }
-                    else
-                    {
-                        series.append(i, sqrt(2)*value_2*sin(2*M_PI*freq*i));
-                    }
+                    series.append(i*1000, sqrt(2)*value_2*sin(2*M_PI*freq*i));
+                    series_average.append(i*1000, Uaverage);
                 }
             }
+            if (chose == 2)   // катушка
+            {
+                if(i < T)
+                {
+                    series.append(i*1000, object_work->OutputInductorCurrentWaveform(i)*Resistance);
+                    series_average.append(i*1000, Uaverage);
+                }
+                else
+                {
+                    series.append(i*1000, object_work->OutputInductorCurrentWaveform(i-T)*Resistance);
+                    series_average.append(i*1000, Uaverage);
+                }
+            }
+        }
 
-            chrt->Create2DChart(series.points());
-            chrt->PropertiesAxis("X", 0, 2/freq, 11, "%.2lf");
-            chrt->PropertiesAxis("Y", -0.5, 1.5*value_2, 11, "%.2lf");
+        double max = 0;
+        for(int i = 0; i < series.pointsVector().size(); i++)
+        {
+            double step = series.pointsVector().at(i).y();
+            if(step > max)
+            {
+                max = step;
+            }
+        }
 
-            //-------------------------------------------------------
+        chrt->Create2DChart(series.points());
+        chrt->PropertiesAxis("X", 0, 2/freq*1000, 11, "%.2lf");
+        chrt->PropertiesAxis("Y", -0.2, 1.5*max, 11, "%.2lf");
+        chrt->SetNameAxis("Время, мс", "Напряжение, В");
+        chrt->AddSeries2DChart(series_average.points(), "Среднее напряжение");
+
+        //-------------------------------------------------------
     }
 }

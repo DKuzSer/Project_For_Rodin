@@ -26,6 +26,17 @@ void MyCharts::Create2DChart(QList<QPointF> series0)
     series->attachAxis(axisY);
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void MyCharts::AddSeries2DChart(QList<QPointF> series0, QString nameSeries)
+{
+    QLineSeries* seriesAdd = new QLineSeries();
+    seriesAdd->append(series0);
+    seriesAdd->setName(nameSeries);
+
+    this->addSeries(seriesAdd);
+    seriesAdd->attachAxis(axisX);
+    seriesAdd->attachAxis(axisY);
+}
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MyCharts::PropertiesAxis(QString nameAxis, double rangeLow, double rangeHigh, double count, QString format)
 {
     if(nameAxis == "X")
@@ -40,6 +51,12 @@ void MyCharts::PropertiesAxis(QString nameAxis, double rangeLow, double rangeHig
         axisY->setTickCount(count);
         axisY->setLabelFormat(format);
     }
+}
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void MyCharts::SetNameAxis(QString nameAxisX, QString nameAxisY)
+{
+    axisX->setTitleText(nameAxisX);
+    axisY->setTitleText(nameAxisY);
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MyCharts::DeleteChart()

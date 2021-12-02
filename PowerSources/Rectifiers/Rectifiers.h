@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPixmap>
+#include <QMessageBox>
 #include "constans.h"
 #include "RectifiersAbstract.h"
 #include "MyCharts.h"
