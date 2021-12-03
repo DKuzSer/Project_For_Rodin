@@ -352,7 +352,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
         double T = 1./freq;
         double n = 0; //счетчик для задания условия переодичности
-        for (double i = 0.0; i <= 2.*T; i = i + 0.00001)
+        for (float i = 0.0; i <= 2.*T; i = i + 0.00001)
         {
             if (5*T/4 < i && i < 5*T/4+0.00001)
             {
