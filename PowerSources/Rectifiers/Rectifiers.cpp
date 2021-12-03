@@ -441,7 +441,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         if(chose != 0)
         {
             if(chose == 1)
-                value_3 = object_work->C;
+                value_3 = object_work->C*1000000;
             else
                 value_3 = object_work->L*1000; // приведение к мГн
         }
@@ -458,52 +458,24 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         QLineSeries series_average;
 
         double T = 1./freq;
-        double n = 0; //счетчик для задания условия переодичности
-        for (double i = 0.0; i <= 2.*T; i = i + 0.00001)
+        for (float i = 0.0; i <= 2.*T; i += 0.00001)
         {
-            if (5*T/4 < i && i < 5*T/4+0.00001)
+            if(chose == 0)    // без катушки и кондера
             {
-                n=n+1.0;
+                series.append(i*1000, object_work->OutputVoltageWaveform(i));
+                series_average.append(i*1000, Uaverage);
             }
-            if(chose == 0) // без катушки и кондера
-            {
-                if(sqrt(2)*value_2*sin(2*M_PI*freq*i) > 0)
-                {
-                    series.append(i*1000, sqrt(2)*value_2*sin(2*M_PI*freq*i));
-                    series_average.append(i*1000, Uaverage);
-                }
-                else
-                {
-                    series.append(i*1000, 0);
-                    series_average.append(i*1000, Uaverage);
-                }
-            }
-            if(chose == 1) // кондер
-            {
-                if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))) && (T/4<i))
-                {
 
-                    series.append(i*1000, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
-                    series_average.append(i*1000, Uaverage);
-                }
-                else
-                {
-                    series.append(i*1000, sqrt(2)*value_2*sin(2*M_PI*freq*i));
-                    series_average.append(i*1000, Uaverage);
-                }
+            if(chose == 1)    // кондер
+            {
+                series.append(i*1000, object_work->OutputCapacityVoltageWaveform(i));
+                series_average.append(i*1000, Uaverage);
             }
+
             if (chose == 2)   // катушка
             {
-                if(i < T)
-                {
-                    series.append(i*1000, object_work->OutputInductorCurrentWaveform(i)*Resistance);
-                    series_average.append(i*1000, Uaverage);
-                }
-                else
-                {
-                    series.append(i*1000, object_work->OutputInductorCurrentWaveform(i-T)*Resistance);
-                    series_average.append(i*1000, Uaverage);
-                }
+                series.append(i*1000, object_work->OutputInductorCurrentWaveform(i)*Resistance);
+                series_average.append(i*1000, Uaverage);
             }
         }
 

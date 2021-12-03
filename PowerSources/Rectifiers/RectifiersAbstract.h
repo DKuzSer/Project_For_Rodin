@@ -14,7 +14,10 @@ public:
     virtual void SetBaseValue(double , double , double ){};
     virtual void FFilters(int){};
     virtual void Calculate(){};
+
     virtual double OutputInductorCurrentWaveform(double){return 0;};
+    virtual double OutputCapacityVoltageWaveform(double){return 0;};
+    virtual double OutputVoltageWaveform(double){return 0;};
 
     double f;           // частота входного сигнала
     double I0;          // значение средневыпрямленного тока
