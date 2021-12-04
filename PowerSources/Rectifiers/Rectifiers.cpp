@@ -182,6 +182,7 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                     ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                     ui->DoubleSpinBoxR_OutPut3->setVisible(false);
 
+                    ui->Label_PixMapCircuit->setMaximumHeight(400);
                     mapCircuit.load(":/image/img/ROPCircuit1.jpg");
                     mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
                     ui->Label_PixMapCircuit->setPixmap(mapCircuit);
@@ -206,6 +207,7 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                     ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                     ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
+                    ui->Label_PixMapCircuit->setMaximumHeight(400);
                     mapCircuit.load(":/image/img/ROPCircuit2.jpg");
                     mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
                     ui->Label_PixMapCircuit->setPixmap(mapCircuit);
@@ -230,6 +232,7 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                     ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                     ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
+                    ui->Label_PixMapCircuit->setMaximumHeight(400);
                     mapCircuit.load(":/image/img/ROPCircuit3.jpg");
                     mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
                     ui->Label_PixMapCircuit->setPixmap(mapCircuit);
@@ -259,6 +262,14 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                 ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
+                ui->Label_PixMapCircuit->setMaximumHeight(600);
+                mapCircuit.load(":/image/img/RTPCircuit1.jpg");
+                mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
+                ui->Label_PixMapCircuit->setPixmap(mapCircuit);
+                ui->Label_PixMapCircuit->setScaledContents(true);
+                ui->Label_PixMapProperties->setPixmap(mapProperties);
+                ui->Label_PixMapProperties->setScaledContents(true);
+
             break;
 
             case 1:
@@ -276,6 +287,14 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                 ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
+                ui->Label_PixMapCircuit->setMaximumHeight(700);
+                mapCircuit.load(":/image/img/RTPCircuit2.jpg");
+                mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
+                ui->Label_PixMapCircuit->setPixmap(mapCircuit);
+                ui->Label_PixMapCircuit->setScaledContents(true);
+                ui->Label_PixMapProperties->setPixmap(mapProperties);
+                ui->Label_PixMapProperties->setScaledContents(true);
+
             break;
 
             case 2:
@@ -292,6 +311,14 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 ui->DoubleSpinBoxR_OutPut1->setEnabled(false);
                 ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                 ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
+
+                ui->Label_PixMapCircuit->setMaximumHeight(600);
+                mapCircuit.load(":/image/img/RTPCircuit3.jpg");
+                mapProperties.load(":/image/img/ROPCircuitProperties.jpg");
+                ui->Label_PixMapCircuit->setPixmap(mapCircuit);
+                ui->Label_PixMapCircuit->setScaledContents(true);
+                ui->Label_PixMapProperties->setPixmap(mapProperties);
+                ui->Label_PixMapProperties->setScaledContents(true);
 
             break;
         }
