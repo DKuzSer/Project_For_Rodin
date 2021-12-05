@@ -16,12 +16,19 @@ Rectifiers::Rectifiers(QWidget *parent) :
     ui->ComboBox_DevicesR->addItem("Однополупериодный", ONEPERIODCIRCUIT); // добавление однополупериодного выпрямителя в окно устройств
     ui->ComboBox_DevicesR->addItem("Мостовая схема (схема Греца)", TWOPERIODCIRCUIT);
 }
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Rectifiers::~Rectifiers()
 {
     delete chrt;
     delete object_work;
     delete ui;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void Rectifiers::SetDiodsParameters(std::vector <QString> _names_of_diods, std::vector <int> _Uobr_max)
+{
+    names_of_diods = _names_of_diods;
+    Uobr_max = _Uobr_max;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
@@ -35,7 +42,7 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
                 object_work = new  RectifiersOnePeriodCircuit();
             }
             else
-                object_work = new  RectifiersOnePeriodCircuit();
+                object_work = new  RectifiersOnePeriodCircuit();      
 
             ui->ComboBox_OutPutF->setVisible(true);
             ui->Label_OutPutF->setVisible(true);
