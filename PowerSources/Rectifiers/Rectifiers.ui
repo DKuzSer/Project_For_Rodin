@@ -40,7 +40,7 @@
      <item>
       <widget class="QTabWidget" name="TabWidget">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="Tab_PageCircuit">
         <attribute name="title">
@@ -247,7 +247,11 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_InPut5"/>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_InPut5">
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_InPut6">
