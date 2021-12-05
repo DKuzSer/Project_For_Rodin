@@ -1,19 +1,19 @@
 #ifndef FILTERS_H
 #define FILTERS_H
 
-#include <QWidget>
+#include "MainpowerSourcesAbstract.h"
 #include "constans.h"
 
 namespace Ui {
 class Filters;
 }
 
-class Filters : public QWidget
+class Filters : public MainpowerSourcesAbstract
 {
     Q_OBJECT
 
 public:
-    explicit Filters(QWidget *parent = nullptr);
+    explicit Filters(MainpowerSourcesAbstract *parent = nullptr);
     ~Filters();
 
 private:

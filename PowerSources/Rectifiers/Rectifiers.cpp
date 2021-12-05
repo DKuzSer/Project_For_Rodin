@@ -4,8 +4,7 @@
 #include "RectifiersOnePeriodCircuit.h"
 #include "RectifiersTwoPeriodCircuit.h"
 
-Rectifiers::Rectifiers(QWidget *parent) :
-    QWidget(parent),
+Rectifiers::Rectifiers(MainpowerSourcesAbstract *parent) :
     ui(new Ui::Rectifiers)
 {
     ui->setupUi(this);

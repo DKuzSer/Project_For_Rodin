@@ -60,6 +60,7 @@ void MainPowerSources::on_PushButton_Rectifiers_clicked()
             Uobr_max.push_back(list.at(1).toDouble());
         }
     mFile.close();
+    object_page1->SetDiodsParameters(names_of_diods, Uobr_max);
 
     ui->horizontalFrame_page1->layout()->addWidget(object_page1);
 }

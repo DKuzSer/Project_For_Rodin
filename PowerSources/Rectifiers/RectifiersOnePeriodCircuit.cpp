@@ -1,9 +1,5 @@
 #include "RectifiersOnePeriodCircuit.h"
-#include <ctime>
 
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QFileInfo>
 
 RectifiersOnePeriodCircuit::RectifiersOnePeriodCircuit()
 {

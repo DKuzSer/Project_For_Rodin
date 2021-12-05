@@ -3,6 +3,8 @@
 
 #include "RectifiersAbstract.h"
 #include "constans.h"
+#include <QMessageBox>
+#include <ctime>
 #include <math.h>
 
 class RectifiersOnePeriodCircuit : public RectifiersAbstract

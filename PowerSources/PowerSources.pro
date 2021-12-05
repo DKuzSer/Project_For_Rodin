@@ -13,6 +13,7 @@ SOURCES += \
     Filters\Filters.cpp \
     Filters\FiltersAbstract.cpp \
     Filters\FiltersButterworth.cpp \
+    MainpowerSourcesAbstract.cpp \
     MyCharts.cpp \
     Rectifiers\Rectifiers.cpp \
     Rectifiers\RectifiersAbstract.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     Filters\Filters.h \
     Filters\FiltersAbstract.h \
     Filters\FiltersButterworth.h \
+    MainpowerSourcesAbstract.h \
     MyCharts.h \
     Rectifiers\Rectifiers.h \
     Rectifiers\RectifiersAbstract.h \
