@@ -20,6 +20,8 @@ public:
     explicit Rectifiers(QWidget *parent = nullptr);
     ~Rectifiers();
 
+
+
     RectifiersAbstract* object_work = nullptr;
 
     QPixmap mapCircuit;

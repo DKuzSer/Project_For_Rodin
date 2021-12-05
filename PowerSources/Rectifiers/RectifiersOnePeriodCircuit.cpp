@@ -35,14 +35,87 @@ void RectifiersOnePeriodCircuit::FFilters(int number)
     }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-double RectifiersOnePeriodCircuit::Capacitor(double Rn,double f,double Kp)
+void RectifiersOnePeriodCircuit::Capacitor()
 {
-    return (double)3/(4*f*Rn*log(1+Kp)); // результат в Ф
+    //новый алгоритм вычисления:
+    U0 = I0*Rn;
+    Um_input = U0;
+    C = 0;
+
+    double U_peak = 2*U0;
+    double U0_calculate = 0;
+    double Kp_calculate = 0;
+
+    double accuracy_Um_input = 0.1;
+    double accuracy_C = 0.000001;
+
+    double start_time = clock();
+    double time_program = 0.0;
+
+    while(Kp_calculate < Kp)
+    {
+        Um_input += accuracy_Um_input;
+        C = 0;
+
+        CalculateCapacityParameters(&U0_calculate, &Kp_calculate, &U_peak);
+
+        while(U0_calculate < U0)
+        {
+            C += accuracy_C;
+            CalculateCapacityParameters(&U0_calculate, &Kp_calculate, &U_peak);
+        }
+
+        time_program = clock();
+        time_program = time_program - start_time;
+
+        if(time_program > 5000)
+        {
+            flagCalculate = true;
+            break;
+        }
+    }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-double RectifiersOnePeriodCircuit::Inductor(double Rn,double f,double Kp)
+void RectifiersOnePeriodCircuit::Inductor()
 {
-    return (double)(3*1000*Rn)/(4*f*log(1+Kp)); // результат в мГн
+    //новый алгоритм вычисления:
+    U0 = I0*Rn;                             // средневыпрямленное напряжение
+    Um_input = U0;
+    L = 0;
+
+    double U_peak = U0;
+    double I0_calculate = 0;
+    double Kp_calculate = 0;
+
+    double accuracy_Um_input = 0.1;
+    double accuracy_L = 0.1;
+
+    double start_time = clock();
+    double time_program = 0.0;
+
+    while(I0_calculate < I0 || Kp_calculate > Kp)
+    {
+        L += accuracy_L/100;
+
+        CalculateInductorParameters(&I0_calculate, &Kp_calculate, &U_peak);
+
+        while(U_peak <= U0)
+        {
+            Um_input += accuracy_Um_input;
+            L = 0;
+
+            CalculateInductorParameters(&I0_calculate, &Kp_calculate, &U_peak);
+        }
+
+        time_program = clock();
+        time_program = time_program - start_time;
+
+        if(time_program > 5000)
+        {
+            flagCalculate = true;
+            break;
+        }
+    }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RectifiersOnePeriodCircuit::Calculate()
@@ -56,93 +129,16 @@ void RectifiersOnePeriodCircuit::Calculate()
     Um_input = U0*(1+Kp);                             // Максимальное значение напряжения на вторичной обмотке
     Ud_input = Um_input/sqrt(2);                      // Действующее значение напряжения на входе
 
-    if(flagFilters == 1)                              // Вычисление C или L выходного фильтра
-    {
-        C = Capacitor(Rn,f,Kp);
-//      L = Inductor(Rn,f,Kp); привести алгоритм снизу к единой функции
-    }
-
     if(flagFilters == 1)                              // Вычисление C выходного фильтра
     {
         //новый алгоритм вычисления:
-        U0 = I0*Rn;
-        Um_input = U0;
-        C = 0;
-
-        double U_peak = 2*U0;
-        double U0_calculate = 0;
-        double Kp_calculate = 0;
-
-        double accuracy_Um_input = 0.1;
-        double accuracy_C = 0.000001;
-
-        double start_time = clock();
-        double time_program = 0.0;
-
-        while(Kp_calculate < Kp)
-        {
-            Um_input += accuracy_Um_input;
-            C = 0;
-
-            CalculateCapacityParameters(&U0_calculate, &Kp_calculate, &U_peak);
-
-            while(U0_calculate < U0)
-            {
-                C += accuracy_C;
-                CalculateCapacityParameters(&U0_calculate, &Kp_calculate, &U_peak);
-            }
-
-            time_program = clock();
-            time_program = time_program - start_time;
-
-            if(time_program > 5000)
-            {
-                flagCalculate = true;
-                break;
-            }
-        }
+        Capacitor();
     }
 
     if(flagFilters == 2)                              // Вычисление L выходного фильтра
     {
         //новый алгоритм вычисления:
-        U0 = I0*Rn;                             // средневыпрямленное напряжение
-        Um_input = U0;
-        L = 0;
-
-        double U_peak = U0;
-        double I0_calculate = 0;
-        double Kp_calculate = 0;
-
-        double accuracy_Um_input = 0.1;
-        double accuracy_L = 0.1;
-
-        double start_time = clock();
-        double time_program = 0.0;
-
-        while(I0_calculate < I0 || Kp_calculate > Kp)
-        {
-            L += accuracy_L/100;
-
-            CalculateInductorParameters(&I0_calculate, &Kp_calculate, &U_peak);
-
-            while(U_peak <= U0)
-            {
-                Um_input += accuracy_Um_input;
-                L = 0;
-
-                CalculateInductorParameters(&I0_calculate, &Kp_calculate, &U_peak);
-            }
-
-            time_program = clock();
-            time_program = time_program - start_time;
-
-            if(time_program > 5000)
-            {
-                flagCalculate = true;
-                break;
-            }
-        }
+        Inductor();
     }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

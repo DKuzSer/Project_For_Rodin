@@ -14,8 +14,8 @@ public:
     void FFilters(int number);
     void Calculate();
 
-    double Inductor(double Rh,double f,double Kp);
-    double Capacitor(double Rh,double f,double Kp);
+    void Inductor();
+    void Capacitor();
 
     double OutputVoltageWaveform(double t);
 
