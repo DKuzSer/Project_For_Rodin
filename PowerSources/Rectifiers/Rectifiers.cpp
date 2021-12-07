@@ -346,6 +346,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         else
             chrt->DeleteChart();
 
+        //--------------------------------------------------
         double value_1 = ui->DoubleSpinBoxR_InPut1->value();
         double value_2 = ui->DoubleSpinBoxR_InPut2->value();
         double value_3 = ui->DoubleSpinBoxR_InPut3->value();
@@ -354,13 +355,21 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
         double freq = value_1; //Копирую в другие переменные
         double Resistance = value_4;
+        double Uaverage = Resistance * value_2;
 
+        //--------------------------------------------------
         int chose = ui->ComboBox_OutPutF->currentIndex();
         object_work->SetBaseValue(value_1, value_2, value_4);        // передаём данные в расчётный класс
         object_work->FFilters(chose);                                // передаём данные флага установки фильтра на выходе
         object_work->Idop = value_3;
         object_work->Kp = value_5;
         object_work->Calculate();
+
+        if(object_work->flagCalculate == true)
+        {
+            QMessageBox::information(this,"Ошибка","Данные параметры нельзя реализовать");
+            return;
+        }
 
         //переписываем в удобный формат
         //--------------------------------------------------
@@ -369,61 +378,58 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         if(chose != 0)
         {
             if(chose == 1)
-                value_3 = object_work->C;
-            if(chose == 2)
-                value_3 = object_work->L;
+                value_3 = object_work->C*1000000;   // приведение к мкФ
+            else
+                value_3 = object_work->L*1000;      // приведение к мГн
         }
         //--------------------------------------------------
-
 
         ui->DoubleSpinBoxR_OutPut2->setValue(value_2);
         ui->DoubleSpinBoxR_OutPut3->setValue(value_3);
 
         //-------------------------------------------------------
 
-        QLineSeries series; //без фильтров
+        QLineSeries series;   //без фильтров
+        QLineSeries series_average;
 
         double T = 1./freq;
-        double n = 0; //счетчик для задания условия переодичности
+
         for (float i = 0.0; i <= 2.*T; i = i + 0.00001)
         {
-            if (5*T/4 < i && i < 5*T/4+0.00001)
+            if(chose == 0)    // без катушки и кондера
             {
-                n=n+1.0;
+                series.append(i*1000, object_work->OutputVoltageWaveform(i));
+                series_average.append(i*1000, Uaverage);
             }
 
-            if(chose == 0) // без катушки и кондера
+            if(chose == 1)    // кондер
             {
-                series.append(i*1000, fabs(sqrt(2)*value_2*sin(2*M_PI*freq*i)));
+                series.append(i*1000, object_work->OutputCapacityVoltageWaveform(i));
+                series_average.append(i*1000, Uaverage);
             }
-            if(chose == 1) // кондер
-            {
-                if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))) && (T/4<i))
-                {
 
-                    series.append(i*1000, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)/(Resistance*value_3*pow(10,(-6))))));
-                }
-                else
-                {
-                    series.append(i*1000, sqrt(2)*value_2*sin(2*M_PI*freq*i));
-                }
-            }
             if (chose == 2)   // катушка
             {
-                if(sqrt(2)*value_2*sin(2*M_PI*freq*i)<sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance/(value_3*pow(10,(-3))))) && (T/4<i))
-                {
-                    series.append(i*1000, sqrt(2)*value_2*exp(-((i-(T/4)-T*n)*Resistance)/(value_3*pow(10,(-3)))));
-                }
-                else
-                {
-                    series.append(i*1000, sqrt(2)*value_2*sin(2*M_PI*freq*i));
-                }
+                series.append(i*1000, object_work->OutputInductorCurrentWaveform(i)*Resistance);
+                series_average.append(i*1000, Uaverage);
+            }
+        }
+
+        double max = 0;
+        for(int i = 0; i < series.pointsVector().size(); i++)
+        {
+            double step = series.pointsVector().at(i).y();
+            if(step > max)
+            {
+                max = step;
             }
         }
 
         chrt->Create2DChart(series.points());
-        chrt->PropertiesAxis("X", 0, 2/freq, 11, "%.2lf");
-        chrt->PropertiesAxis("Y", -0.5, 1.5*value_2, 11, "%.2lf");
+        chrt->PropertiesAxis("X", 0, 2/freq*1000, 11, "%.2lf");
+        chrt->PropertiesAxis("Y", -0.2, 1.5*max, 11, "%.2lf");
+        chrt->SetNameAxis("Время, мс", "Напряжение, В");
+        chrt->AddSeries2DChart(series_average.points(), "Среднее напряжение");
 
         //-------------------------------------------------------
     }
