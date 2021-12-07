@@ -336,7 +336,11 @@
                  <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_OutPut1"/>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_OutPut2"/>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_OutPut2">
+                  <property name="maximum">
+                   <double>10000.000000000000000</double>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_OutPut3">
@@ -350,44 +354,15 @@
              </layout>
             </item>
             <item>
+             <widget class="QComboBox" name="list_of_diods"/>
+            </item>
+            <item>
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_9">
-                <item>
-                 <widget class="QLabel" name="Label_OutPut4">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="Label_OutPut5">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="Label_OutPut6">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               <layout class="QVBoxLayout" name="verticalLayout_9"/>
               </item>
               <item>
-               <layout class="QVBoxLayout" name="verticalLayout_10">
-                <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_OutPut4"/>
-                </item>
-                <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_OutPut5"/>
-                </item>
-                <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_OutPut6"/>
-                </item>
-               </layout>
+               <layout class="QVBoxLayout" name="verticalLayout_10"/>
               </item>
              </layout>
             </item>
