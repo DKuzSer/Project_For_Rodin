@@ -56,9 +56,9 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             ui->Label_InPut2->setText("I0 (Средний выпрямленный ток на нагрузке), А:");
             ui->DoubleSpinBoxR_InPut2->setVisible(true);
 
-            ui->Label_InPut3->setVisible(true);
+            ui->Label_InPut3->setVisible(false);
             ui->Label_InPut3->setText("Iдоп (Допустимый ток на диоде), А:");
-            ui->DoubleSpinBoxR_InPut3->setVisible(true);
+            ui->DoubleSpinBoxR_InPut3->setVisible(false);
 
             ui->Label_InPut4->setVisible(true);
             ui->Label_InPut4->setText("Rн (Сопротивление нагрузки), Ом:");
@@ -70,10 +70,10 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
 
             //настройки выходных данных
             //----------------------------------------------
-            ui->DoubleSpinBoxR_OutPut1->setEnabled(true);
-            ui->Label_OutPut1->setVisible(true);
+            ui->DoubleSpinBoxR_OutPut1->setEnabled(false);
+            ui->Label_OutPut1->setVisible(false);
             ui->Label_OutPut1->setText("m (Количество диодов), шт:");
-            ui->DoubleSpinBoxR_OutPut1->setVisible(true);
+            ui->DoubleSpinBoxR_OutPut1->setVisible(false);
 
             ui->Label_OutPut2->setVisible(true);
             ui->Label_OutPut2->setText("Uд (Действующее напряжение на вторичной обмотке), В:");
@@ -81,12 +81,6 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
 
             ui->Label_OutPut3->setVisible(false);
             ui->DoubleSpinBoxR_OutPut3->setVisible(false);
-            ui->Label_OutPut4->setVisible(false);
-            ui->DoubleSpinBoxR_OutPut4->setVisible(false);
-            ui->Label_OutPut5->setVisible(false);
-            ui->DoubleSpinBoxR_OutPut5->setVisible(false);
-            ui->Label_OutPut6->setVisible(false);
-            ui->DoubleSpinBoxR_OutPut6->setVisible(false);
             //----------------------------------------------
 
             ui->ComboBox_OutPutF->clear();
@@ -145,15 +139,6 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             ui->Label_OutPut3->setVisible(true);
             ui->Label_OutPut3->setText("Uобр (Обратное напряжение на диоде), В:");
             ui->DoubleSpinBoxR_OutPut3->setVisible(true);
-
-            ui->Label_OutPut4->setVisible(false);
-             ui->Label_OutPut4->setText("Iд (Ток на диоде), А:");
-            ui->DoubleSpinBoxR_OutPut4->setVisible(false);
-
-            ui->Label_OutPut5->setVisible(false);
-            ui->DoubleSpinBoxR_OutPut5->setVisible(false);
-            ui->Label_OutPut6->setVisible(false);
-            ui->DoubleSpinBoxR_OutPut6->setVisible(false);
             //----------------------------------------------
 
             ui->ComboBox_OutPutF->clear();
@@ -333,6 +318,8 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Rectifiers::on_PushButton_Calculate_clicked()
 {
+
+    ui->list_of_diods->clear();
     int index = ui->ComboBox_DevicesR->currentIndex();
     if (index == TWOPERIODCIRCUIT)
     {
@@ -471,6 +458,15 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         //--------------------------------------------------
         value_1 = object_work->m;
         value_2 = object_work->Ud_input;
+
+        for (int i=0;i<names_of_diods.size();i++)
+        {
+            if(Uobr_max.at(i) > value_2)
+            {
+                ui->list_of_diods->addItem(names_of_diods.at(i), i);
+            }
+        }
+
         if(chose != 0)
         {
             if(chose == 1)
