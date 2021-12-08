@@ -20,6 +20,8 @@ public:
     explicit Rectifiers(MainpowerSourcesAbstract *parent = nullptr);
     ~Rectifiers();
 
+
+
     RectifiersAbstract* object_work = nullptr;
 
     void SetDiodsParameters(std::vector <QString>, std::vector <int>);
