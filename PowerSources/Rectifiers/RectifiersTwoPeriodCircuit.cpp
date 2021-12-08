@@ -134,7 +134,7 @@ void RectifiersTwoPeriodCircuit::Calculate()
     double omega = 2*PI*f;
 
     U0 = I0*Rn;
-    Um_input = PI*U0/sqrt(8);
+    Um_input = PI*U0/2;
     Ud_input = Um_input/sqrt(2);
 
     double Uobr = sqrt(2)*Um_input;
@@ -160,7 +160,7 @@ void RectifiersTwoPeriodCircuit::Calculate()
         double U0_calculate = 0;
         double Kp_calculate = 0;
 
-        double accuracy_Um_input = 0.1;
+        double accuracy_Um_input = 0.02;
         double accuracy_C = 0.000001;
 
         while(Kp_calculate < Kp)
@@ -189,7 +189,7 @@ void RectifiersTwoPeriodCircuit::Calculate()
         double I0_calculate = 0;
         double Kp_calculate = 0;
 
-        double accuracy_Um_input = 0.1;
+        double accuracy_Um_input = 0.05;
         double accuracy_L = 0.0001;
 
         double start_time = clock();
@@ -263,26 +263,55 @@ void RectifiersTwoPeriodCircuit::CalculateInductorParameters(double* I0_calculat
     double Imax = 0;
     double Imin = 0;
     *I0_calculate = 0;
-    for(float time = 0; time < T; time += accuracy_t)
+
+    if(Kp <= 0.05)
     {
-        double step = OutputInductorCurrentWaveform(time);
-        if(time != 0)
+        for(float time = 2*T; time < 3*T; time += accuracy_t)
         {
-            if(step > Imax)
+            double step = OutputInductorCurrentWaveform(time);
+            if(time != 0)
             {
-                Imax = step;
-                Imin = step;
-            }
-            else
-            {
-                if(step < Imin)
+                if(step > Imax)
                 {
+                    Imax = step;
                     Imin = step;
                 }
+                else
+                {
+                    if(step < Imin)
+                    {
+                        Imin = step;
+                    }
+                }
             }
+            *I0_calculate += step * accuracy_t;
         }
-        *I0_calculate += step * accuracy_t;
     }
+
+    if(Kp > 0.05)
+    {
+        for(float time = T; time < 2*T; time += accuracy_t)
+        {
+            double step = OutputInductorCurrentWaveform(time);
+            if(time != 0)
+            {
+                if(step > Imax)
+                {
+                    Imax = step;
+                    Imin = step;
+                }
+                else
+                {
+                    if(step < Imin)
+                    {
+                        Imin = step;
+                    }
+                }
+            }
+            *I0_calculate += step * accuracy_t;
+        }
+    }
+
 
     *I0_calculate = (*I0_calculate)/T;
     *Kp_calculate = (Imax - Imin)/2/(*I0_calculate);

@@ -49,7 +49,7 @@ void RectifiersOnePeriodCircuit::Calculate()
         m = I0/Idop;                                  // количесво диодов в цепи иначе 1 по стандарту
 
     U0 = I0*Rn;                                       // Постоянная составляющая выпрямленного напряжения
-    Um_input = U0*(1+Kp);                             // Максимальное значение напряжения на вторичной обмотке
+    Um_input = U0*PI;                             // Максимальное значение напряжения на вторичной обмотке
     Ud_input = Um_input/sqrt(2);                      // Действующее значение напряжения на входе
 
     if(flagFilters == 1)                              // Вычисление C или L выходного фильтра
@@ -69,7 +69,7 @@ void RectifiersOnePeriodCircuit::Calculate()
         double U0_calculate = 0;
         double Kp_calculate = 0;
 
-        double accuracy_Um_input = 0.1;
+        double accuracy_Um_input = 0.04;
         double accuracy_C = 0.000001;
 
         double start_time = clock();
