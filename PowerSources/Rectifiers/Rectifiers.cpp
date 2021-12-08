@@ -330,8 +330,10 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             chrt->setTitle("Выходное напряжение на нагрузке");
             chrt->legend()->hide();
         }
-        else
+        else if(object_work->flagCalculate == false)
+        {
             chrt->DeleteChart();
+        }
 
         //--------------------------------------------------
         double value_1 = ui->DoubleSpinBoxR_InPut1->value();
@@ -474,7 +476,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         value_1 = object_work->m;
         value_2 = object_work->Ud_input;
 
-        for (int i=0;i<names_of_diods.size();i++)
+        for (int i = 0;i < (int)names_of_diods.size(); i++)
         {
             if(Uobr_max.at(i) > value_2)
             {
