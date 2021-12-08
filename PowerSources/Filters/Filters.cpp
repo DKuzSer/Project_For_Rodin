@@ -1,8 +1,7 @@
 #include "Filters.h"
 #include "ui_Filters.h"
 
-Filters::Filters(QWidget *parent) :
-    QWidget(parent),
+Filters::Filters(MainpowerSourcesAbstract *parent) :
     ui(new Ui::Filters)
 {
     ui->setupUi(this);

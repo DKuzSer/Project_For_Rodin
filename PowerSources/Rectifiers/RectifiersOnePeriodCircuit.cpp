@@ -1,9 +1,5 @@
 #include "RectifiersOnePeriodCircuit.h"
-#include <ctime>
 
-#include <QMessageBox>
-#include <QFileDialog>
-#include <QFileInfo>
 
 RectifiersOnePeriodCircuit::RectifiersOnePeriodCircuit()
 {
@@ -37,6 +33,15 @@ void RectifiersOnePeriodCircuit::FFilters(int number)
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RectifiersOnePeriodCircuit::Capacitor()
 {
+    if(Kp == 1.57)                               // проверкана величину индуктивности при выборе вкладки наличия фильтра
+    {
+        U0 = I0*Rn;
+        Um_input = PI*U0;
+        Ud_input = Um_input/sqrt(2);
+        C = 0;
+        return;
+    }
+
     //новый алгоритм вычисления:
     U0 = I0*Rn;
     Um_input = U0;
@@ -46,7 +51,7 @@ void RectifiersOnePeriodCircuit::Capacitor()
     double U0_calculate = 0;
     double Kp_calculate = 0;
 
-    double accuracy_Um_input = 0.1;
+    double accuracy_Um_input = 0.05;
     double accuracy_C = 0.000001;
 
     double start_time = clock();
@@ -78,6 +83,15 @@ void RectifiersOnePeriodCircuit::Capacitor()
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RectifiersOnePeriodCircuit::Inductor()
 {
+    if(Kp == 1.57)                               // проверкана величину индуктивности при выборе вкладки наличия фильтра
+    {
+        U0 = I0*Rn;
+        Um_input = PI*U0;
+        Ud_input = Um_input/sqrt(2);
+        L = 0;
+        return;
+    }
+
     //новый алгоритм вычисления:
     U0 = I0*Rn;                             // средневыпрямленное напряжение
     Um_input = U0;
@@ -87,7 +101,7 @@ void RectifiersOnePeriodCircuit::Inductor()
     double I0_calculate = 0;
     double Kp_calculate = 0;
 
-    double accuracy_Um_input = 0.1;
+    double accuracy_Um_input = 0.05;
     double accuracy_L = 0.1;
 
     double start_time = clock();
@@ -126,7 +140,7 @@ void RectifiersOnePeriodCircuit::Calculate()
         m = I0/Idop;                                  // количесво диодов в цепи иначе 1 по стандарту
 
     U0 = I0*Rn;                                       // Постоянная составляющая выпрямленного напряжения
-    Um_input = U0*(1+Kp);                             // Максимальное значение напряжения на вторичной обмотке
+    Um_input = U0*PI;                                 // Максимальное значение напряжения на вторичной обмотке
     Ud_input = Um_input/sqrt(2);                      // Действующее значение напряжения на входе
 
     if(flagFilters == 1)                              // Вычисление C выходного фильтра

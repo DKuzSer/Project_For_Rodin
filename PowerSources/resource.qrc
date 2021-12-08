@@ -11,4 +11,7 @@
         <file>img/RTPCircuit2.jpg</file>
         <file>img/RTPCircuit3.jpg</file>
     </qresource>
+    <qresource prefix="/Diods">
+        <file>Марки диодов.txt</file>
+    </qresource>
 </RCC>

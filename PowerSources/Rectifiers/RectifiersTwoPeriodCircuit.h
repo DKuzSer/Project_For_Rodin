@@ -14,10 +14,17 @@ public:
     void FFilters(int number);
     void Calculate();
 
-    double Inductor(double Rh,double f,double Kp);
-    double Capacitor(double Rh,double f,double Kp);
+    void Inductor();
+    void Capacitor();
 
-    bool flagFilters = 0; // 0 - РЅРµС‚ С„РёР»СЊС‚СЂР°, 1 - C С„РёР»СЊС‚СЂ, 2 - L С„РёР»СЊС‚СЂ
+    double OutputVoltageWaveform(double t);
+    double OutputCapacityVoltageWaveform(double t);
+    double OutputInductorCurrentWaveform(double t);
+
+    void CalculateCapacityParameters(double* U0_calculate, double* Kp_calculate, double* U_peak);
+    void CalculateInductorParameters(double* I0_calculate, double* Kp_calculate, double* U_peak);
+
+    int flagFilters = 0; // 0 - РЅРµС‚ С„РёР»СЊС‚СЂР°, 1 - C С„РёР»СЊС‚СЂ, 2 - L С„РёР»СЊС‚СЂ
 };
 
 #endif // RECTIFIERSTWOPERIODCIRCUIT_H

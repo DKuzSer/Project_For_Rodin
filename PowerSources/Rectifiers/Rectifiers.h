@@ -1,7 +1,7 @@
 #ifndef RECTIFIERS_H
 #define RECTIFIERS_H
 
-#include <QWidget>
+#include "MainpowerSourcesAbstract.h"
 #include <QPixmap>
 #include <QMessageBox>
 #include "constans.h"
@@ -12,17 +12,21 @@ namespace Ui {
 class Rectifiers;
 }
 
-class Rectifiers : public QWidget
+class Rectifiers : public MainpowerSourcesAbstract
 {
     Q_OBJECT
 
 public:
-    explicit Rectifiers(QWidget *parent = nullptr);
+    explicit Rectifiers(MainpowerSourcesAbstract *parent = nullptr);
     ~Rectifiers();
 
 
 
     RectifiersAbstract* object_work = nullptr;
+
+    void SetDiodsParameters(std::vector <QString>, std::vector <int>);
+    std::vector <QString> names_of_diods;   //список диодов
+    std::vector <int> Uobr_max;             //максимально допустимые обратные напряжения на диодах
 
     QPixmap mapCircuit;
     QPixmap mapProperties;;

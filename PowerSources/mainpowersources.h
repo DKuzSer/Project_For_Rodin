@@ -2,6 +2,7 @@
 #define MAINPOWERSOURCES_H
 
 #include <QMainWindow>
+#include "MainpowerSourcesAbstract.h"
 #include "Rectifiers/Rectifiers.h"
 #include "Filters/Filters.h"
 
@@ -17,7 +18,7 @@ public:
     MainPowerSources(QWidget *parent = nullptr);
     ~MainPowerSources();
 
-    QWidget* object_page1 = nullptr;
+    MainpowerSourcesAbstract* object_page1 = nullptr;
 
 private slots:
     void on_PushButton_Calculate_clicked();

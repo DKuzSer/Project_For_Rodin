@@ -35,6 +35,33 @@ void MainPowerSources::on_PushButton_Rectifiers_clicked()
         object_page1 = new Rectifiers;
     }
 
+    std::vector <QString> names_of_diods;   //список диодов
+    std::vector <int> Uobr_max;             //максимально допустимые обратные напряжения на диодах
+    QStringList list;
+    if(names_of_diods.size() != 0)
+    {
+        QMessageBox::information(this,"Error","Files uploaded");
+        names_of_diods.clear();
+        Uobr_max.clear();
+    }
+    QFile mFile(":/Diods/Марки диодов.txt");
+    if (!mFile.open(QFile::ReadOnly|QFile::Text))
+    {
+        QMessageBox::information(this,"Error","Could not open file for Reading");
+        return;
+    }
+
+    QTextStream in(&mFile);
+    while(!in.atEnd())
+        {
+            QString sz = in.readLine();
+            list = sz.split("\t");
+            names_of_diods.push_back(list.at(0));
+            Uobr_max.push_back(list.at(1).toDouble());
+        }
+    mFile.close();
+    object_page1->SetDiodsParameters(names_of_diods, Uobr_max);
+
     ui->horizontalFrame_page1->layout()->addWidget(object_page1);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
