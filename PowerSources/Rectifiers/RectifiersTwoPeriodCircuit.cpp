@@ -30,14 +30,114 @@ void RectifiersTwoPeriodCircuit::FFilters(int number)
     }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-double RectifiersTwoPeriodCircuit::Capacitor(double Rn,double f,double Kp)
+void RectifiersTwoPeriodCircuit::Capacitor()
 {
-    return (double)((Kp*1.73-1)/(4*f*Rn*Kp*1.73)); // результат в мкФ
+    if(Kp == 0.67)                               // проверкана величину ёмкости при выборе вкладки наличия фильтра
+    {
+        U0 = I0*Rn;
+        Um_input = PI*U0/2;
+        Ud_input = Um_input/sqrt(2);
+        C = 0;
+        return;
+    }
+
+    //новый алгоритм вычисления:
+    U0 = I0*Rn;                                  // средневыпрямленное напряжение
+    Um_input = U0;
+    C = 0;
+
+    double U_peak = 2*U0;
+    double U0_calculate = 0;
+    double Kp_calculate = 0;
+
+    double accuracy_Um_input = 0.04;
+    double accuracy_C = 0.000001;
+
+    while(Kp_calculate < Kp)
+    {
+        Um_input += accuracy_Um_input;
+        C = 0;
+
+        CalculateCapacityParameters(&U0_calculate, &Kp_calculate, &U_peak);
+
+        while(U0_calculate < U0)
+        {
+            C += accuracy_C;
+            CalculateCapacityParameters(&U0_calculate, &Kp_calculate, &U_peak);
+        }
+    }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-double RectifiersTwoPeriodCircuit::Inductor(double Rn,double f,double Kp)
+void RectifiersTwoPeriodCircuit::Inductor()
 {
-    return (double)1000*((Rn/(4*PI*f))*sqrt(pow((0.667/Kp),2)-1)); // результат в мГн
+    if(Kp == 0.67)                                // проверкана величину индуктивности при выборе вкладки наличия фильтра
+    {
+        U0 = I0*Rn;
+        Um_input = PI*U0/2;
+        Ud_input = Um_input/sqrt(2);
+        L = 0;
+        return;
+    }
+
+    //новый алгоритм вычисления:
+    U0 = I0*Rn;                                   // средневыпрямленное напряжение
+    Um_input = U0;
+    L = 0;
+
+    double U_peak = U0;
+    double I0_calculate = 0;
+    double Kp_calculate = 0;
+
+    double accuracy_Um_input = 0.04;
+    double accuracy_L = 0.0001;
+
+    double start_time = clock();
+    double time_program = 0.0;
+
+    while(I0_calculate < I0 || Kp_calculate > Kp)
+    {
+        L += accuracy_L/100;
+
+        CalculateInductorParameters(&I0_calculate, &Kp_calculate, &U_peak);
+
+        while(U_peak <= U0)
+        {
+            Um_input += accuracy_Um_input;
+            L = 0;
+
+            CalculateInductorParameters(&I0_calculate, &Kp_calculate, &U_peak);
+        }
+
+        time_program = clock();
+        time_program = time_program - start_time;
+
+        if(time_program > 5000)
+        {
+            flagCalculate = true;
+            break;
+        }
+    }
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void RectifiersTwoPeriodCircuit::Calculate()
+{
+    flagCalculate = false;
+
+    U0 = I0*Rn;
+    Um_input = PI*U0/2;
+    Ud_input = Um_input/sqrt(2);
+
+    if(flagFilters == 1)                              // Вычисление C выходного фильтра
+    {
+        //новый алгоритм вычисления:
+        Capacitor();
+    }
+
+    if(flagFilters == 2)                              // Вычисление L выходного фильтра
+    {
+        //новый алгоритм вычисления:
+        Inductor();
+    }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 double RectifiersTwoPeriodCircuit::OutputVoltageWaveform(double t)
@@ -125,100 +225,6 @@ double RectifiersTwoPeriodCircuit::OutputInductorCurrentWaveform(double t)
     }
 
     return 0;
-}
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void RectifiersTwoPeriodCircuit::Calculate()
-{
-    flagCalculate = false;
-    double T = 1/f;
-    double omega = 2*PI*f;
-
-    U0 = I0*Rn;
-    Um_input = PI*U0/2;
-    Ud_input = Um_input/sqrt(2);
-
-    double Uobr = sqrt(2)*Um_input;
-
-    double Iobr = PI*I0/2;
-
-    if(flagFilters != 0)                              // Вычисление C или L выходного фильтра
-    {
-        Um_input = U0*(1+Kp);
-        Ud_input = Um_input/sqrt(2);
-        C = Capacitor(Rn,f,Kp);
-        L = Inductor(Rn,f,Kp);
-    }
-
-    if(flagFilters == 1)                              // Вычисление C выходного фильтра
-    {
-        //новый алгоритм вычисления:
-        U0 = I0*Rn;
-        Um_input = U0;
-        C = 0;
-
-        double U_peak = 2*U0;
-        double U0_calculate = 0;
-        double Kp_calculate = 0;
-
-        double accuracy_Um_input = 0.02;
-        double accuracy_C = 0.000001;
-
-        while(Kp_calculate < Kp)
-        {
-            Um_input += accuracy_Um_input;
-            C = 0;
-
-            CalculateCapacityParameters(&U0_calculate, &Kp_calculate, &U_peak);
-
-            while(U0_calculate < U0)
-            {
-                C += accuracy_C;
-                CalculateCapacityParameters(&U0_calculate, &Kp_calculate, &U_peak);
-            }
-        }
-    }
-
-    if(flagFilters == 2)                              // Вычисление L выходного фильтра
-    {
-        //новый алгоритм вычисления:
-        U0 = I0*Rn;                                   // средневыпрямленное напряжение
-        Um_input = U0;
-        L = 0;
-
-        double U_peak = U0;
-        double I0_calculate = 0;
-        double Kp_calculate = 0;
-
-        double accuracy_Um_input = 0.05;
-        double accuracy_L = 0.0001;
-
-        double start_time = clock();
-        double time_program = 0.0;
-
-        while(I0_calculate < I0 || Kp_calculate > Kp)
-        {
-            L += accuracy_L/100;
-
-            CalculateInductorParameters(&I0_calculate, &Kp_calculate, &U_peak);
-
-            while(U_peak <= U0)
-            {
-                Um_input += accuracy_Um_input;
-                L = 0;
-
-                CalculateInductorParameters(&I0_calculate, &Kp_calculate, &U_peak);
-            }
-
-            time_program = clock();
-            time_program = time_program - start_time;
-
-            if(time_program > 5000)
-            {
-                flagCalculate = true;
-                break;
-            }
-        }
-    }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RectifiersTwoPeriodCircuit::CalculateCapacityParameters(double* U0_calculate, double* Kp_calculate, double* U_peak)
