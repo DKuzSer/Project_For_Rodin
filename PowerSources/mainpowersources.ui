@@ -397,6 +397,18 @@
             <enum>Qt::Horizontal</enum>
            </property>
            <widget class="QFrame" name="verticalFrame">
+            <property name="minimumSize">
+             <size>
+              <width>110</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>110</width>
+              <height>16777215</height>
+             </size>
+            </property>
             <property name="tabletTracking">
              <bool>false</bool>
             </property>
@@ -480,13 +492,13 @@
            <widget class="QPushButton" name="PushButton_Calculate">
             <property name="minimumSize">
              <size>
-              <width>86</width>
+              <width>110</width>
               <height>74</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>86</width>
+              <width>110</width>
               <height>74</height>
              </size>
             </property>
@@ -518,13 +530,13 @@
            <widget class="QPushButton" name="PushButton_Reference">
             <property name="minimumSize">
              <size>
-              <width>86</width>
+              <width>110</width>
               <height>74</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>86</width>
+              <width>110</width>
               <height>74</height>
              </size>
             </property>
@@ -711,13 +723,13 @@
               </property>
               <property name="minimumSize">
                <size>
-                <width>100</width>
+                <width>110</width>
                 <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>100</width>
+                <width>110</width>
                 <height>16777215</height>
                </size>
               </property>
@@ -732,13 +744,13 @@
                 <widget class="QPushButton" name="PushButton_Rectifiers">
                  <property name="minimumSize">
                   <size>
-                   <width>86</width>
+                   <width>95</width>
                    <height>74</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>86</width>
+                   <width>95</width>
                    <height>74</height>
                   </size>
                  </property>
@@ -757,13 +769,13 @@
                 <widget class="QPushButton" name="PushButton_Filters">
                  <property name="minimumSize">
                   <size>
-                   <width>86</width>
+                   <width>95</width>
                    <height>74</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>86</width>
+                   <width>95</width>
                    <height>74</height>
                   </size>
                  </property>
@@ -834,7 +846,7 @@
      <x>0</x>
      <y>0</y>
      <width>1400</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
