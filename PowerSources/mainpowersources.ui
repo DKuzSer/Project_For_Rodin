@@ -486,6 +486,12 @@
             </layout>
            </widget>
            <widget class="QPushButton" name="PushButton_Calculate">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="minimumSize">
              <size>
               <width>110</width>
@@ -503,6 +509,9 @@
               <family>ГОСТ тип А</family>
               <pointsize>12</pointsize>
              </font>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::StrongFocus</enum>
             </property>
             <property name="text">
              <string>Вычисление</string>
@@ -524,6 +533,12 @@
             </property>
            </widget>
            <widget class="QPushButton" name="PushButton_Reference">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="minimumSize">
              <size>
               <width>110</width>
@@ -544,6 +559,12 @@
             </property>
             <property name="text">
              <string>Справка</string>
+            </property>
+            <property name="autoRepeat">
+             <bool>false</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>false</bool>
             </property>
            </widget>
           </widget>
@@ -712,7 +733,7 @@
             <item>
              <widget class="QFrame" name="Frame_UsingData">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
@@ -738,6 +759,12 @@
                </property>
                <item>
                 <widget class="QPushButton" name="PushButton_Rectifiers">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="minimumSize">
                   <size>
                    <width>95</width>
@@ -763,6 +790,12 @@
                </item>
                <item>
                 <widget class="QPushButton" name="PushButton_Filters">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="minimumSize">
                   <size>
                    <width>95</width>
