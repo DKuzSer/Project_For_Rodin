@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/icon">
         <file>img/battery.png</file>
+        <file>img/battery.ico</file>
     </qresource>
     <qresource prefix="/image">
         <file>img/ROPCircuit1.jpg</file>
