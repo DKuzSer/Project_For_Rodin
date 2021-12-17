@@ -124,7 +124,7 @@ void RectifiersOnePeriodCircuit::Inductor()
         time_program = clock();
         time_program = time_program - start_time;
 
-        if(time_program > 5000)
+        if(time_program > 50000)
         {
             flagCalculate = true;
             break;

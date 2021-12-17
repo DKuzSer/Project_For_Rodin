@@ -327,7 +327,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             chrt->setTitle("Выходное напряжение на нагрузке");
             chrt->legend()->hide();
         }
-        else if(object_work->flagCalculate == false)
+        else if(chrt->flagChart == true)
         {
             chrt->DeleteChart();
         }
@@ -355,6 +355,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         if(object_work->flagCalculate == true)
         {
             QMessageBox::information(this,"Ошибка","Данные параметры нельзя реализовать");
+            chrt->flagChart = false;
             return;
         }
 
@@ -426,6 +427,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         }
 
         double max = 0;
+
         for(int i = 0; i < series.pointsVector().size(); i++)
         {
             double step = series.pointsVector().at(i).y();
@@ -440,6 +442,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         chrt->PropertiesAxis("Y", -0.2, 1.5*max, 11, "%.2lf");
         chrt->SetNameAxis("Время, мс", "Напряжение, В");
         chrt->AddSeries2DChart(series_average.points(), "Среднее напряжение");
+        chrt->flagChart = true;
 
         //-------------------------------------------------------
     }
@@ -452,7 +455,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             chrt->setTitle("Выходное напряжение на нагрузке");
             chrt->legend()->hide();
         }
-        else if(object_work->flagCalculate == false)
+        else if(chrt->flagChart == true)
         {
             chrt->DeleteChart();
         }
@@ -481,6 +484,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         if(object_work->flagCalculate == true)
         {
             QMessageBox::information(this,"Ошибка","Данные параметры нельзя реализовать");
+            chrt->flagChart = false;
             return;
         }
 
@@ -567,6 +571,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         chrt->PropertiesAxis("Y", -0.2, 1.5*max, 11, "%.2lf");
         chrt->SetNameAxis("Время, мс", "Напряжение, В");
         chrt->AddSeries2DChart(series_average.points(), "Среднее напряжение");
+        chrt->flagChart = true;
 
         //-------------------------------------------------------
     }

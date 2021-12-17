@@ -88,13 +88,13 @@ void RectifiersTwoPeriodCircuit::Inductor()
     double I0_calculate = 0;
     double Kp_calculate = 0;
 
-    double accuracy_Um_input = 0.04;
+    double accuracy_Um_input = 0.01;
     double accuracy_L = 0.0001;
 
     double start_time = clock();
     double time_program = 0.0;
 
-    while(I0_calculate < I0 || Kp_calculate > Kp)
+    while((I0_calculate < I0) || (abs(Kp_calculate - Kp) > 0.02))
     {
         L += accuracy_L/100;
 
@@ -275,7 +275,7 @@ void RectifiersTwoPeriodCircuit::CalculateInductorParameters(double* I0_calculat
         for(float time = 2*T; time < 3*T; time += accuracy_t)
         {
             double step = OutputInductorCurrentWaveform(time);
-            if(time != 0)
+            if((T < time) && (time < (7*T/4 - 0.003)))
             {
                 if(step > Imax)
                 {
@@ -299,7 +299,7 @@ void RectifiersTwoPeriodCircuit::CalculateInductorParameters(double* I0_calculat
         for(float time = T; time < 2*T; time += accuracy_t)
         {
             double step = OutputInductorCurrentWaveform(time);
-            if(time != 0)
+            if((T < time) && (time < 7*T/4))
             {
                 if(step > Imax)
                 {

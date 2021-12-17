@@ -13,6 +13,8 @@ public:
     QValueAxis* axisX = nullptr;
     QValueAxis* axisY = nullptr;
 
+    bool flagChart = true;
+
     void Create2DChart(QList<QPointF>);                                                                             // создание графика 2D
     void AddSeries2DChart(QList<QPointF> series0, QString nameSeries);                                              // добавление серии к графику
     void PropertiesAxis(QString nameAxis, double rangeLow, double rangeHigh, double count, QString format);         // свойства осей
