@@ -60,12 +60,13 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             ui->Label_InPut3->setText("Iдоп (Допустимый ток на диоде), А:");
             ui->DoubleSpinBoxR_InPut3->setVisible(false);
 
-            ui->Label_InPut4->setVisible(true);
+            ui->Label_InPut4->setVisible(false);
             ui->Label_InPut4->setText("Rн (Сопротивление нагрузки), Ом:");
-            ui->DoubleSpinBoxR_InPut4->setVisible(true);
+            ui->DoubleSpinBoxR_InPut4->setVisible(false);
 
-            ui->Label_InPut6->setVisible(false);
-            ui->DoubleSpinBoxR_InPut6->setVisible(false);
+            ui->Label_InPut6->setVisible(true);
+            ui->Label_InPut6->setText("Uн (Напряжение на нагрузке), В:");
+            ui->DoubleSpinBoxR_InPut6->setVisible(true);
             //----------------------------------------------
 
             //настройки выходных данных
@@ -116,12 +117,13 @@ void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
             ui->Label_InPut3->setText("Iдоп (Допустимый ток на диоде), А:");
             ui->DoubleSpinBoxR_InPut3->setVisible(false);
 
-            ui->Label_InPut4->setVisible(true);
+            ui->Label_InPut4->setVisible(false);
             ui->Label_InPut4->setText("Rн (Сопротивление нагрузки), Ом:");
-            ui->DoubleSpinBoxR_InPut4->setVisible(true);
+            ui->DoubleSpinBoxR_InPut4->setVisible(false);
 
-            ui->Label_InPut6->setVisible(false);
-            ui->DoubleSpinBoxR_InPut6->setVisible(false);
+            ui->Label_InPut6->setVisible(true);
+            ui->Label_InPut6->setText("Uн (Напряжение на нагрузке), В:");
+            ui->DoubleSpinBoxR_InPut6->setVisible(true);
             //----------------------------------------------
 
             //настройки выходных данных
@@ -331,11 +333,12 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         }
 
         //--------------------------------------------------
-        double value_1 = ui->DoubleSpinBoxR_InPut1->value();
-        double value_2 = ui->DoubleSpinBoxR_InPut2->value();
-        double value_3 = ui->DoubleSpinBoxR_InPut3->value();
-        double value_4 = ui->DoubleSpinBoxR_InPut4->value();
-        double value_5 = ui->DoubleSpinBoxR_InPut5->value();
+        double value_1 = ui->DoubleSpinBoxR_InPut1->value(); //Частота
+        double value_2 = ui->DoubleSpinBoxR_InPut2->value(); //Средний ток на нагрузке
+        double value_3 = ui->DoubleSpinBoxR_InPut3->value(); //Допустимый ток на диоде
+        double value_6 = ui->DoubleSpinBoxR_InPut6->value(); //Напряжение на нагрузке
+        double value_4 = double(value_6/value_2);            //Сопротивление нагрузки
+        double value_5 = ui->DoubleSpinBoxR_InPut5->value(); //Коэффициент пульсаций
 
         double freq = value_1; //Копирую в другие переменные
         double Resistance = value_4;
@@ -456,11 +459,12 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
         //переписываем в удобный формат
         //--------------------------------------------------
-        double value_1 = ui->DoubleSpinBoxR_InPut1->value();
-        double value_2 = ui->DoubleSpinBoxR_InPut2->value();
-        double value_3 = ui->DoubleSpinBoxR_InPut3->value();
-        double value_4 = ui->DoubleSpinBoxR_InPut4->value();
-        double value_5 = ui->DoubleSpinBoxR_InPut5->value();
+        double value_1 = ui->DoubleSpinBoxR_InPut1->value(); //Частота
+        double value_2 = ui->DoubleSpinBoxR_InPut2->value(); //Средний ток на нагрузке
+        double value_3 = ui->DoubleSpinBoxR_InPut3->value(); //Допустимый ток на диоде
+        double value_6 = ui->DoubleSpinBoxR_InPut6->value(); //Напряжение на нагрузке
+        double value_4 = double(value_6/value_2);            //Сопротивление нагрузки
+        double value_5 = ui->DoubleSpinBoxR_InPut5->value(); //Коэффициент пульсаций
 
 
         double freq = value_1; //Копирую в другие переменные

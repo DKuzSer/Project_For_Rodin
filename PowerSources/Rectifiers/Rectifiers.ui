@@ -183,7 +183,7 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
-                 <widget class="QLabel" name="Label_InPut4">
+                 <widget class="QLabel" name="Label_InPut6">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
@@ -197,7 +197,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="Label_InPut6">
+                 <widget class="QLabel" name="Label_InPut4">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
@@ -221,7 +221,7 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_2">
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_InPut4">
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_InPut6">
                   <property name="minimum">
                    <double>1.000000000000000</double>
                   </property>
@@ -241,8 +241,20 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_InPut6">
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_InPut4">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
                   <property name="minimum">
+                   <double>0.000000000000000</double>
+                  </property>
+                  <property name="maximum">
+                   <double>10000.000000000000000</double>
+                  </property>
+                  <property name="value">
                    <double>1.000000000000000</double>
                   </property>
                  </widget>
@@ -340,6 +352,9 @@
                  <widget class="QDoubleSpinBox" name="DoubleSpinBoxR_OutPut3">
                   <property name="maximum">
                    <double>10000.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>1.000000000000000</double>
                   </property>
                  </widget>
                 </item>
