@@ -24,10 +24,11 @@ Rectifiers::~Rectifiers()
     delete ui;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-void Rectifiers::SetDiodsParameters(std::vector <QString> _names_of_diods, std::vector <int> _Uobr_max)
+void Rectifiers::SetDiodsParameters(std::vector <QString> _names_of_diods, std::vector <int> _Uobr_max, std::vector <double> _Ipr)
 {
     names_of_diods = _names_of_diods;
     Uobr_max = _Uobr_max;
+    Ipr = _Ipr;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Rectifiers::on_ComboBox_DevicesR_currentIndexChanged(int index)
@@ -325,7 +326,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             chrt = new MyCharts();
             ui->graphicsView->setChart(chrt);
             chrt->setTitle("Выходное напряжение на нагрузке");
-            chrt->legend()->hide();
+            //chrt->legend()->hide();
         }
         else if(object_work->flagCalculate == false)
         {
@@ -341,6 +342,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         double value_5 = ui->DoubleSpinBoxR_InPut5->value(); //Коэффициент пульсаций
 
         double freq = value_1; //Копирую в другие переменные
+        double I0123 = value_2;
         double Resistance = value_4;
         double Uaverage = Resistance * value_2;
 
@@ -365,7 +367,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
         for (int i = 0;i < (int)names_of_diods.size();i++)
         {
-            if(Uobr_max.at(i) > value_2)
+            if((Uobr_max.at(i) > (2*value_2)) and (Ipr.at(i) > I0123)) // с запасом в 100% по просьбе Родина
             {
                 ui->list_of_diods->addItem(names_of_diods.at(i), i);
             }
@@ -436,10 +438,11 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         }
 
         chrt->Create2DChart(series.points());
+        chrt->series->setName("Напряжение на нагрузке");
         chrt->PropertiesAxis("X", 0, 2/freq*1000, 11, "%.2lf");
-        chrt->PropertiesAxis("Y", -0.2, 1.5*max, 11, "%.2lf");
+        chrt->PropertiesAxis("Y", 0, 1.5*max, 11, "%.2lf");
         chrt->SetNameAxis("Время, мс", "Напряжение, В");
-        chrt->AddSeries2DChart(series_average.points(), "Среднее напряжение");
+        chrt->AddSeries2DChart(series_average.points(), "Среднее значение напряжения на нагрузке");
 
         //-------------------------------------------------------
     }
@@ -450,7 +453,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             chrt = new MyCharts();
             ui->graphicsView->setChart(chrt);
             chrt->setTitle("Выходное напряжение на нагрузке");
-            chrt->legend()->hide();
+            //chrt->legend()->hide();
         }
         else if(object_work->flagCalculate == false)
         {
@@ -468,6 +471,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
 
         double freq = value_1; //Копирую в другие переменные
+        double I0123 = value_2;
         double Resistance = value_4;
         double Uaverage = Resistance * value_2;
         //--------------------------------------------------
@@ -491,7 +495,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
         for (int i = 0;i < (int)names_of_diods.size(); i++)
         {
-            if(Uobr_max.at(i) > value_2)
+            if((Uobr_max.at(i) > (2*value_2)) and (Ipr.at(i) > (2*I0123)))
             {
                 ui->list_of_diods->addItem(names_of_diods.at(i), i);
             }
@@ -563,10 +567,11 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         }
 
         chrt->Create2DChart(series.points());
+        chrt->series->setName("Напряжение на нагрузке");
         chrt->PropertiesAxis("X", 0, 2/freq*1000, 11, "%.2lf");
-        chrt->PropertiesAxis("Y", -0.2, 1.5*max, 11, "%.2lf");
+        chrt->PropertiesAxis("Y", 0, 1.5*max, 11, "%.2lf");
         chrt->SetNameAxis("Время, мс", "Напряжение, В");
-        chrt->AddSeries2DChart(series_average.points(), "Среднее напряжение");
+        chrt->AddSeries2DChart(series_average.points(), "Среднее значение напряжения на нагрузке");
 
         //-------------------------------------------------------
     }

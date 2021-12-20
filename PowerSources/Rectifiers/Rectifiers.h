@@ -24,9 +24,10 @@ public:
 
     RectifiersAbstract* object_work = nullptr;
 
-    void SetDiodsParameters(std::vector <QString>, std::vector <int>);
+    void SetDiodsParameters(std::vector <QString>, std::vector <int>, std::vector <double>);
     std::vector <QString> names_of_diods;   //список диодов
     std::vector <int> Uobr_max;             //максимально допустимые обратные напряжения на диодах
+    std::vector <double> Ipr;
 
     QPixmap mapCircuit;
     QPixmap mapProperties;;

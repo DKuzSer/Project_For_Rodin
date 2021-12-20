@@ -37,12 +37,14 @@ void MainPowerSources::on_PushButton_Rectifiers_clicked()
 
     std::vector <QString> names_of_diods;   //список диодов
     std::vector <int> Uobr_max;             //максимально допустимые обратные напряжения на диодах
+    std::vector <double> Ipr;               //максимальный прямой ток на диоде
     QStringList list;
     if(names_of_diods.size() != 0)
     {
         QMessageBox::information(this,"Error","Files uploaded");
         names_of_diods.clear();
         Uobr_max.clear();
+        Ipr.clear();
     }
     QFile mFile(":/Diods/Марки диодов.txt");
     if (!mFile.open(QFile::ReadOnly|QFile::Text))
@@ -58,9 +60,10 @@ void MainPowerSources::on_PushButton_Rectifiers_clicked()
             list = sz.split("\t");
             names_of_diods.push_back(list.at(0));
             Uobr_max.push_back(list.at(1).toDouble());
+            Ipr.push_back(list.at(2).toDouble());
         }
     mFile.close();
-    object_page1->SetDiodsParameters(names_of_diods, Uobr_max);
+    object_page1->SetDiodsParameters(names_of_diods, Uobr_max, Ipr);
 
     ui->horizontalFrame_page1->layout()->addWidget(object_page1);
 }

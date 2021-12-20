@@ -9,7 +9,7 @@ class MainpowerSourcesAbstract : public QWidget
 public:
     MainpowerSourcesAbstract();
 
-    virtual void SetDiodsParameters(std::vector <QString>, std::vector <int>){};
+    virtual void SetDiodsParameters(std::vector <QString>, std::vector <int>, std::vector <double>){};
 
 signals:
 
