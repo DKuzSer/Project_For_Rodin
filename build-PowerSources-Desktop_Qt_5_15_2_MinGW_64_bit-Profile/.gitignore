@@ -1,0 +1,9 @@
+/.qmake.stash
+/Makefile
+/Makefile.Debug
+/Makefile.Release
+/object_script.PowerSources.Debug
+/object_script.PowerSources.Release
+/ui_Filters.h
+/ui_Rectifiers.h
+/ui_mainpowersources.h
