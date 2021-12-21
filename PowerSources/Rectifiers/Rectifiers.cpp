@@ -444,7 +444,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         chrt->PropertiesAxis("X", 0, 2/freq*1000, 11, "%.2lf");
         chrt->PropertiesAxis("Y", 0, 1.5*max, 11, "%.2lf");
         chrt->SetNameAxis("Время, мс", "Напряжение, В");
-        chrt->AddSeries2DChart(series_average.points(), "Среднее напряжение");
+        chrt->AddSeries2DChart(series_average.points(), "Среднее значение напряжения на нагрузке");
         chrt->flagChart = true;
 
         //-------------------------------------------------------
@@ -575,7 +575,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         chrt->PropertiesAxis("X", 0, 2/freq*1000, 11, "%.2lf");
         chrt->PropertiesAxis("Y", 0, 1.5*max, 11, "%.2lf");
         chrt->SetNameAxis("Время, мс", "Напряжение, В");
-        chrt->AddSeries2DChart(series_average.points(), "Среднее напряжение");
+        chrt->AddSeries2DChart(series_average.points(), "Среднее значение напряжения на нагрузке");
         chrt->flagChart = true;
 
         //-------------------------------------------------------
