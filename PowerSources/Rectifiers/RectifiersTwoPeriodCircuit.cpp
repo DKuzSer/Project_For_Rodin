@@ -230,11 +230,12 @@ double RectifiersTwoPeriodCircuit::OutputInductorCurrentWaveform(double t)
 void RectifiersTwoPeriodCircuit::CalculateCapacityParameters(double* U0_calculate, double* Kp_calculate, double* U_peak)
 {
     double T = 1/f;
-    double accuracy_t = 0.001;
+    double accuracy_t = T/20;
 
     double Umax = 0;
     double Umin = 0;
     *U0_calculate = 0;
+
     for(float time = T/4; time < 5*T/4; time += accuracy_t)
     {
         double step = OutputCapacityVoltageWaveform(time);
@@ -264,7 +265,7 @@ void RectifiersTwoPeriodCircuit::CalculateCapacityParameters(double* U0_calculat
 void RectifiersTwoPeriodCircuit::CalculateInductorParameters(double* I0_calculate, double* Kp_calculate, double* U_peak)
 {
     double T = 1/f;
-    double accuracy_t = 0.001;
+    double accuracy_t = T/20;
 
     double Imax = 0;
     double Imin = 0;

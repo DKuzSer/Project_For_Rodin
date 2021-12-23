@@ -217,7 +217,7 @@ double RectifiersOnePeriodCircuit::OutputInductorCurrentWaveform(double t)
 void RectifiersOnePeriodCircuit::CalculateInductorParameters(double* I0_calculate, double* Kp_calculate, double* U_peak)
 {
     double T = 1/f;
-    double accuracy_t = 0.001;
+    double accuracy_t = T/20;
 
     double Imax = 0;
     double Imin = 0;
@@ -251,7 +251,7 @@ void RectifiersOnePeriodCircuit::CalculateInductorParameters(double* I0_calculat
 void RectifiersOnePeriodCircuit::CalculateCapacityParameters(double* U0_calculate, double* Kp_calculate, double* U_peak)
 {
     double T = 1/f;
-    double accuracy_t = 0.001;
+    double accuracy_t = T/20;
 
     double Umax = 0;
     double Umin = 0;
