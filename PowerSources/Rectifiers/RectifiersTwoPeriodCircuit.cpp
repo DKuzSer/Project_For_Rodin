@@ -50,7 +50,7 @@ void RectifiersTwoPeriodCircuit::Capacitor()
     double U0_calculate = 0;
     double Kp_calculate = 0;
 
-    double accuracy_Um_input = 0.04;
+    double accuracy_Um_input = 0.05;
     double accuracy_C = 0.000001;
 
     while(Kp_calculate < Kp)
@@ -88,7 +88,7 @@ void RectifiersTwoPeriodCircuit::Inductor()
     double I0_calculate = 0;
     double Kp_calculate = 0;
 
-    double accuracy_Um_input = 0.01;
+    double accuracy_Um_input = 0.1;
     double accuracy_L = 0.0001;
 
     double start_time = clock();
@@ -111,7 +111,7 @@ void RectifiersTwoPeriodCircuit::Inductor()
         time_program = clock();
         time_program = time_program - start_time;
 
-        if(time_program > 50000)
+        if(time_program > 100000)
         {
             flagCalculate = true;
             break;
