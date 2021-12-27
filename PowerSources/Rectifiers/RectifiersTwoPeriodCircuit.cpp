@@ -94,7 +94,7 @@ void RectifiersTwoPeriodCircuit::Inductor()
     double start_time = clock();
     double time_program = 0.0;
 
-    while((I0_calculate < I0) || (abs(Kp_calculate - Kp) > 0.02))
+    while((I0_calculate < I0) || (abs(Kp_calculate - Kp) > 0.03))
     {
         L += accuracy_L/100;
 
