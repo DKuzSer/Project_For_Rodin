@@ -404,6 +404,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
         QLineSeries series;   //без фильтров
         QLineSeries series_average;
+        QLineSeries constant;
 
         double T = 1./freq;
 
@@ -425,6 +426,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             {
                 series.append(i*1000, object_work->OutputInductorCurrentWaveform(i)*Resistance);
                 series_average.append(i*1000, Uaverage);
+                constant.append(i*1000,320.0);
             }
         }
 
@@ -445,6 +447,7 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         chrt->PropertiesAxis("Y", 0, 1.5*max, 11, "%.2lf");
         chrt->SetNameAxis("Время, мс", "Напряжение, В");
         chrt->AddSeries2DChart(series_average.points(), "Среднее значение напряжения на нагрузке");
+        chrt->AddSeries2DChart(constant.points(), "Среднее значение напряжения на нагрузке");
         chrt->flagChart = true;
 
         //-------------------------------------------------------
