@@ -66,6 +66,8 @@ void RectifiersTwoPeriodCircuit::Capacitor()
             CalculateCapacityParameters(&U0_calculate, &Kp_calculate, &U_peak);
         }
     }
+
+    Ud_input = Um_input/sqrt(2);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RectifiersTwoPeriodCircuit::Inductor()
@@ -134,6 +136,8 @@ void RectifiersTwoPeriodCircuit::Inductor()
             break;
         }
     }
+
+    Ud_input = Um_input/sqrt(2);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RectifiersTwoPeriodCircuit::Calculate()

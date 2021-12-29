@@ -79,6 +79,8 @@ void RectifiersOnePeriodCircuit::Capacitor()
             break;
         }
     }
+
+    Ud_input = Um_input/sqrt(2);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RectifiersOnePeriodCircuit::Inductor()
@@ -130,6 +132,8 @@ void RectifiersOnePeriodCircuit::Inductor()
             break;
         }
     }
+
+    Ud_input = Um_input/sqrt(2);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void RectifiersOnePeriodCircuit::Calculate()
