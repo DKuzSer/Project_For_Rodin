@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>767</width>
-    <height>562</height>
+    <height>606</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -34,13 +34,13 @@
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QGridLayout" name="gridLayout_8">
    <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,1">
+    <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="2,0">
      <item>
       <widget class="QTabWidget" name="TabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="Tab_PageCircuit">
         <attribute name="title">
@@ -72,14 +72,14 @@
         </attribute>
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
-          <widget class="QChartView" name="graphicsView"/>
+          <layout class="QVBoxLayout" name="ChartsLayout"/>
          </item>
         </layout>
        </widget>
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="verticalLayout_12">
        <item>
         <widget class="QGroupBox" name="GroupBox_InPut">
          <property name="title">
@@ -88,34 +88,6 @@
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_2">
-            <item row="0" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <item>
-               <widget class="QLabel" name="label">
-                <property name="text">
-                 <string>Выберите выпрямитель:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="ComboBox_DevicesR"/>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <item>
-               <widget class="QLabel" name="Label_OutPutF">
-                <property name="text">
-                 <string>Наличие фильтра:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="ComboBox_OutPutF"/>
-              </item>
-             </layout>
-            </item>
             <item row="2" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
@@ -263,10 +235,38 @@
               </item>
              </layout>
             </item>
+            <item row="0" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>Выберите выпрямитель:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="ComboBox_DevicesR"/>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QLabel" name="Label_OutPutF">
+                <property name="text">
+                 <string>Наличие фильтра:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="ComboBox_OutPutF"/>
+              </item>
+             </layout>
+            </item>
            </layout>
           </item>
           <item row="1" column="0">
-           <spacer name="verticalSpacer">
+           <spacer name="verticalSpacer_3">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
@@ -277,6 +277,69 @@
              </size>
             </property>
            </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Обработка данных графика:</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <item>
+               <widget class="QPushButton" name="PushButton_Interactive">
+                <property name="text">
+                 <string>Интерактивный</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="PushButton_Hands">
+                <property name="text">
+                 <string>Ручной</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <item>
+                 <widget class="QLabel" name="label_3">
+                  <property name="text">
+                   <string>OY:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_4">
+                  <property name="text">
+                   <string>OX:</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxOY"/>
+                </item>
+                <item>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxOX"/>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -293,19 +356,6 @@
              <string>Выполнить расчёт</string>
             </property>
            </widget>
-          </item>
-          <item row="1" column="0">
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
           </item>
           <item row="0" column="0">
            <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -384,6 +434,19 @@
             </item>
            </layout>
           </item>
+          <item row="1" column="0">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </widget>
        </item>
@@ -393,13 +456,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QChartView</class>
-   <extends>QGraphicsView</extends>
-   <header>qchartview.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

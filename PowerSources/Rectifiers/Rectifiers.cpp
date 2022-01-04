@@ -9,17 +9,27 @@ Rectifiers::Rectifiers(MainpowerSourcesAbstract *parent) :
 {
     ui->setupUi(this);
 
+    View = new MyChartsView();
+    ui->ChartsLayout->addWidget(View);
+    View ->setRenderHint(QPainter::Antialiasing);
+
     ui->ComboBox_OutPutF->setVisible(false); // установление невидимыми параметра установки фильтра на выходе выпрямителя
     ui->Label_OutPutF->setVisible(false);   // установление невидимыми параметра установки фильтра на выходе выпрямителя
 
     ui->ComboBox_DevicesR->addItem("Однополупериодный", ONEPERIODCIRCUIT); // добавление однополупериодного выпрямителя в окно устройств
     ui->ComboBox_DevicesR->addItem("Мостовая схема (схема Греца)", TWOPERIODCIRCUIT);
+
+    ui->DoubleSpinBoxOX->setEnabled(false);
+    ui->DoubleSpinBoxOY->setEnabled(false);
+
+    connect(View,&MyChartsView::signalCoordinateCursor,this,&Rectifiers::CoordinateCursor);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Rectifiers::~Rectifiers()
 {
     delete chrt;
+    delete View;
     delete object_work;
     delete ui;
 }
@@ -324,13 +334,36 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         if(chrt == nullptr)
         {
             chrt = new MyCharts();
-            ui->graphicsView->setChart(chrt);
+            View->setChart(chrt);
             chrt->setTitle("Выходное напряжение на нагрузке");
-            //chrt->legend()->hide();
+
+            interactive = false;
+            hands = false;
+            ui->PushButton_Interactive->setEnabled(true);
+            ui->PushButton_Hands->setEnabled(true);
+            ui->DoubleSpinBoxOX->setEnabled(false);
+            ui->DoubleSpinBoxOY->setEnabled(false);
+            ui->DoubleSpinBoxOX->setValue(0.0);
+            ui->DoubleSpinBoxOY->setValue(0.0);
         }
         else if(chrt->flagChart == true)
         {
             chrt->DeleteChart();
+
+            interactive = false;
+            hands = false;
+            ui->PushButton_Interactive->setEnabled(true);
+            ui->PushButton_Hands->setEnabled(true);
+            ui->DoubleSpinBoxOX->setEnabled(false);
+            ui->DoubleSpinBoxOY->setEnabled(false);
+            ui->DoubleSpinBoxOX->setValue(0.0);
+            ui->DoubleSpinBoxOY->setValue(0.0);
+
+            if(flagEllipseItem)
+            {
+                delete ellipceItem;
+                flagEllipseItem = false;
+            }
         }
 
         //--------------------------------------------------
@@ -454,13 +487,36 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         if(chrt == nullptr)
         {
             chrt = new MyCharts();
-            ui->graphicsView->setChart(chrt);
+            View->setChart(chrt);
             chrt->setTitle("Выходное напряжение на нагрузке");
-            //chrt->legend()->hide();
+
+            interactive = false;
+            hands = false;
+            ui->PushButton_Interactive->setEnabled(true);
+            ui->PushButton_Hands->setEnabled(true);
+            ui->DoubleSpinBoxOX->setEnabled(false);
+            ui->DoubleSpinBoxOY->setEnabled(false);
+            ui->DoubleSpinBoxOX->setValue(0.0);
+            ui->DoubleSpinBoxOY->setValue(0.0);
         }
         else if(chrt->flagChart == true)
         {
             chrt->DeleteChart();
+
+            interactive = false;
+            hands = false;
+            ui->PushButton_Interactive->setEnabled(true);
+            ui->PushButton_Hands->setEnabled(true);
+            ui->DoubleSpinBoxOX->setEnabled(false);
+            ui->DoubleSpinBoxOY->setEnabled(false);
+            ui->DoubleSpinBoxOX->setValue(0.0);
+            ui->DoubleSpinBoxOY->setValue(0.0);
+
+            if(flagEllipseItem)
+            {
+                delete ellipceItem;
+                flagEllipseItem = false;
+            }
         }
 
         //переписываем в удобный формат
@@ -471,7 +527,6 @@ void Rectifiers::on_PushButton_Calculate_clicked()
         double value_6 = ui->DoubleSpinBoxR_InPut6->value(); //Напряжение на нагрузке
         double value_4 = double(value_6/value_2);            //Сопротивление нагрузки
         double value_5 = ui->DoubleSpinBoxR_InPut5->value(); //Коэффициент пульсаций
-
 
         double freq = value_1; //Копирую в другие переменные
         double I0123 = value_2;
@@ -560,6 +615,9 @@ void Rectifiers::on_PushButton_Calculate_clicked()
             }
         }
 
+        ui->DoubleSpinBoxOX->setMinimum(0.0);
+        ui->DoubleSpinBoxOX->setMaximum(2.*T*1000);
+
         double max = 0;
         for(int i = 0; i < series.pointsVector().size(); i++)
         {
@@ -580,4 +638,125 @@ void Rectifiers::on_PushButton_Calculate_clicked()
 
         //-------------------------------------------------------
     }
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void Rectifiers::CoordinateCursor(QPointF point, int ind)
+{
+    if((interactive == false) || (chrt == nullptr))
+    {
+        return;
+    }
+
+    if (chrt->flagChart == true)
+    {
+        QPointF Coords = chrt->mapToValue(point, chrt->series);
+        QPointF ellipcePoint = {0.0,0.0};
+        int bestIndex = 0;
+        if(ind < 0)
+        {
+            bestIndex = Near(Coords, chrt->series, chrt->series->pointsVector().size());
+            ellipcePoint = chrt->mapToPosition(chrt->series->at(bestIndex), chrt->series);
+            ui->DoubleSpinBoxOX->setValue(chrt->series->at(bestIndex).x());
+            ui->DoubleSpinBoxOY->setValue(chrt->series->at(bestIndex).y());
+        }
+
+        if(flagEllipseItem)
+        {
+            delete ellipceItem;
+            flagEllipseItem = false;
+        }
+        ellipceItem = new QGraphicsEllipseItem(chrt);
+
+        ellipceItem->setRect(-5,-5,10,10);
+        ellipceItem->setBrush(Qt::red);
+
+        ellipceItem->setPos(ellipcePoint);
+
+        flagEllipseItem = true;
+    }
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void Rectifiers::on_PushButton_Interactive_clicked(bool checked)
+{
+    Q_UNUSED(checked);
+    interactive = true;
+    hands = false;
+    ui->PushButton_Interactive->setEnabled(false);
+    ui->PushButton_Hands->setEnabled(true);
+    ui->DoubleSpinBoxOX->setEnabled(false);
+
+    if(flagEllipseItem)
+    {
+        delete ellipceItem;
+        flagEllipseItem = false;
+    }
+
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void Rectifiers::on_PushButton_Hands_clicked(bool checked)
+{
+    Q_UNUSED(checked);
+    interactive = false;
+    hands = true;
+    ui->PushButton_Interactive->setEnabled(true);
+    ui->PushButton_Hands->setEnabled(false);
+    ui->DoubleSpinBoxOX->setEnabled(true);
+
+    if(flagEllipseItem)
+    {
+        delete ellipceItem;
+        flagEllipseItem = false;
+    }
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+int Rectifiers::Near(QPointF Coords, QLineSeries *series, int Size)
+{
+    double x = Coords.x();
+    int index = 0;
+    double delta = 999.0;
+    for(int i = 0; i < Size; i++)
+    {
+        if(abs(x - series->at(i).x()) < delta)
+        {
+            index = i;
+            delta = abs(x - series->at(i).x());
+        }
+    }
+    return index;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void Rectifiers::on_DoubleSpinBoxOX_valueChanged(double CodeElement)
+{
+    if((hands == false) || (chrt == nullptr))
+    {
+        return;
+    }
+
+    ui->DoubleSpinBoxOX->setSingleStep(0.01);
+    int index = 0;
+    QPointF ellipcePointAmplitude = {0.0 , 0.0};
+
+    if (chrt->flagChart == true)
+    {
+        index = ((CodeElement)/0.01);
+
+        if(flagEllipseItem)
+        {
+            delete ellipceItem;
+            flagEllipseItem = false;
+        }
+
+        ellipcePointAmplitude = chrt->mapToPosition(chrt->series->at(index),chrt->series);
+
+        ellipceItem = new QGraphicsEllipseItem(chrt);
+        ellipceItem->setRect(-5,-5,10,10);
+        ellipceItem->setBrush(Qt::red);
+
+        ellipceItem->setPos(ellipcePointAmplitude);
+
+        ui->DoubleSpinBoxOY->setValue(chrt->series->at(index).y());
+
+        flagEllipseItem = true;
+    }
+
 }

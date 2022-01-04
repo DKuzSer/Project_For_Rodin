@@ -15,6 +15,7 @@ SOURCES += \
     Filters\FiltersButterworth.cpp \
     MainpowerSourcesAbstract.cpp \
     MyCharts.cpp \
+    MyChartsView.cpp \
     Rectifiers\Rectifiers.cpp \
     Rectifiers\RectifiersAbstract.cpp \
     Rectifiers\RectifiersOnePeriodCircuit.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     Filters\FiltersButterworth.h \
     MainpowerSourcesAbstract.h \
     MyCharts.h \
+    MyChartsView.h \
     Rectifiers\Rectifiers.h \
     Rectifiers\RectifiersAbstract.h \
     Rectifiers\RectifiersOnePeriodCircuit.h \
