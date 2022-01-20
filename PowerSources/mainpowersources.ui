@@ -40,9 +40,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>131</red>
-        <green>131</green>
-        <blue>131</blue>
+        <red>64</red>
+        <green>65</green>
+        <blue>66</blue>
        </color>
       </brush>
      </colorrole>
@@ -67,9 +67,9 @@
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>136</red>
-        <green>136</green>
-        <blue>136</blue>
+        <red>204</red>
+        <green>204</green>
+        <blue>204</blue>
        </color>
       </brush>
      </colorrole>
@@ -94,27 +94,27 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>255</green>
-        <blue>255</blue>
+        <red>88</red>
+        <green>109</green>
+        <blue>127</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>240</red>
-        <green>240</green>
-        <blue>240</blue>
+        <red>51</red>
+        <green>75</green>
+        <blue>90</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Shadow">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>99</red>
-        <green>99</green>
-        <blue>99</blue>
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
        </color>
       </brush>
      </colorrole>
@@ -150,9 +150,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>131</red>
-        <green>131</green>
-        <blue>131</blue>
+        <red>64</red>
+        <green>65</green>
+        <blue>66</blue>
        </color>
       </brush>
      </colorrole>
@@ -177,9 +177,9 @@
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>136</red>
-        <green>136</green>
-        <blue>136</blue>
+        <red>204</red>
+        <green>204</green>
+        <blue>204</blue>
        </color>
       </brush>
      </colorrole>
@@ -204,27 +204,27 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>255</red>
-        <green>255</green>
-        <blue>255</blue>
+        <red>88</red>
+        <green>109</green>
+        <blue>127</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>240</red>
-        <green>240</green>
-        <blue>240</blue>
+        <red>51</red>
+        <green>75</green>
+        <blue>90</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Shadow">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>99</red>
-        <green>99</green>
-        <blue>99</blue>
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
        </color>
       </brush>
      </colorrole>
@@ -260,9 +260,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>131</red>
-        <green>131</green>
-        <blue>131</blue>
+        <red>64</red>
+        <green>65</green>
+        <blue>66</blue>
        </color>
       </brush>
      </colorrole>
@@ -287,9 +287,9 @@
      <colorrole role="Mid">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>136</red>
-        <green>136</green>
-        <blue>136</blue>
+        <red>204</red>
+        <green>204</green>
+        <blue>204</blue>
        </color>
       </brush>
      </colorrole>
@@ -314,27 +314,27 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>240</red>
-        <green>240</green>
-        <blue>240</blue>
+        <red>51</red>
+        <green>75</green>
+        <blue>90</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>240</red>
-        <green>240</green>
-        <blue>240</blue>
+        <red>51</red>
+        <green>75</green>
+        <blue>90</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Shadow">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>99</red>
-        <green>99</green>
-        <blue>99</blue>
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
        </color>
       </brush>
      </colorrole>
@@ -529,6 +529,9 @@
                  <pointsize>12</pointsize>
                 </font>
                </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(120, 144, 156)</string>
+               </property>
                <property name="text">
                 <string>Вычисление</string>
                </property>
@@ -572,6 +575,9 @@
                  <family>ГОСТ тип А</family>
                  <pointsize>12</pointsize>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(120, 144, 156)</string>
                </property>
                <property name="text">
                 <string>Справка</string>
@@ -694,6 +700,9 @@
                    <pointsize>12</pointsize>
                   </font>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(120, 144, 156)</string>
+                 </property>
                  <property name="text">
                   <string>Теория</string>
                  </property>
@@ -718,6 +727,9 @@
                    <family>ГОСТ тип А</family>
                    <pointsize>12</pointsize>
                   </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(120, 144, 156)</string>
                  </property>
                  <property name="text">
                   <string>Таблицы</string>
@@ -809,6 +821,9 @@
                    <pointsize>10</pointsize>
                   </font>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(120, 144, 156)</string>
+                 </property>
                  <property name="text">
                   <string>Выпрямители</string>
                  </property>
@@ -865,6 +880,9 @@
                    <pointsize>12</pointsize>
                   </font>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(120, 144, 156)</string>
+                 </property>
                  <property name="text">
                   <string>Фильтры</string>
                  </property>
@@ -901,6 +919,9 @@
             </item>
             <item>
              <widget class="QFrame" name="horizontalFrame_page1">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
               </property>

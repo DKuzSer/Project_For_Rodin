@@ -19,6 +19,70 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="palette">
+   <palette>
+    <active>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>72</red>
+        <green>101</green>
+        <blue>113</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>120</red>
+        <green>144</green>
+        <blue>156</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>72</red>
+        <green>101</green>
+        <blue>113</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>120</red>
+        <green>144</green>
+        <blue>156</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Base">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>120</red>
+        <green>144</green>
+        <blue>156</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>120</red>
+        <green>144</green>
+        <blue>156</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
   <property name="contextMenuPolicy">
    <enum>Qt::DefaultContextMenu</enum>
   </property>
@@ -39,10 +103,53 @@
     <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="2,0">
      <item>
       <widget class="QTabWidget" name="TabWidget">
+       <property name="palette">
+        <palette>
+         <active>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>120</red>
+             <green>144</green>
+             <blue>156</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </active>
+         <inactive>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>120</red>
+             <green>144</green>
+             <blue>156</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </inactive>
+         <disabled>
+          <colorrole role="Base">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>120</red>
+             <green>144</green>
+             <blue>156</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </disabled>
+        </palette>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="currentIndex">
         <number>1</number>
        </property>
        <widget class="QWidget" name="Tab_PageCircuit">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(120, 144, 156)</string>
+        </property>
         <attribute name="title">
          <string>Схема</string>
         </attribute>
@@ -57,6 +164,9 @@
                <height>400</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(120, 144, 156)</string>
+             </property>
              <property name="text">
               <string>TextLabel</string>
              </property>
@@ -67,6 +177,9 @@
         </layout>
        </widget>
        <widget class="QWidget" name="Tab_PageChart">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(120, 144, 156)</string>
+        </property>
         <attribute name="title">
          <string>График</string>
         </attribute>
