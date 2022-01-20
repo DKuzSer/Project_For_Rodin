@@ -11,6 +11,11 @@
         <file>img/RTPCircuit1.jpg</file>
         <file>img/RTPCircuit2.jpg</file>
         <file>img/RTPCircuit3.jpg</file>
+        <file>img/ButtonCalculate.png</file>
+        <file>img/ButtonData.png</file>
+        <file>img/ButtonRectifiers.png</file>
+        <file>img/ButtonFilters.png</file>
+        <file>img/DopLogo.png</file>
     </qresource>
     <qresource prefix="/Diods">
         <file>Марки диодов.txt</file>
