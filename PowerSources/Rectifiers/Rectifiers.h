@@ -8,6 +8,7 @@
 #include "RectifiersAbstract.h"
 #include "MyCharts.h"
 #include "MyChartsView.h"
+#include "diod_base.h"
 
 namespace Ui {
 class Rectifiers;
@@ -55,10 +56,20 @@ private slots:
 
     void on_DoubleSpinBoxOX_valueChanged(double arg1);
 
+    void on_diod_base_clicked();
+
+public slots:
+    void diod_base_update(std::vector <QString> _names_of_diods, std::vector <int> _Uobr_max, std::vector <double> _Ipr);
+
+signals:
+    void signal_diod_base();
+
 private:
     Ui::Rectifiers *ui;
 
     MyCharts *chrt = nullptr;
+
+    diod_base* base;
 };
 
 #endif // RECTIFIERS_H

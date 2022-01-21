@@ -9,6 +9,8 @@ Rectifiers::Rectifiers(MainpowerSourcesAbstract *parent) :
 {
     ui->setupUi(this);
 
+    base = new diod_base();
+
     View = new MyChartsView();
     ui->ChartsLayout->addWidget(View);
     View ->setRenderHint(QPainter::Antialiasing);
@@ -23,6 +25,10 @@ Rectifiers::Rectifiers(MainpowerSourcesAbstract *parent) :
     ui->DoubleSpinBoxOY->setEnabled(false);
 
     connect(View,&MyChartsView::signalCoordinateCursor,this,&Rectifiers::CoordinateCursor);
+
+    connect(this,&Rectifiers::signal_diod_base,base,&diod_base::slot_diod_base);
+
+    connect(base,&diod_base::signal_data_update,this,&Rectifiers::diod_base_update);
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -32,6 +38,7 @@ Rectifiers::~Rectifiers()
     delete View;
     delete object_work;
     delete ui;
+    delete base;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Rectifiers::SetDiodsParameters(std::vector <QString> _names_of_diods, std::vector <int> _Uobr_max, std::vector <double> _Ipr)
@@ -759,4 +766,17 @@ void Rectifiers::on_DoubleSpinBoxOX_valueChanged(double CodeElement)
         flagEllipseItem = true;
     }
 
+}
+
+void Rectifiers::on_diod_base_clicked()
+{
+    base->show();
+    emit signal_diod_base();
+}
+
+void Rectifiers::diod_base_update(std::vector <QString> _names_of_diods, std::vector <int> _Uobr_max, std::vector <double> _Ipr)
+{
+    names_of_diods = _names_of_diods;
+    Uobr_max = _Uobr_max;
+    Ipr = _Ipr;
 }

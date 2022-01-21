@@ -536,6 +536,13 @@
              <widget class="QComboBox" name="list_of_diods"/>
             </item>
             <item>
+             <widget class="QPushButton" name="diod_base">
+              <property name="text">
+               <string>База диодов</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_9"/>
