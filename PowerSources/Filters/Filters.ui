@@ -30,6 +30,11 @@
         <attribute name="title">
          <string>График</string>
         </attribute>
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="0" column="0">
+          <layout class="QVBoxLayout" name="ChartsLayout"/>
+         </item>
+        </layout>
        </widget>
       </widget>
      </item>
@@ -46,14 +51,28 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <item>
-               <widget class="QLabel" name="label_7">
+               <widget class="QLabel" name="Label_Type">
                 <property name="text">
-                 <string>Выберите устройство:</string>
+                 <string>Тип фильтра:</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="ComboBox_DevicesF"/>
+               <widget class="QComboBox" name="ComboBox_Type"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QLabel" name="Label_View">
+                <property name="text">
+                 <string>Вид фильтра:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="ComboBox_View"/>
               </item>
              </layout>
             </item>
@@ -64,21 +83,21 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_5">
                   <item>
-                   <widget class="QLabel" name="label">
+                   <widget class="QLabel" name="Label_InPut1">
                     <property name="text">
                      <string>TextLabel</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="label_5">
+                   <widget class="QLabel" name="Label_InPut2">
                     <property name="text">
                      <string>TextLabel</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="label_6">
+                   <widget class="QLabel" name="Label_InPut3">
                     <property name="text">
                      <string>TextLabel</string>
                     </property>
@@ -89,13 +108,28 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_4">
                   <item>
-                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut1"/>
+                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut1">
+                    <property name="minimum">
+                     <double>0.010000000000000</double>
+                    </property>
+                   </widget>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut2"/>
+                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut2">
+                    <property name="minimum">
+                     <double>0.010000000000000</double>
+                    </property>
+                   </widget>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut3"/>
+                   <widget class="QSpinBox" name="IntSpinBoxF_InPut3">
+                    <property name="minimum">
+                     <number>2</number>
+                    </property>
+                    <property name="maximum">
+                     <number>6</number>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -106,21 +140,21 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_3">
                   <item>
-                   <widget class="QLabel" name="label_2">
+                   <widget class="QLabel" name="Label_InPut4">
                     <property name="text">
                      <string>TextLabel</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="label_3">
+                   <widget class="QLabel" name="Label_InPut5">
                     <property name="text">
                      <string>TextLabel</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLabel" name="label_4">
+                   <widget class="QLabel" name="Label_InPut6">
                     <property name="text">
                      <string>TextLabel</string>
                     </property>
@@ -176,21 +210,21 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_9">
                 <item>
-                 <widget class="QLabel" name="label_8">
+                 <widget class="QLabel" name="Label_OutPut1">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_9">
+                 <widget class="QLabel" name="Label_OutPut2">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_10">
+                 <widget class="QLabel" name="Label_OutPut3">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
@@ -218,21 +252,21 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_11">
                 <item>
-                 <widget class="QLabel" name="label_11">
+                 <widget class="QLabel" name="Label_OutPut4">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_12">
+                 <widget class="QLabel" name="Label_OutPut5">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_13">
+                 <widget class="QLabel" name="Label_OutPut6">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
@@ -269,6 +303,13 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="PushButton_Calculate">
+            <property name="text">
+             <string>Выполнить расчёт</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

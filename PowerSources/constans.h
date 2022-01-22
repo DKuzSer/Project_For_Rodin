@@ -9,4 +9,9 @@
 
 #define BUTTERWORTH 0
 
+#define FNCH 0
+#define FVCH 1
+#define PF   2
+#define ZF   3
+
 #endif // CONSTANS_H

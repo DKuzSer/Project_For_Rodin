@@ -11,8 +11,22 @@ public:
 
     FiltersAbstract();
 
-    virtual void SetBaseValue(double , double , double ){};
+    virtual void SetBaseValue(double , double , int ){};
+    virtual void ViewFilters(int){};
     virtual void Calculate(){};
+
+    virtual double OutputWaveform(double){return 0;};
+
+    double f;          // частота среза
+    double R;          // сопротивление нагрузки
+    int n;             // порядок
+
+    double C1 = 0;     // ёмкость
+    double L1 = 0;     // индуктивность
+    double C2 = 0;     // ёмкость
+    double L2 = 0;     // индуктивность
+    double C3 = 0;     // ёмкость
+    double L3 = 0;     // индуктивность
 
 signals:
 
