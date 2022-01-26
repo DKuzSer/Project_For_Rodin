@@ -183,3 +183,97 @@ double FiltersButterworth::OutputWaveform(double f)
     }
     return 0;
 }
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+double FiltersButterworth::OutputWaveformFCHX(double f)
+{
+    if(flagFilters == 0)
+    {
+        if(n == 2)
+        {
+            complex<double> ZL11(0.0, 2 * PI * f * L1);                        // Импеданс катушки при разных частотах
+            complex<double> ZC11(0.0, -1 / (2 * PI * f * C1));                 // Импеданс конденсатора при разных частотах
+            complex<double> promegAG11_1 = (ZL11 + ZC11 + R) / ZC11;
+            complex<double> AG11_1(promegAG11_1.real(), promegAG11_1.imag());  // параметр матрицы А11
+            complex<double> promegAG12_1 = R + ZL11;
+            complex<double> AG12_1(promegAG12_1.real(), promegAG12_1.imag());
+            complex<double> ACHX_nesogl = R / (R * AG11_1 + AG12_1);
+
+            return arg(ACHX_nesogl) * 180/PI;
+        }
+        if(n == 3)
+        {
+            complex<double> ZC1(0.0, -1 / (2 * PI * f * C1));
+            complex<double> ZL2(0.0, 2 * PI * f * L1);
+            complex<double> ZC3(0.0, -1 / (2 * PI * f * C2));
+            complex<double> promegAP11 = ZL2 / ZC3;
+            complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
+            complex<double> promegAP12 = ZL2 + R * (ZL2 + ZC3) / ZC3;
+            complex<double> AP12(promegAP12.real(), promegAP12.imag());
+            complex<double> ACHX_nesogl = R / (R * AP11 + AP12);
+
+            return arg(ACHX_nesogl) * 180/PI;
+        }
+        if(n == 2)
+        {
+
+        }
+        if(n == 4)
+        {
+
+        }
+        if(n == 5)
+        {
+
+        }
+        if(n == 6)
+        {
+
+        }
+    }
+
+    if(flagFilters == 1)
+    {
+        if(n == 2)
+        {
+            complex<double> ZL11(0.0, 2 * PI * f * L1); // Импеданс катушки при разных частотах
+            complex<double> ZC11(0.0, -1 / (2 * PI * f * C1));// Импеданс конденсатора при разных частотах
+            complex<double> promegAG11_1 = (ZC11 + ZL11 + R) / ZL11;
+            complex<double> AG11_1(promegAG11_1.real(), promegAG11_1.imag()); // параметр матрицы А11
+            complex<double> promegAG12_1 = R + ZC11;
+            complex<double> AG12_1(promegAG12_1.real(), promegAG12_1.imag());
+            complex<double> ACHX_nesogl = R / (R * AG11_1 + AG12_1);
+            double phase = arg(ACHX_nesogl) * 180/PI;
+            return phase;
+        }
+        if(n == 3)
+        {
+            complex<double> ZL1(0.0, 2 * PI * f * L1);
+            complex<double> ZC2(0.0, -1 / (2 * PI * f * C1));
+            complex<double> ZL3(0.0, 2 * PI * f * L2);
+            complex<double> promegAP11 = ZC2 / ZL3;
+            complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
+            complex<double> promegAP12 = ZC2 + R * (ZC2 + ZL3) / ZL3;
+            complex<double> AP12(promegAP12.real(), promegAP12.imag());
+            complex<double> ACHX_nesogl = R / (R * AP11 + AP12);
+
+            return arg(ACHX_nesogl) * 180/PI;
+        }
+        if(n == 2)
+        {
+
+        }
+        if(n == 4)
+        {
+
+        }
+        if(n == 5)
+        {
+
+        }
+        if(n == 6)
+        {
+
+        }
+    }
+    return 0;
+}
