@@ -20,7 +20,6 @@ public:
     ~Filters();
 
     MyChartsView* View;
-
     MyChartsView* ViewFCHX;
 
     FiltersAbstract* object_work = nullptr;
@@ -38,7 +37,6 @@ private:
     Ui::Filters *ui;
 
     MyCharts *chrt = nullptr;
-
     MyCharts *chrtFCHX = nullptr;
 };
 

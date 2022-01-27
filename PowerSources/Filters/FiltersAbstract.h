@@ -12,6 +12,7 @@ public:
     FiltersAbstract();
 
     virtual void SetBaseValue(double , double , int ){};
+    virtual void SetBaseValue(double , double , int , double){};
     virtual void ViewFilters(int){};
     virtual void Calculate(){};
 
@@ -21,6 +22,7 @@ public:
     double f;          // частота среза
     double R;          // сопротивление нагрузки
     int n;             // порядок
+    double deltaf;      //полоса
 
     double C1 = 0;     // ёмкость
     double L1 = 0;     // индуктивность

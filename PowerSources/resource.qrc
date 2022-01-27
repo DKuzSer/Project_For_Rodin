@@ -18,6 +18,6 @@
         <file>img/DopLogo.png</file>
     </qresource>
     <qresource prefix="/Diods">
-        <file>Марки диодов.txt</file>
+        <file>Diods.txt</file>
     </qresource>
 </RCC>
