@@ -104,62 +104,8 @@ void Filters::on_ComboBox_Type_currentIndexChanged(int index)
                 object_work = new  FiltersCHEBISHEV();
             }
             else
-                object_work = new  FiltersCHEBISHEV();
+                object_work = new  FiltersButterworth();
 
-    //            ui->ComboBox_OutPutF->setVisible(true);
-    //            ui->Label_OutPutF->setVisible(true);
-
-            //настройки входных данных
-            //----------------------------------------------
-            ui->Label_InPut1->setVisible(true);
-            ui->Label_InPut1->setText("f (Частота среза), Гц:");
-            ui->DoubleSpinBoxF_InPut1->setVisible(true);
-
-            ui->Label_InPut2->setVisible(true);
-            ui->Label_InPut2->setText("R (Сопротивление нагрузки), Ом:");
-            ui->DoubleSpinBoxF_InPut2->setVisible(true);
-
-            ui->Label_InPut3->setVisible(true);
-            ui->Label_InPut3->setText("n (порядок):");
-            ui->IntSpinBoxF_InPut3->setVisible(true);
-
-            ui->Label_InPut4->setVisible(true);
-            ui->Label_InPut4->setText("df (полоса фильтра), Гц:");
-            ui->DoubleSpinBoxF_InPut4->setVisible(true);
-
-            ui->Label_InPut5->setVisible(false);
-    //            ui->Label_InPut5->setText("Rн (Сопротивление нагрузки), Ом:");
-            ui->DoubleSpinBoxF_InPut5->setVisible(false);
-
-            ui->Label_InPut6->setVisible(false);
-    //            ui->Label_InPut6->setText("Uн (Напряжение на нагрузке), В:");
-            ui->DoubleSpinBoxF_InPut6->setVisible(false);
-            //----------------------------------------------
-
-            //настройки выходных данных
-            //----------------------------------------------
-            if(ui->IntSpinBoxF_InPut3->value() == 2)
-            {
-                ui->Label_OutPut1->setVisible(true);
-                ui->Label_OutPut1->setText("С1 (Ёмкость), мкФ:");
-                ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
-                ui->DoubleSpinBoxF_OutPut1->setVisible(true);
-
-                ui->Label_OutPut2->setVisible(true);
-                ui->Label_OutPut2->setText("L1 (Индуктивность), Гн:");
-                ui->DoubleSpinBoxF_OutPut2->setVisible(true);
-                ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
-
-                ui->Label_OutPut3->setVisible(false);
-                ui->DoubleSpinBoxF_OutPut3->setVisible(false);
-                ui->Label_OutPut4->setVisible(false);
-                ui->DoubleSpinBoxF_OutPut4->setVisible(false);
-                ui->Label_OutPut5->setVisible(false);
-                ui->DoubleSpinBoxF_OutPut5->setVisible(false);
-                ui->Label_OutPut6->setVisible(false);
-                ui->DoubleSpinBoxF_OutPut6->setVisible(false);
-            }
-            //----------------------------------------------
         break;
     }
 }
