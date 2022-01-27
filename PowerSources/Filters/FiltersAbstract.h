@@ -17,6 +17,7 @@ public:
     virtual void Calculate(){};
 
     virtual double OutputWaveform(double){return 0;};
+    virtual double OutputWaveformFCHX(double){return 0;};
 
     double f;          // частота среза
     double R;          // сопротивление нагрузки
