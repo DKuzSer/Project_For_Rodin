@@ -21,6 +21,8 @@ public:
 
     MyChartsView* View;
 
+    MyChartsView* ViewFCHX;
+
     FiltersAbstract* object_work = nullptr;
 
 private slots:
@@ -36,6 +38,8 @@ private:
     Ui::Filters *ui;
 
     MyCharts *chrt = nullptr;
+
+    MyCharts *chrtFCHX = nullptr;
 };
 
 #endif // FILTERS_H

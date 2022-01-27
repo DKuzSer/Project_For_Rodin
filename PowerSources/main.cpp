@@ -1,5 +1,5 @@
 #include "mainpowersources.h"
-#include <QTextCodec>
+
 #include <QApplication>
 
 int main(int argc, char *argv[])
