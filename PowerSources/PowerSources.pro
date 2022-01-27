@@ -1,6 +1,6 @@
 QT       += core gui
 QT       += core gui charts
-QT += core5compat
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -11,7 +11,6 @@ CONFIG += c++11
 
 SOURCES += \
     Filters/FiltersCHEBISHEV.cpp \
-    Filters/chren.cpp \
     Filters\Filters.cpp \
     Filters\FiltersAbstract.cpp \
     Filters\FiltersButterworth.cpp \
@@ -27,7 +26,6 @@ SOURCES += \
 
 HEADERS += \
     Filters/FiltersCHEBISHEV.h \
-    Filters/chren.h \
     Filters\Filters.h \
     Filters\FiltersAbstract.h \
     Filters\FiltersButterworth.h \
