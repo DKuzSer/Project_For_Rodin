@@ -1,6 +1,6 @@
 QT       += core gui
 QT       += core gui charts
-
+QT       += core5compat
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -10,6 +10,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Filters/FiltersCHEBISHEV.cpp \
     Filters\Filters.cpp \
     Filters\FiltersAbstract.cpp \
     Filters\FiltersButterworth.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
     mainpowersources.cpp
 
 HEADERS += \
+    Filters/FiltersCHEBISHEV.h \
     Filters\Filters.h \
     Filters\FiltersAbstract.h \
     Filters\FiltersButterworth.h \
@@ -42,7 +44,6 @@ FORMS += \
     Rectifiers\Rectifiers.ui \
     mainpowersources.ui
 
-win32:RC_FILE = file.rc
 
 TRANSLATIONS += \
     PowerSources_ru_RU.ts

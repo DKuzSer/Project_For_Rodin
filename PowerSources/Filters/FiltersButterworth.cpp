@@ -12,6 +12,13 @@ void FiltersButterworth::SetBaseValue(double _f, double _R, int _n)
     R = _R;
     n = _n;
 }
+void FiltersButterworth::SetBaseValue(double _f, double _R, int _n, double _deltaf)
+{
+    f = _f;
+    R = _R;
+    n = _n;
+    deltaf = _deltaf;
+}
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void FiltersButterworth::ViewFilters(int number)
 {
@@ -45,6 +52,7 @@ void FiltersButterworth::Calculate()
         double KL, KC;
         KL = R / (2 * PI * f);
         KC = 1 / (2 * PI * f * R);
+
         if(n == 2)
         {
             C1 = KC * 1.414;
@@ -64,6 +72,7 @@ void FiltersButterworth::Calculate()
         double KL, KC;
         KL = R / (2 * PI * f);
         KC = 1 / (2 * PI * f * R);
+
         if(n == 2)
         {
             L1 = KL / 1.414;
@@ -79,7 +88,20 @@ void FiltersButterworth::Calculate()
 
     if(flagFilters == 2)                              // Вычисление ПФ
     {
-        //новый алгоритм вычисления:
+        double Q=f/deltaf;
+        double KL, KC;
+        KL = R / (2 * PI * f);
+        KC = 1 / (2 * PI * f * R);
+
+        if(n == 3)
+        {
+            C1 = KC*1*Q;
+            L1 = KL / (1*Q);
+            C2 = KC/(2*Q);
+            L2 = KL*2*Q;
+            C3 = KC *1*Q;
+            L3 = KL/ (1*Q);
+        }
 
     }
 
@@ -111,7 +133,7 @@ double FiltersButterworth::OutputWaveform(double f)
             complex<double> ZC1(0.0, -1 / (2 * PI * f * C1));
             complex<double> ZL2(0.0, 2 * PI * f * L1);
             complex<double> ZC3(0.0, -1 / (2 * PI * f * C2));
-            complex<double> promegAP11 = ZL2 / ZC3;
+            complex<double> promegAP11 = ZL2 / ZC3+R*(ZC1+ZC3+ZL2)/(ZC1*ZC3);
             complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
             complex<double> promegAP12 = ZL2 + R * (ZL2 + ZC3) / ZC3;
             complex<double> AP12(promegAP12.real(), promegAP12.imag());
@@ -119,22 +141,7 @@ double FiltersButterworth::OutputWaveform(double f)
 
             return abs(ACHX_nesogl) * 2;
         }
-        if(n == 2)
-        {
 
-        }
-        if(n == 4)
-        {
-
-        }
-        if(n == 5)
-        {
-
-        }
-        if(n == 6)
-        {
-
-        }
     }
 
     if(flagFilters == 1)
@@ -156,7 +163,7 @@ double FiltersButterworth::OutputWaveform(double f)
             complex<double> ZL1(0.0, 2 * PI * f * L1);
             complex<double> ZC2(0.0, -1 / (2 * PI * f * C1));
             complex<double> ZL3(0.0, 2 * PI * f * L2);
-            complex<double> promegAP11 = ZC2 / ZL3;
+            complex<double> promegAP11 = ZC2 / ZL3+R*(ZL1+ZL3+ZC2)/(ZL1*ZL3);
             complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
             complex<double> promegAP12 = ZC2 + R * (ZC2 + ZL3) / ZL3;
             complex<double> AP12(promegAP12.real(), promegAP12.imag());
@@ -164,22 +171,42 @@ double FiltersButterworth::OutputWaveform(double f)
 
             return abs(ACHX_nesogl) * 2;
         }
-        if(n == 2)
-        {
+     }
 
-        }
-        if(n == 4)
+     if(flagFilters == 2)
         {
+           /* if(n == 2)
+            {
+                complex<double> ZL11(0.0, 2 * PI * f * L1); // Импеданс катушки при разных частотах
+                complex<double> ZC11(0.0, -1 / (2 * PI * f * C1));// Импеданс конденсатора при разных частотах
+                complex<double> promegAG11_1 = (ZC11 + ZL11 + R) / ZL11;
+                complex<double> AG11_1(promegAG11_1.real(), promegAG11_1.imag()); // параметр матрицы А11
+                complex<double> promegAG12_1 = R + ZC11;
+                complex<double> AG12_1(promegAG12_1.real(), promegAG12_1.imag());
+                complex<double> ACHX_nesogl = R / (R * AG11_1 + AG12_1);
 
-        }
-        if(n == 5)
-        {
+                return abs(ACHX_nesogl) * 2;
+            }*/
+            if(n == 3)
+            {
+                complex<double> ZC1(0.0, -1 / (2 * PI * f * C1));
+                complex<double> ZL1(0.0, 2 * PI * f * L1);
+                complex<double> ZL2(0.0, 2 * PI * f * L2);
+                complex<double> ZC2(0.0, -1 / (2 * PI * f * C2));
+                complex<double> ZC3(0.0, -1 / (2 * PI * f * C3));
+                complex<double> ZL3(0.0, 2 * PI * f * L3);
+                complex<double> Z11=ZC1*ZL1/(ZC1+ZL1);
+                complex<double> Z22=ZC2+ZL2;
+                complex<double> promegAP11 = Z22 / Z11+R*(Z11+Z11+Z22)/(Z11*Z11);
+                complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
+                complex<double> promegAP12 = Z22 + R * (Z22 + Z11) / Z11;
+                complex<double> AP12(promegAP12.real(), promegAP12.imag());
+                complex<double> ACHX_nesogl = R / (R * AP11 + AP12);
 
-        }
-        if(n == 6)
-        {
+                return abs(ACHX_nesogl) * 2;
+            }
 
-        }
     }
+
     return 0;
 }

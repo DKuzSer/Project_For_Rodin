@@ -12,6 +12,7 @@ public:
 
     FiltersButterworth();
     void SetBaseValue(double , double , int );
+    void SetBaseValue(double , double , int ,double);
     void ViewFilters(int number);
     void Calculate();
 
