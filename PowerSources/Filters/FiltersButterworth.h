@@ -17,6 +17,7 @@ public:
     void Calculate();
 
     double OutputWaveform(double f);
+    double OutputWaveformFCHX(double f);
 
     int flagFilters = 0; // 0 - ФНЧ, 1 - ФВЧ, 2 - ПФ, 3 - ЗФ
 };

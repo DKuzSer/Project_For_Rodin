@@ -12,6 +12,10 @@ Filters::Filters(MainpowerSourcesAbstract *parent) :
     ui->ChartsLayout->addWidget(View);
     View ->setRenderHint(QPainter::Antialiasing);
 
+    ViewFCHX = new MyChartsView();
+    ui->ChartsLayout->addWidget(ViewFCHX);
+    ViewFCHX ->setRenderHint(QPainter::Antialiasing);
+
     ui->ComboBox_Type->addItem("Баттерворта", BUTTERWORTH);
     ui->ComboBox_Type->addItem("Чебышева", CHEBISHEV);
     ui->ComboBox_View->addItem("ФНЧ", FNCH); // добавление ФНЧ
@@ -24,6 +28,7 @@ Filters::~Filters()
 {
     delete chrt;
     delete View;
+    delete ViewFCHX;
     delete object_work;
     delete ui;
 }
@@ -104,8 +109,61 @@ void Filters::on_ComboBox_Type_currentIndexChanged(int index)
                 object_work = new  FiltersCHEBISHEV();
             }
             else
-                object_work = new  FiltersButterworth();
+                object_work = new  FiltersCHEBISHEV();
+            //            ui->ComboBox_OutPutF->setVisible(true);
+            //            ui->Label_OutPutF->setVisible(true);
 
+            //настройки входных данных
+            //----------------------------------------------
+            ui->Label_InPut1->setVisible(true);
+            ui->Label_InPut1->setText("f (Частота среза), Гц:");
+            ui->DoubleSpinBoxF_InPut1->setVisible(true);
+
+            ui->Label_InPut2->setVisible(true);
+            ui->Label_InPut2->setText("R (Сопротивление нагрузки), Ом:");
+            ui->DoubleSpinBoxF_InPut2->setVisible(true);
+
+            ui->Label_InPut3->setVisible(true);
+            ui->Label_InPut3->setText("n (порядок):");
+            ui->IntSpinBoxF_InPut3->setVisible(true);
+
+            ui->Label_InPut4->setVisible(true);
+            ui->Label_InPut4->setText("df (полоса фильтра), Гц:");
+            ui->DoubleSpinBoxF_InPut4->setVisible(true);
+
+            ui->Label_InPut5->setVisible(false);
+//          ui->Label_InPut5->setText("Rн (Сопротивление нагрузки), Ом:");
+            ui->DoubleSpinBoxF_InPut5->setVisible(false);
+
+            ui->Label_InPut6->setVisible(false);
+    //            ui->Label_InPut6->setText("Uн (Напряжение на нагрузке), В:");
+            ui->DoubleSpinBoxF_InPut6->setVisible(false);
+            //----------------------------------------------
+
+            //настройки выходных данных
+            //----------------------------------------------
+            if(ui->IntSpinBoxF_InPut3->value() == 2)
+            {
+                ui->Label_OutPut1->setVisible(true);
+                ui->Label_OutPut1->setText("С1 (Ёмкость), мкФ:");
+                ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut1->setVisible(true);
+
+                ui->Label_OutPut2->setVisible(true);
+                ui->Label_OutPut2->setText("L1 (Индуктивность), Гн:");
+                ui->DoubleSpinBoxF_OutPut2->setVisible(true);
+                ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
+
+                ui->Label_OutPut3->setVisible(false);
+                ui->DoubleSpinBoxF_OutPut3->setVisible(false);
+                ui->Label_OutPut4->setVisible(false);
+                ui->DoubleSpinBoxF_OutPut4->setVisible(false);
+                ui->Label_OutPut5->setVisible(false);
+                ui->DoubleSpinBoxF_OutPut5->setVisible(false);
+                ui->Label_OutPut6->setVisible(false);
+                ui->DoubleSpinBoxF_OutPut6->setVisible(false);
+            }
+            //----------------------------------------------
         break;
     }
 }
@@ -114,6 +172,7 @@ void Filters::on_ComboBox_View_currentIndexChanged(int index)
 {
     if(index == FNCH)
     {
+        ui->IntSpinBoxF_InPut3->setMinimum(2);
         if(ui->IntSpinBoxF_InPut3->value() == 2)
         {
             ui->Label_OutPut1->setVisible(true);
@@ -252,6 +311,7 @@ void Filters::on_ComboBox_View_currentIndexChanged(int index)
 
     if(index == FVCH)
     {
+        ui->IntSpinBoxF_InPut3->setMinimum(2);
         if(ui->IntSpinBoxF_InPut3->value() == 2)
         {
             ui->Label_OutPut1->setVisible(true);
@@ -390,6 +450,7 @@ void Filters::on_ComboBox_View_currentIndexChanged(int index)
 
     if(index == PF)
     {
+        ui->IntSpinBoxF_InPut3->setMinimum(3);
         if(ui->IntSpinBoxF_InPut3->value() == 3)
         {
             ui->Label_OutPut1->setVisible(true);
@@ -764,6 +825,12 @@ void Filters::on_PushButton_Calculate_clicked()
             chrt = new MyCharts();
             View->setChart(chrt);
             chrt->setTitle("АЧХ");
+            chrt->legend()->hide();
+
+            chrtFCHX = new MyCharts();
+            ViewFCHX->setChart(chrtFCHX);
+            chrtFCHX->setTitle("ФЧХ");
+            chrtFCHX->legend()->hide();
 
 //            interactive = false;
 //            hands = false;
@@ -773,10 +840,12 @@ void Filters::on_PushButton_Calculate_clicked()
 //            ui->DoubleSpinBoxOY->setEnabled(false);
 //            ui->DoubleSpinBoxOX->setValue(0.0);
 //            ui->DoubleSpinBoxOY->setValue(0.0);
+
         }
         else if(chrt->flagChart == true)
         {
             chrt->DeleteChart();
+            chrtFCHX->DeleteChart();
 
 //            interactive = false;
 //            hands = false;
@@ -792,6 +861,7 @@ void Filters::on_PushButton_Calculate_clicked()
 //                delete ellipceItem;
 //                flagEllipseItem = false;
 //            }
+
         }
 
         //--------------------------------------------------
@@ -960,6 +1030,7 @@ void Filters::on_PushButton_Calculate_clicked()
 
 
         QLineSeries series;
+        QLineSeries seriesFCHX;
 
         for (double i = 0.01; i < 4 * freq; i += freq / 200)
         {
@@ -1002,6 +1073,51 @@ void Filters::on_PushButton_Calculate_clicked()
         chrt->SetNameAxis("Частота, Гц", "Значение АЧХ");
         chrt->flagChart = true;
 
+        for (double i = 0.01; i < 4 * freq; i += freq / 200)
+        {
+            if(chose == 0)    // ФНЧ
+            {
+                seriesFCHX.append(i, object_work->OutputWaveformFCHX(i));
+            }
+
+            if(chose == 1)    // ФВЧ
+            {
+                seriesFCHX.append(i, object_work->OutputWaveformFCHX(i));
+            }
+
+            if (chose == 2)   // ПФ
+            {
+                seriesFCHX.append(i, object_work->OutputWaveformFCHX(i));
+            }
+
+            if (chose == 3)   // ЗФ
+            {
+                seriesFCHX.append(i, object_work->OutputWaveformFCHX(i));
+            }
+        }
+
+        max = 0;
+        double min = 0;
+
+        for(int i = 0; i < seriesFCHX.pointsVector().size(); i++)
+        {
+            double step = seriesFCHX.pointsVector().at(i).y();
+            if(step > max)
+            {
+                max = step;
+            }
+            if(step < min)
+            {
+                min = step;
+            }
+        }
+
+        chrtFCHX->Create2DChart(seriesFCHX.points());
+        chrtFCHX->series->setName("ФЧХ");
+        chrtFCHX->PropertiesAxis("X", 0, (int)(4 * freq), 11, "%.2lf");
+        chrtFCHX->PropertiesAxis("Y", -1.5*min, 1.5*max, 11, "%.2lf");
+        chrtFCHX->SetNameAxis("Частота, Гц", "Значение ФЧХ");
+        chrtFCHX->flagChart = true;
         //-------------------------------------------------------
     }
 
@@ -1208,6 +1324,7 @@ void Filters::on_PushButton_Calculate_clicked()
 
 
         QLineSeries series;
+        QLineSeries seriesFCHX;
 
         for (double i = 0.01; i < 4 * freq; i += freq / 200)
         {
