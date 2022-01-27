@@ -46,7 +46,7 @@ void MainPowerSources::on_PushButton_Rectifiers_clicked()
         Uobr_max.clear();
         Ipr.clear();
     }
-    QFile mFile(":/Diods/Марки диодов.txt");
+    QFile mFile(":/Diods/Diods.txt");
     if (!mFile.open(QFile::ReadOnly|QFile::Text))
     {
         QMessageBox::information(this,"Error","Could not open file for Reading");
