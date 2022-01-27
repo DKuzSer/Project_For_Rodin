@@ -8,6 +8,7 @@
 #define TWOPERIODCIRCUIT 1
 
 #define BUTTERWORTH 0
+#define CHEBISHEV 1
 
 #define FNCH 0
 #define FVCH 1
