@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>723</width>
-    <height>645</height>
+    <height>559</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -112,18 +112,12 @@
                     <property name="minimum">
                      <double>0.010000000000000</double>
                     </property>
-                    <property name="maximum">
-                     <double>1000000000.000000000000000</double>
-                    </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut2">
                     <property name="minimum">
                      <double>0.010000000000000</double>
-                    </property>
-                    <property name="maximum">
-                     <double>10000.000000000000000</double>
                     </property>
                    </widget>
                   </item>
@@ -171,25 +165,13 @@
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_2">
                   <item>
-                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut4">
-                    <property name="maximum">
-                     <double>1000.000000000000000</double>
-                    </property>
-                   </widget>
+                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut4"/>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut5">
-                    <property name="maximum">
-                     <double>1000.000000000000000</double>
-                    </property>
-                   </widget>
+                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut5"/>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut6">
-                    <property name="maximum">
-                     <double>1000.000000000000000</double>
-                    </property>
-                   </widget>
+                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut6"/>
                   </item>
                  </layout>
                 </item>
@@ -253,34 +235,13 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_8">
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut1">
-                  <property name="decimals">
-                   <number>7</number>
-                  </property>
-                  <property name="maximum">
-                   <double>1000000.000000000000000</double>
-                  </property>
-                 </widget>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut1"/>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut2">
-                  <property name="decimals">
-                   <number>7</number>
-                  </property>
-                  <property name="maximum">
-                   <double>1000000.000000000000000</double>
-                  </property>
-                 </widget>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut2"/>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut3">
-                  <property name="decimals">
-                   <number>7</number>
-                  </property>
-                  <property name="maximum">
-                   <double>1000000.000000000000000</double>
-                  </property>
-                 </widget>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut3"/>
                 </item>
                </layout>
               </item>
@@ -316,34 +277,13 @@
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut4">
-                  <property name="decimals">
-                   <number>7</number>
-                  </property>
-                  <property name="maximum">
-                   <double>1000000.000000000000000</double>
-                  </property>
-                 </widget>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut4"/>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut5">
-                  <property name="decimals">
-                   <number>7</number>
-                  </property>
-                  <property name="maximum">
-                   <double>1000000.000000000000000</double>
-                  </property>
-                 </widget>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut5"/>
                 </item>
                 <item>
-                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut6">
-                  <property name="decimals">
-                   <number>7</number>
-                  </property>
-                  <property name="maximum">
-                   <double>1000000.000000000000000</double>
-                  </property>
-                 </widget>
+                 <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_OutPut6"/>
                 </item>
                </layout>
               </item>
