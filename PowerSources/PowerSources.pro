@@ -1,6 +1,6 @@
 QT       += core gui
 QT       += core gui charts
-QT += core5compat
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -21,6 +21,7 @@ SOURCES += \
     Rectifiers\RectifiersAbstract.cpp \
     Rectifiers\RectifiersOnePeriodCircuit.cpp \
     Rectifiers\RectifiersTwoPeriodCircuit.cpp \
+    diod_base.cpp \
     main.cpp \
     mainpowersources.cpp
 
@@ -37,13 +38,16 @@ HEADERS += \
     Rectifiers\RectifiersOnePeriodCircuit.h \
     Rectifiers\RectifiersTwoPeriodCircuit.h \
     constans.h \
+    diod_base.h \
     mainpowersources.h
 
 FORMS += \
     Filters\Filters.ui \
     Rectifiers\Rectifiers.ui \
+    diod_base.ui \
     mainpowersources.ui
 
+#win32:RC_FILE = file.rc
 
 TRANSLATIONS += \
     PowerSources_ru_RU.ts
