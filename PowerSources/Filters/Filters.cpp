@@ -454,6 +454,43 @@ void Filters::on_ComboBox_View_currentIndexChanged(int index)
         if(ui->IntSpinBoxF_InPut3->value() == 3)
         {
             ui->Label_OutPut1->setVisible(true);
+            ui->Label_OutPut1->setText("С1 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut1->setVisible(true);
+
+            ui->Label_OutPut2->setVisible(true);
+            ui->Label_OutPut2->setText("L1 (Индуктивность), Гн:");
+            ui->DoubleSpinBoxF_OutPut2->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
+
+            ui->Label_OutPut3->setVisible(true);
+            ui->Label_OutPut3->setText("С2 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut3->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
+
+            ui->Label_OutPut4->setVisible(true);
+            ui->Label_OutPut4->setText("L2 (Индуктивность), Гн:");
+            ui->DoubleSpinBoxF_OutPut4->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
+
+            ui->Label_OutPut5->setVisible(true);
+            ui->Label_OutPut5->setText("C3 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut5->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+
+            ui->Label_OutPut6->setVisible(true);
+            ui->Label_OutPut6->setText("L3 (Индуктивность), Гн:");
+            ui->DoubleSpinBoxF_OutPut6->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut6->setEnabled(false);
+        }
+    }
+
+    if(index == ZF)
+    {
+        ui->IntSpinBoxF_InPut3->setMinimum(3);
+        if(ui->IntSpinBoxF_InPut3->value() == 3)
+        {
+            ui->Label_OutPut1->setVisible(true);
             ui->Label_OutPut1->setText("L1 (Индуктивность), Гн:");
             ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
             ui->DoubleSpinBoxF_OutPut1->setVisible(true);
@@ -483,11 +520,6 @@ void Filters::on_ComboBox_View_currentIndexChanged(int index)
             ui->DoubleSpinBoxF_OutPut6->setVisible(true);
             ui->DoubleSpinBoxF_OutPut6->setEnabled(false);
         }
-    }
-
-    if(index == ZF)
-    {
-
     }
 
 }
@@ -1011,8 +1043,17 @@ void Filters::on_PushButton_Calculate_clicked()
 
         if(chose == 3)
         {
-            ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-            ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
+            switch(n)
+            {
+                case 3:
+                    ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
+                    ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
+                    ui->DoubleSpinBoxF_OutPut3->setValue(value_4);
+                    ui->DoubleSpinBoxF_OutPut4->setValue(value_3);
+                    ui->DoubleSpinBoxF_OutPut5->setValue(value_6);
+                    ui->DoubleSpinBoxF_OutPut6->setValue(value_5);
+                break;
+            }
         }
 
 //        if(chose == 1)
@@ -1305,8 +1346,17 @@ void Filters::on_PushButton_Calculate_clicked()
 
         if(chose == 3)
         {
-            ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-            ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
+            switch(n)
+            {
+                case 3:
+                    ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
+                    ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
+                    ui->DoubleSpinBoxF_OutPut3->setValue(value_4);
+                    ui->DoubleSpinBoxF_OutPut4->setValue(value_3);
+                    ui->DoubleSpinBoxF_OutPut5->setValue(value_6);
+                    ui->DoubleSpinBoxF_OutPut6->setValue(value_5);
+                break;
+            }
         }
 
 //        if(chose == 1)

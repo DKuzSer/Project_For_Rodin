@@ -97,7 +97,20 @@ void FiltersCHEBISHEV::Calculate()
 
     if(flagFilters == 3) // Вычисление ЗФ
     {
-         //новый алгоритм вычисления:
+        double Q=f/deltaf;
+        double KL, KC;
+        KL = R / (2 * PI * f);
+        KC = 1 / (2 * PI * f * R);
+
+        if(n == 3)
+        {
+            C1 = KC * 1.893 / Q;
+            L1 = KL * Q / 1.893;
+            C2 = KC * Q / 1.154;
+            L2 = KL * 1.154 / Q;
+            C3 = KC * 1.893 / Q;
+            L3 = KL * Q / 1.893;
+        }
 
     }
 }
@@ -187,5 +200,39 @@ double FiltersCHEBISHEV::OutputWaveform(double f)
             return abs(ACHX_nesogl) * 2;
         }
     }
+    if(flagFilters == 3)
+       {
+          /* if(n == 2)
+           {
+               complex<double> ZL11(0.0, 2 * PI * f * L1); // Импеданс катушки при разных частотах
+               complex<double> ZC11(0.0, -1 / (2 * PI * f * C1));// Импеданс конденсатора при разных частотах
+               complex<double> promegAG11_1 = (ZC11 + ZL11 + R) / ZL11;
+               complex<double> AG11_1(promegAG11_1.real(), promegAG11_1.imag()); // параметр матрицы А11
+               complex<double> promegAG12_1 = R + ZC11;
+               complex<double> AG12_1(promegAG12_1.real(), promegAG12_1.imag());
+               complex<double> ACHX_nesogl = R / (R * AG11_1 + AG12_1);
+
+               return abs(ACHX_nesogl) * 2;
+           }*/
+           if(n == 3)
+           {
+               complex<double> ZC1(0.0, -1 / (2 * PI * f * C1));
+               complex<double> ZL1(0.0, 2 * PI * f * L1);
+               complex<double> ZL2(0.0, 2 * PI * f * L2);
+               complex<double> ZC2(0.0, -1 / (2 * PI * f * C2));
+               complex<double> ZC3(0.0, -1 / (2 * PI * f * C3));
+               complex<double> ZL3(0.0, 2 * PI * f * L3);
+               complex<double> Z11=ZC1+ZL1;
+               complex<double> Z22=ZC2*ZL2/(ZC2+ZL2);
+               complex<double> promegAP11 = Z22 / Z11+R*(Z11+Z11+Z22)/(Z11*Z11);
+               complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
+               complex<double> promegAP12 = Z22 + R * (Z22 + Z11) / Z11;
+               complex<double> AP12(promegAP12.real(), promegAP12.imag());
+               complex<double> ACHX_nesogl = R / (R * AP11 + AP12);
+
+               return abs(ACHX_nesogl) * 2;
+           }
+
+   }
 return 0;
 }
