@@ -332,7 +332,6 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Rectifiers::on_PushButton_Calculate_clicked()
 {
-
     ui->list_of_diods->clear();
     int index = ui->ComboBox_DevicesR->currentIndex();
 
