@@ -30,6 +30,8 @@ public:
     double L2 = 0;     // индуктивность
     double C3 = 0;     // ёмкость
     double L3 = 0;     // индуктивность
+    double C4 = 0;     // ёмкость
+    double L4 = 0;     // индуктивность
 
 signals:
 

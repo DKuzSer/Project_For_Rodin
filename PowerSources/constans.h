@@ -9,6 +9,7 @@
 
 #define BUTTERWORTH 0
 #define CHEBISHEV 1
+#define KAUER 2
 
 #define FNCH 0
 #define FVCH 1

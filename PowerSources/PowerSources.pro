@@ -11,6 +11,7 @@ CONFIG += c++11
 
 SOURCES += \
     Filters/FiltersCHEBISHEV.cpp \
+    Filters/FiltersKauer.cpp \
     Filters\Filters.cpp \
     Filters\FiltersAbstract.cpp \
     Filters\FiltersButterworth.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 
 HEADERS += \
     Filters/FiltersCHEBISHEV.h \
+    Filters/FiltersKauer.h \
     Filters\Filters.h \
     Filters\FiltersAbstract.h \
     Filters\FiltersButterworth.h \
