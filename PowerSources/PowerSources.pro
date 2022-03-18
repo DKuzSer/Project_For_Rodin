@@ -1,5 +1,6 @@
 QT       += core gui
 QT       += core gui charts
+QT       += svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,7 +24,8 @@ SOURCES += \
     Rectifiers\RectifiersTwoPeriodCircuit.cpp \
     diod_base.cpp \
     main.cpp \
-    mainpowersources.cpp
+    mainpowersources.cpp \
+    svgview.cpp
 
 HEADERS += \
     Filters/FiltersCHEBISHEV.h \
@@ -39,7 +41,8 @@ HEADERS += \
     Rectifiers\RectifiersTwoPeriodCircuit.h \
     constans.h \
     diod_base.h \
-    mainpowersources.h
+    mainpowersources.h \
+    svgview.h
 
 FORMS += \
     Filters\Filters.ui \

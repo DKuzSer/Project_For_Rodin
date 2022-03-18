@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>767</width>
-    <height>606</height>
+    <height>635</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -140,13 +140,25 @@
          </disabled>
         </palette>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="styleSheet">
         <string notr="true"/>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="Tab_PageCircuit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="focusPolicy">
+         <enum>Qt::StrongFocus</enum>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(120, 144, 156)</string>
         </property>
@@ -157,20 +169,7 @@
          <item row="0" column="0">
           <layout class="QGridLayout" name="gridLayout_5">
            <item row="0" column="0">
-            <widget class="QLabel" name="Label_PixMapCircuit">
-             <property name="maximumSize">
-              <size>
-               <width>700</width>
-               <height>400</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(120, 144, 156)</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="SVG"/>
            </item>
           </layout>
          </item>

@@ -6,8 +6,22 @@
 
 Rectifiers::Rectifiers(MainpowerSourcesAbstract *parent) :
     ui(new Ui::Rectifiers)
+  , m_view(new SvgView)
 {
     ui->setupUi(this);
+    //--------------------------------------------------------------------
+    m_view->openFile(":/SVG/SVG/Schematic_New Project_2022-03-17.svg");
+    ui->SVG->addWidget(m_view);
+
+    //const QSize availableSize = QApplication::desktop()->availableGeometry(this).size();
+    //resize(m_view->sizeHint().expandedTo(availableSize /4) + QSize(80, 80));
+    m_view->scale(1.5,1.5); //коэффициенты масштабирования
+    m_view->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
+    //statusBar()->addPermanentWidget(m_zoomLabel);
+    //updateZoomLabel();
+    //connect(m_view, &SvgView::zoomChanged, this, &Rectifiers::updateZoomLabel);
+
+    //--------------------------------------------------------------------
 
     base = new diod_base();
 
@@ -39,6 +53,7 @@ Rectifiers::~Rectifiers()
     delete object_work;
     delete ui;
     delete base;
+    delete m_view;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Rectifiers::SetDiodsParameters(std::vector <QString> _names_of_diods, std::vector <int> _Uobr_max, std::vector <double> _Ipr)
@@ -194,11 +209,9 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                     ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                     ui->DoubleSpinBoxR_OutPut3->setVisible(false);
 
-                    ui->Label_PixMapCircuit->setMaximumHeight(380);
-                    ui->Label_PixMapCircuit->setMinimumHeight(380);
-                    mapCircuit.load(":/image/img/ROPCircuit1.jpg");
-                    ui->Label_PixMapCircuit->setPixmap(mapCircuit);
-                    ui->Label_PixMapCircuit->setScaledContents(true);
+                    m_view->openFile(":/SVG/SVG/Schematic_New Project_2022-03-17.svg");
+                    //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                    m_view->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
 
                 break;
 
@@ -217,11 +230,9 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                     ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                     ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
-                    ui->Label_PixMapCircuit->setMaximumHeight(380);
-                    ui->Label_PixMapCircuit->setMinimumHeight(380);
-                    mapCircuit.load(":/image/img/ROPCircuit2.jpg");
-                    ui->Label_PixMapCircuit->setPixmap(mapCircuit);
-                    ui->Label_PixMapCircuit->setScaledContents(true);
+                    m_view->openFile(":/SVG/SVG/Capacyti1.svg");
+                    //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                    m_view->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
 
                 break;
 
@@ -240,11 +251,9 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                     ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                     ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
-                    ui->Label_PixMapCircuit->setMaximumHeight(380);
-                    ui->Label_PixMapCircuit->setMinimumHeight(380);
-                    mapCircuit.load(":/image/img/ROPCircuit3.jpg");
-                    ui->Label_PixMapCircuit->setPixmap(mapCircuit);
-                    ui->Label_PixMapCircuit->setScaledContents(true);
+                    m_view->openFile(":/SVG/SVG/Inductivyti1.svg");
+                    //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                    m_view->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
 
                 break;
         }
@@ -268,13 +277,9 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                 ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
-                ui->Label_PixMapCircuit->setMaximumHeight(450);
-                ui->Label_PixMapCircuit->setMinimumHeight(450);
-                ui->Label_PixMapCircuit->setMinimumWidth(700);
-                ui->Label_PixMapCircuit->setMaximumWidth(700);
-                mapCircuit.load(":/image/img/RTPCircuit1.jpg");
-                ui->Label_PixMapCircuit->setPixmap(mapCircuit);
-                ui->Label_PixMapCircuit->setScaledContents(true);
+                m_view->openFile(":/SVG/SVG/Most.svg");
+                //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                m_view->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
 
             break;
 
@@ -293,13 +298,9 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                 ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
-                ui->Label_PixMapCircuit->setMaximumHeight(400);
-                ui->Label_PixMapCircuit->setMinimumHeight(400);
-                ui->Label_PixMapCircuit->setMinimumWidth(750);
-                ui->Label_PixMapCircuit->setMaximumWidth(750);
-                mapCircuit.load(":/image/img/RTPCircuit2.jpg");
-                ui->Label_PixMapCircuit->setPixmap(mapCircuit);
-                ui->Label_PixMapCircuit->setScaledContents(true);
+                m_view->openFile(":/SVG/SVG/Most_Conder.svg");
+                //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                m_view->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
 
             break;
 
@@ -318,13 +319,10 @@ void Rectifiers::on_ComboBox_OutPutF_currentIndexChanged(int index)
                 ui->DoubleSpinBoxR_OutPut2->setEnabled(false);
                 ui->DoubleSpinBoxR_OutPut3->setEnabled(false);
 
-                ui->Label_PixMapCircuit->setMaximumHeight(400);
-                ui->Label_PixMapCircuit->setMinimumHeight(400);
-                ui->Label_PixMapCircuit->setMinimumWidth(750);
-                ui->Label_PixMapCircuit->setMaximumWidth(750);
-                mapCircuit.load(":/image/img/RTPCircuit3.jpg");
-                ui->Label_PixMapCircuit->setPixmap(mapCircuit);
-                ui->Label_PixMapCircuit->setScaledContents(true);
+                m_view->openFile(":/SVG/SVG/Most_Inuctivity.svg");
+                //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                m_view->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
+
             break;
         }
     }

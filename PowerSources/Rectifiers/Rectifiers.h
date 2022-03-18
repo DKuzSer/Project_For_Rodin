@@ -2,13 +2,16 @@
 #define RECTIFIERS_H
 
 #include "MainpowerSourcesAbstract.h"
-#include <QPixmap>
-#include <QMessageBox>
 #include "constans.h"
 #include "RectifiersAbstract.h"
 #include "MyCharts.h"
 #include "MyChartsView.h"
 #include "diod_base.h"
+#include "svgview.h"
+#include <QtWidgets>
+#include <QSvgRenderer>
+#include <QPixmap>
+#include <QMessageBox>
 
 namespace Ui {
 class Rectifiers;
@@ -70,6 +73,8 @@ private:
     MyCharts *chrt = nullptr;
 
     diod_base* base;
+
+    SvgView *m_view;
 };
 
 #endif // RECTIFIERS_H
