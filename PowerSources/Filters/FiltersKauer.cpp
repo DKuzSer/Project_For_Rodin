@@ -45,7 +45,6 @@ void FiltersKauer::ViewFilters(int number)
 void FiltersKauer::Calculate()
 {
     // flagCalculate = false;
-
     if(flagFilters == 0) // Вычисление ФНЧ
     {
         //новый алгоритм вычисления:
@@ -55,8 +54,8 @@ void FiltersKauer::Calculate()
         if(n == 3)
         {
             C1 = KC*1.1395;
-            L2 = KL * 1.0844;
-            C2 = KC*0.669;
+            C2 = KC*0.0669;
+            L2 = KL*1.0844;
             C3 = KC*1.1395;
         }
     }
@@ -69,10 +68,10 @@ void FiltersKauer::Calculate()
         KC = 1 / (2 * PI * f * R);
         if(n == 3)
         {
-            C1 = KC/1.1395;
+            L1 = KL/1.1395;
             L2 = KL/1.0844;
-            C2 = KC/0.669;
-            C3 = KC/1.1395;
+            C2 = KC/0.0669;
+            L3 = KL/1.1395;
         }
     }
 
@@ -80,25 +79,33 @@ void FiltersKauer::Calculate()
     {
 
         double Q=f/deltaf;
-        double KL, KC, KLa, KCa, KLb, KCb;
+        double KL, KC, Omega, delta_f2, f2_, f2, koef1, koef2/*, KLa, KCa, KLb, KCb*/;
         KL = R / (2 * PI * f);
         KC = 1 / (2 * PI * f * R);
+        Omega = 3.7137;
+        delta_f2 = Omega * deltaf;
 
-        KLa = R / (2 * PI * (f-deltaf/2));
-        KCa = 1 / (2 * PI * (f-deltaf/2) * R);
-        KLb = R / (2 * PI * (f+deltaf/2));
-        KCb = 1 / (2 * PI * (f+deltaf/2) * R);
+        f2 = sqrt(f * f + (delta_f2 / 2)*(delta_f2 / 2)) + delta_f2 / 2;
+        f2_ = sqrt(f * f + (delta_f2 / 2)*(delta_f2 / 2)) - delta_f2 / 2;
+
+        koef1 = 1 + f*f/(f2*f2);
+        koef2 = 1 + f*f/(f2_*f2_);
+
+//        KLa = R / (2 * PI * (f-deltaf/2));
+//        KCa = 1 / (2 * PI * (f-deltaf/2) * R);
+//        KLb = R / (2 * PI * (f+deltaf/2));
+//        KCb = 1 / (2 * PI * (f+deltaf/2) * R);
 
         if(n == 3)
         {
-            C1 = KC*1.1395*Q;
-            L1 = KL / (1.1395*Q);
-            C2 = KCa/(1.0844*Q);
-            L2 = KLa*1.0844*Q;
-            C3 = KCb *1.893*Q;
-            L3 = KLb/ (1.893*Q);
-            C4 = KC*1.1395*Q;
-            L4 = KL / (1.1395*Q);
+            C1 = KC * 1.1395 * Q;
+            L1 = KL / (1.1395 * Q);
+            C2 = KC * (0.0669 * Q * koef1);
+            L2 = KL / (0.0669 * Q * koef2);
+            C3 = KC * 1.893 * Q * koef2;
+            L3 = KL / (1.893 * Q * koef1);
+            C4 = KC * 1.1395 * Q;
+            L4 = KL / (1.1395 * Q);
         }
 
     }
@@ -106,24 +113,34 @@ void FiltersKauer::Calculate()
     if(flagFilters == 3) // Вычисление ЗФ
     {
         double Q=f/deltaf;
-        double KL, KC, KLa, KCa, KLb, KCb;
+        double KL, KC, Omega, delta_f2, f2_, f2, koef1, koef2/*, KLa, KCa, KLb, KCb*/;
         KL = R / (2 * PI * f);
         KC = 1 / (2 * PI * f * R);
-        KLa = R / (2 * PI * (f-deltaf/2));
-        KCa = 1 / (2 * PI * (f-deltaf/2) * R);
-        KLb = R / (2 * PI * (f+deltaf/2));
-        KCb = 1 / (2 * PI * (f+deltaf/2) * R);
+
+        Omega = 3.7137;
+        delta_f2 = Omega * deltaf;
+
+        f2 = sqrt(f * f + (delta_f2 / 2)*(delta_f2 / 2)) + delta_f2 / 2;
+        f2_ = sqrt(f * f + (delta_f2 / 2)*(delta_f2 / 2)) - delta_f2 / 2;
+
+        koef1 = 1 + f*f/(f2*f2);
+        koef2 = 1 + f*f/(f2_*f2_);
+
+//        KLa = R / (2 * PI * (f-deltaf/2));
+//        KCa = 1 / (2 * PI * (f-deltaf/2) * R);
+//        KLb = R / (2 * PI * (f+deltaf/2));
+//        KCb = 1 / (2 * PI * (f+deltaf/2) * R);
 
         if(n == 3)
         {
-            C1 = KC*1.1395/Q;
-            L1 = KL / (1.1395/Q);
-            C2 = KCa/(1.0844/Q);
-            L2 = KLa*1.0844/Q;
-            C3 = KCb *1.893/Q;
-            L3 = KLb/ (1.893/Q);
-            C4 = KC*1.1395/Q;
-            L4 = KL / (1.1395/Q);
+            C1 = KC * 1.1395 / Q;
+            L1 = KL * Q / (1.1395);
+            C2 = KC * 0.0669 * koef1 / Q;
+            L2 = KL * Q / (0.0669 * koef2);
+            C3 = KC * 1.893 * koef2 / Q;
+            L3 = KL * Q / (1.893 * koef1);
+            C4 = KC * 1.1395 / Q;
+            L4 = KL * Q / (1.1395);
         }
 
     }
@@ -132,27 +149,20 @@ void FiltersKauer::Calculate()
 double FiltersKauer::OutputWaveform(double f)
 {
     if(flagFilters == 0)
-    {/*
-        if(n == 2)
-        {
-            complex<double> ZL11(0.0, 2 * PI * f * L1); // Импеданс катушки при разных частотах
-            complex<double> ZC11(0.0, -1 / (2 * PI * f * C1)); // Импеданс конденсатора при разных частотах
-            complex<double> promegAG11_1 = (ZL11 + ZC11 + R) / ZC11;
-            complex<double> AG11_1(promegAG11_1.real(), promegAG11_1.imag()); // параметр матрицы А11
-            complex<double> promegAG12_1 = R + ZL11;
-            complex<double> AG12_1(promegAG12_1.real(), promegAG12_1.imag());
-            complex<double> ACHX_nesogl = R / (R * AG11_1 + AG12_1);
-
-            return abs(ACHX_nesogl) * 2;
-        }*/
+    {
         if(n == 3)
         {
             complex<double> ZC1(0.0, -1 / (2 * PI * f * C1));
-            complex<double> ZL2(0.0, 2 * PI * f * L1);
-            complex<double> ZC3(0.0, -1 / (2 * PI * f * C2));
-            complex<double> promegAP11 = ZL2 / ZC3;
+            complex<double> ZL2(0.0, 2 * PI * f * L2);
+            complex<double> ZC2(0.0, -1 / (2 * PI * f * C2));
+            complex<double> ZC3(0.0, -1 / (2 * PI * f * C3));
+            complex<double> Z11=ZC1;
+            complex<double> Z33=ZC3;
+            complex<double> Z22=ZL2*ZC2/(ZC2+ZL2);
+
+            complex<double> promegAP11 = Z22 / Z33 + R*(Z22+Z11+Z33)/(Z11*Z33);
             complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
-            complex<double> promegAP12 = ZL2 + R * (ZL2 + ZC3) / ZC3;
+            complex<double> promegAP12 = Z22 + R * (Z22 + Z11) / Z11;
             complex<double> AP12(promegAP12.real(), promegAP12.imag());
             complex<double> ACHX_nesogl = R / (R * AP11 + AP12);
 
@@ -163,27 +173,19 @@ double FiltersKauer::OutputWaveform(double f)
 
     if(flagFilters == 1)
     {
-      /*  if(n == 2)
-        {
-            complex<double> ZL11(0.0, 2 * PI * f * L1); // Импеданс катушки при разных частотах
-            complex<double> ZC11(0.0, -1 / (2 * PI * f * C1));// Импеданс конденсатора при разных частотах
-            complex<double> promegAG11_1 = (ZC11 + ZL11 + R) / ZL11;
-            complex<double> AG11_1(promegAG11_1.real(), promegAG11_1.imag()); // параметр матрицы А11
-            complex<double> promegAG12_1 = R + ZC11;
-            complex<double> AG12_1(promegAG12_1.real(), promegAG12_1.imag());
-            complex<double> ACHX_nesogl = R / (R * AG11_1 + AG12_1);
-
-            return abs(ACHX_nesogl) * 2;
-        }*/
         if(n == 3)
         {
             complex<double> ZL1(0.0, 2 * PI * f * L1);
-            complex<double> ZC2(0.0, -1 / (2 * PI * f * C1));
-            complex<double> ZL3(0.0, 2 * PI * f * L2);
-            complex<double> promegAP11 = ZC2 / ZL3;
+            complex<double> ZC2(0.0, -1 / (2 * PI * f * C2));
+            complex<double> ZL2(0.0, 2 * PI * f * L2);
+            complex<double> ZL3(0.0, 2 * PI * f * L3);
+            complex<double> Z11=ZL1;
+            complex<double> Z33=ZL3;
+            complex<double> Z22=ZL2*ZC2/(ZC2+ZL2);
+
+            complex<double> promegAP11 = Z22 / Z33 + R*(Z22+Z11+Z33)/(Z11*Z33);
             complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
-            complex<double> promegAP12 = ZC2 + R * (ZC2 +
-            ZL3) / ZL3;
+            complex<double> promegAP12 = Z22 + R * (Z22 + Z11) / Z11;
             complex<double> AP12(promegAP12.real(), promegAP12.imag());
             complex<double> ACHX_nesogl = R / (R * AP11 + AP12);
 
@@ -203,9 +205,16 @@ double FiltersKauer::OutputWaveform(double f)
             complex<double> ZC2(0.0, -1 / (2 * PI * f * C2));
             complex<double> ZC3(0.0, -1 / (2 * PI * f * C3));
             complex<double> ZL3(0.0, 2 * PI * f * L3);
-            complex<double> Z11=ZC1*ZL1/(ZC1+ZL1);
-            complex<double> Z22=ZC2+ZL2;
-            complex<double> promegAP11 = Z22 / Z11+R*(Z11+Z11+Z22)/(Z11*Z11);
+            complex<double> ZC4(0.0, -1 / (2 * PI * f * C4));
+            complex<double> ZL4(0.0, 2 * PI * f * L4);
+
+            complex<double> Z11=ZL1*ZC1/(ZC1+ZL1);
+            complex<double> Z33=ZL4*ZC4/(ZC4+ZL4);
+            complex<double> Z3=ZL3*ZC3/(ZC3+ZL3);
+            complex<double> Z2=ZL2*ZC2/(ZC2+ZL2);
+            complex<double> Z22=Z2+Z3;
+
+            complex<double> promegAP11 = Z22 / Z33 + R*(Z22+Z11+Z33)/(Z11*Z33);
             complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
             complex<double> promegAP12 = Z22 + R * (Z22 + Z11) / Z11;
             complex<double> AP12(promegAP12.real(), promegAP12.imag());
@@ -216,18 +225,6 @@ double FiltersKauer::OutputWaveform(double f)
     }
     if(flagFilters == 3)
        {
-          /* if(n == 2)
-           {
-               complex<double> ZL11(0.0, 2 * PI * f * L1); // Импеданс катушки при разных частотах
-               complex<double> ZC11(0.0, -1 / (2 * PI * f * C1));// Импеданс конденсатора при разных частотах
-               complex<double> promegAG11_1 = (ZC11 + ZL11 + R) / ZL11;
-               complex<double> AG11_1(promegAG11_1.real(), promegAG11_1.imag()); // параметр матрицы А11
-               complex<double> promegAG12_1 = R + ZC11;
-               complex<double> AG12_1(promegAG12_1.real(), promegAG12_1.imag());
-               complex<double> ACHX_nesogl = R / (R * AG11_1 + AG12_1);
-
-               return abs(ACHX_nesogl) * 2;
-           }*/
            if(n == 3)
            {
                complex<double> ZC1(0.0, -1 / (2 * PI * f * C1));
@@ -236,9 +233,16 @@ double FiltersKauer::OutputWaveform(double f)
                complex<double> ZC2(0.0, -1 / (2 * PI * f * C2));
                complex<double> ZC3(0.0, -1 / (2 * PI * f * C3));
                complex<double> ZL3(0.0, 2 * PI * f * L3);
-               complex<double> Z11=ZC1+ZL1;
-               complex<double> Z22=ZC2*ZL2/(ZC2+ZL2);
-               complex<double> promegAP11 = Z22 / Z11+R*(Z11+Z11+Z22)/(Z11*Z11);
+               complex<double> ZC4(0.0, -1 / (2 * PI * f * C4));
+               complex<double> ZL4(0.0, 2 * PI * f * L4);
+
+               complex<double> Z11=ZL1*ZC1/(ZC1+ZL1);
+               complex<double> Z33=ZL4*ZC4/(ZC4+ZL4);
+               complex<double> Z3=ZL3*ZC3/(ZC3+ZL3);
+               complex<double> Z2=ZL2*ZC2/(ZC2+ZL2);
+               complex<double> Z22=Z2+Z3;
+
+               complex<double> promegAP11 = Z22 / Z33 + R*(Z22+Z11+Z33)/(Z11*Z33);
                complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
                complex<double> promegAP12 = Z22 + R * (Z22 + Z11) / Z11;
                complex<double> AP12(promegAP12.real(), promegAP12.imag());

@@ -467,7 +467,6 @@
                  </property>
                  <property name="font">
                   <font>
-                   <family>Segoe Script</family>
                    <pointsize>14</pointsize>
                   </font>
                  </property>
@@ -492,7 +491,6 @@
                  </property>
                  <property name="font">
                   <font>
-                   <family>Segoe Script</family>
                    <pointsize>14</pointsize>
                   </font>
                  </property>
@@ -525,7 +523,6 @@
                </property>
                <property name="font">
                 <font>
-                 <family>ГОСТ тип А</family>
                  <pointsize>12</pointsize>
                 </font>
                </property>
@@ -572,7 +569,6 @@
                </property>
                <property name="font">
                 <font>
-                 <family>ГОСТ тип А</family>
                  <pointsize>12</pointsize>
                 </font>
                </property>
@@ -696,7 +692,6 @@
                  </property>
                  <property name="font">
                   <font>
-                   <family>ГОСТ тип А</family>
                    <pointsize>12</pointsize>
                   </font>
                  </property>
@@ -724,7 +719,6 @@
                  </property>
                  <property name="font">
                   <font>
-                   <family>ГОСТ тип А</family>
                    <pointsize>12</pointsize>
                   </font>
                  </property>
@@ -817,7 +811,6 @@
                  </property>
                  <property name="font">
                   <font>
-                   <family>ГОСТ тип А</family>
                    <pointsize>10</pointsize>
                   </font>
                  </property>
@@ -876,7 +869,6 @@
                  </property>
                  <property name="font">
                   <font>
-                   <family>ГОСТ тип А</family>
                    <pointsize>12</pointsize>
                   </font>
                  </property>
@@ -960,7 +952,7 @@
      <x>0</x>
      <y>0</y>
      <width>1400</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

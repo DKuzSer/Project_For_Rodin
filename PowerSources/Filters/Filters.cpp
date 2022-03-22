@@ -63,6 +63,7 @@ void Filters::on_ComboBox_Type_currentIndexChanged(int index)
 
             ui->Label_InPut3->setVisible(true);
             ui->Label_InPut3->setText("n (порядок):");
+            ui->IntSpinBoxF_InPut3->setMinimum(2);
             ui->IntSpinBoxF_InPut3->setVisible(true);
 
             ui->Label_InPut4->setVisible(true);
@@ -131,6 +132,7 @@ void Filters::on_ComboBox_Type_currentIndexChanged(int index)
 
             ui->Label_InPut3->setVisible(true);
             ui->Label_InPut3->setText("n (порядок):");
+            ui->IntSpinBoxF_InPut3->setMinimum(3);
             ui->IntSpinBoxF_InPut3->setVisible(true);
 
             ui->Label_InPut4->setVisible(true);
@@ -148,7 +150,7 @@ void Filters::on_ComboBox_Type_currentIndexChanged(int index)
 
             //настройки выходных данных
             //----------------------------------------------
-            if(ui->IntSpinBoxF_InPut3->value() == 2)
+            if(ui->IntSpinBoxF_InPut3->value() == 3)
             {
                 ui->Label_OutPut1->setVisible(true);
                 ui->Label_OutPut1->setText("С1 (Ёмкость), мкФ:");
@@ -161,20 +163,108 @@ void Filters::on_ComboBox_Type_currentIndexChanged(int index)
                 ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
 
                 ui->Label_OutPut3->setVisible(false);
-                ui->DoubleSpinBoxF_OutPut3->setVisible(false);
-                ui->Label_OutPut4->setVisible(false);
-                ui->DoubleSpinBoxF_OutPut4->setVisible(false);
-                ui->Label_OutPut5->setVisible(false);
-                ui->DoubleSpinBoxF_OutPut5->setVisible(false);
-                ui->Label_OutPut6->setVisible(false);
-                ui->DoubleSpinBoxF_OutPut6->setVisible(false);
+                ui->Label_OutPut3->setText("С2 (Ёмкость), мкФ:");
+                ui->DoubleSpinBoxF_OutPut3->setVisible(true);
+                ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
+
+                ui->Label_OutPut4->setVisible(true);
+                ui->Label_OutPut4->setText("L2 (Индуктивность), Гн:");
+                ui->DoubleSpinBoxF_OutPut4->setVisible(true);
+                ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
+
+                ui->Label_OutPut5->setVisible(true);
+                ui->Label_OutPut5->setText("С3 (Ёмкость), мкФ:");
+                ui->DoubleSpinBoxF_OutPut5->setVisible(true);
+                ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+
+                ui->Label_OutPut6->setVisible(true);
+                ui->Label_OutPut6->setText("L3 (Индуктивность), Гн:");
+                ui->DoubleSpinBoxF_OutPut6->setVisible(true);
+                ui->DoubleSpinBoxF_OutPut6->setEnabled(false);
+
                 ui->Label_Output7->setVisible(false);
                 ui->DoubleSpinBoxF_OutPut7->setVisible(false);
+
                 ui->Label_Output8->setVisible(false);
                 ui->DoubleSpinBoxF_OutPut8->setVisible(false);
             }
             //----------------------------------------------
         break;
+    case KAUER:
+        if(object_work != nullptr)
+        {
+            delete object_work;
+            object_work = new  FiltersKauer();
+        }
+        else
+            object_work = new  FiltersKauer();
+        //            ui->ComboBox_OutPutF->setVisible(true);
+        //            ui->Label_OutPutF->setVisible(true);
+
+        //настройки входных данных
+        //----------------------------------------------
+        ui->Label_InPut1->setVisible(true);
+        ui->Label_InPut1->setText("f (Частота среза), Гц:");
+        ui->DoubleSpinBoxF_InPut1->setVisible(true);
+
+        ui->Label_InPut2->setVisible(true);
+        ui->Label_InPut2->setText("R (Сопротивление нагрузки), Ом:");
+        ui->DoubleSpinBoxF_InPut2->setVisible(true);
+
+        ui->Label_InPut3->setVisible(true);
+        ui->Label_InPut3->setText("n (порядок):");
+        ui->IntSpinBoxF_InPut3->setMinimum(3);
+        ui->IntSpinBoxF_InPut3->setVisible(true);
+
+        ui->Label_InPut4->setVisible(true);
+        ui->Label_InPut4->setText("df (полоса фильтра), Гц:");
+        ui->DoubleSpinBoxF_InPut4->setVisible(true);
+
+        ui->Label_InPut5->setVisible(false);
+//          ui->Label_InPut5->setText("Rн (Сопротивление нагрузки), Ом:");
+        ui->DoubleSpinBoxF_InPut5->setVisible(false);
+
+        ui->Label_InPut6->setVisible(false);
+//            ui->Label_InPut6->setText("Uн (Напряжение на нагрузке), В:");
+        ui->DoubleSpinBoxF_InPut6->setVisible(false);
+        //----------------------------------------------
+
+        //настройки выходных данных
+        //----------------------------------------------
+        if(ui->IntSpinBoxF_InPut3->value() == 3)
+        {
+            ui->Label_OutPut1->setVisible(true);
+            ui->Label_OutPut1->setText("С1 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut1->setVisible(true);
+
+            ui->Label_OutPut2->setVisible(false);
+            ui->DoubleSpinBoxF_OutPut2->setVisible(false);
+
+            ui->Label_OutPut3->setVisible(true);
+            ui->Label_OutPut3->setText("С2 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut3->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
+
+            ui->Label_OutPut4->setVisible(true);
+            ui->Label_OutPut4->setText("L2 (Индуктивность), Гн:");
+            ui->DoubleSpinBoxF_OutPut4->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
+
+            ui->Label_OutPut5->setVisible(true);
+            ui->Label_OutPut5->setText("С3 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut5->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+
+            ui->Label_OutPut6->setVisible(false);
+            ui->DoubleSpinBoxF_OutPut6->setVisible(false);
+            ui->Label_Output7->setVisible(false);
+            ui->DoubleSpinBoxF_OutPut7->setVisible(false);
+            ui->Label_Output8->setVisible(false);
+            ui->DoubleSpinBoxF_OutPut8->setVisible(false);
+        }
+        //----------------------------------------------
+    break;
     }
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -535,13 +625,13 @@ void Filters::on_ComboBox_View_currentIndexChanged(int index)
 
             ui->Label_Output7->setVisible(true);
             ui->DoubleSpinBoxF_OutPut7->setVisible(true);
-            ui->Label_OutPut5->setText("C4 (Ёмкость), мкФ:");
-            ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+            ui->Label_Output7->setText("C4 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut7->setEnabled(false);
 
             ui->Label_Output8->setVisible(true);
             ui->DoubleSpinBoxF_OutPut8->setVisible(true);
-            ui->Label_OutPut6->setText("L4 (Индуктивность), Гн:");
-            ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+            ui->Label_Output8->setText("L4 (Индуктивность), Гн:");
+            ui->DoubleSpinBoxF_OutPut8->setEnabled(false);
         }
     }
 
@@ -582,13 +672,13 @@ void Filters::on_ComboBox_View_currentIndexChanged(int index)
 
             ui->Label_Output7->setVisible(true);
             ui->DoubleSpinBoxF_OutPut7->setVisible(true);
-            ui->Label_OutPut5->setText("C4 (Ёмкость), мкФ:");
-            ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+            ui->Label_Output7->setText("C4 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut7->setEnabled(false);
 
             ui->Label_Output8->setVisible(true);
             ui->DoubleSpinBoxF_OutPut8->setVisible(true);
-            ui->Label_OutPut6->setText("L4 (Индуктивность), Гн:");
-            ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+            ui->Label_Output8->setText("L4 (Индуктивность), Гн:");
+            ui->DoubleSpinBoxF_OutPut8->setEnabled(false);
         }
     }
 
@@ -597,6 +687,7 @@ void Filters::on_ComboBox_View_currentIndexChanged(int index)
 void Filters::on_IntSpinBoxF_InPut3_valueChanged(int arg1)
 {
     Q_UNUSED(arg1);
+
     if(ui->ComboBox_View->currentIndex() == FNCH)
     {
         if(ui->IntSpinBoxF_InPut3->value() == 2)
@@ -902,6 +993,7 @@ void Filters::on_IntSpinBoxF_InPut3_valueChanged(int arg1)
             ui->Label_OutPut6->setText("C3 (Ёмкость), мкФ:");
             ui->DoubleSpinBoxF_OutPut6->setVisible(true);
             ui->DoubleSpinBoxF_OutPut6->setEnabled(false);
+
             ui->Label_Output7->setVisible(false);
             ui->DoubleSpinBoxF_OutPut7->setVisible(false);
             ui->Label_Output8->setVisible(false);
@@ -942,6 +1034,7 @@ void Filters::on_IntSpinBoxF_InPut3_valueChanged(int arg1)
             ui->Label_OutPut6->setText("C3 (Ёмкость), мкФ:");
             ui->DoubleSpinBoxF_OutPut6->setVisible(true);
             ui->DoubleSpinBoxF_OutPut6->setEnabled(false);
+
             ui->Label_Output7->setVisible(false);
             ui->DoubleSpinBoxF_OutPut7->setVisible(false);
             ui->Label_Output8->setVisible(false);
@@ -951,7 +1044,43 @@ void Filters::on_IntSpinBoxF_InPut3_valueChanged(int arg1)
 
     if(ui->ComboBox_View->currentIndex() == ZF)
     {
-        // место для будующей реализации
+        if(ui->IntSpinBoxF_InPut3->value() == 3)
+        {
+            ui->Label_OutPut1->setVisible(true);
+            ui->Label_OutPut1->setText("L1 (Индуктивность), Гн:");
+            ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut1->setVisible(true);
+
+            ui->Label_OutPut2->setVisible(true);
+            ui->Label_OutPut2->setText("С1 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut2->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
+
+            ui->Label_OutPut3->setVisible(true);
+            ui->Label_OutPut3->setText("L2 (Индуктивность), Гн:");
+            ui->DoubleSpinBoxF_OutPut3->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
+
+            ui->Label_OutPut4->setVisible(true);
+            ui->Label_OutPut4->setText("С2 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut4->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
+
+            ui->Label_OutPut5->setVisible(true);
+            ui->Label_OutPut5->setText("L3 (Индуктивность), Гн:");
+            ui->DoubleSpinBoxF_OutPut5->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+
+            ui->Label_OutPut6->setVisible(true);
+            ui->Label_OutPut6->setText("C3 (Ёмкость), мкФ:");
+            ui->DoubleSpinBoxF_OutPut6->setVisible(true);
+            ui->DoubleSpinBoxF_OutPut6->setEnabled(false);
+
+            ui->Label_Output7->setVisible(false);
+            ui->DoubleSpinBoxF_OutPut7->setVisible(false);
+            ui->Label_Output8->setVisible(false);
+            ui->DoubleSpinBoxF_OutPut8->setVisible(false);
+        }
     }
 
 }
@@ -1057,11 +1186,6 @@ void Filters::on_PushButton_Calculate_clicked()
         {
             switch(n) // условие обработки выбора порядка
             {
-                case 2:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
-                break;
-
                 case 3:
                     ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
                     ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
@@ -1099,11 +1223,6 @@ void Filters::on_PushButton_Calculate_clicked()
         {
             switch(n) // условие обработки выбора порядка
             {
-                case 2:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
-                break;
-
                 case 3:
                     ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
                     ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
@@ -1360,11 +1479,6 @@ void Filters::on_PushButton_Calculate_clicked()
         {
             switch(n) // условие обработки выбора порядка
             {
-                case 2:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
-                break;
-
                 case 3:
                     ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
                     ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
@@ -1402,11 +1516,6 @@ void Filters::on_PushButton_Calculate_clicked()
         {
             switch(n) // условие обработки выбора порядка
             {
-                case 2:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
-                break;
-
                 case 3:
                     ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
                     ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
@@ -1619,40 +1728,13 @@ void Filters::on_PushButton_Calculate_clicked()
         {
             switch(n) // условие обработки выбора порядка
             {
-                case 2:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
-                break;
-
                 case 3:
                     ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
                     ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
                     ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
-                break;
-
-                case 4:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
-                    ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
                     ui->DoubleSpinBoxF_OutPut4->setValue(value_4);
                 break;
 
-                case 5:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
-                    ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
-                    ui->DoubleSpinBoxF_OutPut4->setValue(value_4);
-                    ui->DoubleSpinBoxF_OutPut5->setValue(value_5);
-                break;
-
-                case 6:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
-                    ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
-                    ui->DoubleSpinBoxF_OutPut4->setValue(value_4);
-                    ui->DoubleSpinBoxF_OutPut5->setValue(value_5);
-                    ui->DoubleSpinBoxF_OutPut6->setValue(value_6);
-                break;
             }
 
         }
@@ -1661,39 +1743,11 @@ void Filters::on_PushButton_Calculate_clicked()
         {
             switch(n) // условие обработки выбора порядка
             {
-                case 2:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
-                break;
-
                 case 3:
                     ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
                     ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
                     ui->DoubleSpinBoxF_OutPut3->setValue(value_4);
-                break;
-
-                case 4:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
-                    ui->DoubleSpinBoxF_OutPut3->setValue(value_4);
                     ui->DoubleSpinBoxF_OutPut4->setValue(value_3);
-                break;
-
-                case 5:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
-                    ui->DoubleSpinBoxF_OutPut3->setValue(value_4);
-                    ui->DoubleSpinBoxF_OutPut4->setValue(value_3);
-                    ui->DoubleSpinBoxF_OutPut5->setValue(value_6);
-                break;
-
-                case 6:
-                    ui->DoubleSpinBoxF_OutPut1->setValue(value_2);
-                    ui->DoubleSpinBoxF_OutPut2->setValue(value_1);
-                    ui->DoubleSpinBoxF_OutPut3->setValue(value_4);
-                    ui->DoubleSpinBoxF_OutPut4->setValue(value_3);
-                    ui->DoubleSpinBoxF_OutPut5->setValue(value_6);
-                    ui->DoubleSpinBoxF_OutPut6->setValue(value_5);
                 break;
             }
         }
@@ -1726,8 +1780,8 @@ void Filters::on_PushButton_Calculate_clicked()
                     ui->DoubleSpinBoxF_OutPut4->setValue(value_3);
                     ui->DoubleSpinBoxF_OutPut5->setValue(value_6);
                     ui->DoubleSpinBoxF_OutPut6->setValue(value_5);
-                    ui->DoubleSpinBoxF_OutPut8->setValue(value_8);
-                    ui->DoubleSpinBoxF_OutPut7->setValue(value_7);
+                    ui->DoubleSpinBoxF_OutPut7->setValue(value_8);
+                    ui->DoubleSpinBoxF_OutPut8->setValue(value_7);
 
                 break;
             }
