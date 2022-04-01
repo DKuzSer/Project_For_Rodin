@@ -16,7 +16,7 @@ class Filters : public MainpowerSourcesAbstract
     Q_OBJECT
 
 public:
-    explicit Filters(MainpowerSourcesAbstract *parent = nullptr);
+    explicit Filters(MainpowerSourcesAbstract);
     ~Filters();
 
     MyChartsView* View;

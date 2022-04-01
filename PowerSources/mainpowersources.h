@@ -29,6 +29,8 @@ private slots:
 
     void on_PushButton_Filters_clicked();
 
+    void on_PushButton_Consistent_clicked();
+
 private:
     Ui::MainPowerSources *ui;
 };

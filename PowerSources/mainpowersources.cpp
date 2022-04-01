@@ -83,3 +83,8 @@ void MainPowerSources::on_PushButton_Filters_clicked()
     ui->horizontalFrame_page1->layout()->addWidget(object_page1);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+void MainPowerSources::on_PushButton_Consistent_clicked()
+{
+
+}
