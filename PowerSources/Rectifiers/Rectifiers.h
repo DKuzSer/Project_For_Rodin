@@ -58,6 +58,10 @@ private slots:
 
     void on_diod_base_clicked();
 
+    void on_DoubleSpinBoxR_InPut4_textChanged(const QString &arg1);
+
+    void on_DoubleSpinBoxR_InPut1_valueChanged(double arg1);
+
 public slots:
     void diod_base_update(std::vector <QString> _names_of_diods, std::vector <int> _Uobr_max, std::vector <double> _Ipr);
 
