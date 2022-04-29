@@ -1,6 +1,6 @@
 #include "mainpowersources.h"
 #include "ui_mainpowersources.h"
-
+//some test shit
 MainPowerSources::MainPowerSources(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainPowerSources)
