@@ -426,23 +426,32 @@
             <layout class="QGridLayout" name="gridLayout_4">
              <item row="0" column="0">
               <widget class="QLabel" name="label">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="minimumSize">
                 <size>
-                 <width>110</width>
-                 <height>0</height>
+                 <width>105</width>
+                 <height>80</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>110</width>
-                 <height>16777215</height>
+                 <width>105</width>
+                 <height>80</height>
                 </size>
                </property>
                <property name="text">
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="resource.qrc">:/image/img/DopLogo.png</pixmap>
+                <pixmap resource="resource.qrc">:/image/img/logo.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
