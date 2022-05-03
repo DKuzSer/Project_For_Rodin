@@ -198,7 +198,6 @@ public:
         label1_NameProject->setMinimumSize(QSize(86, 0));
         label1_NameProject->setMaximumSize(QSize(86, 16777215));
         QFont font;
-        font.setFamilies({QString::fromUtf8("Segoe Script")});
         font.setPointSize(14);
         label1_NameProject->setFont(font);
 
@@ -222,7 +221,6 @@ public:
         PushButton_Calculate->setMinimumSize(QSize(110, 74));
         PushButton_Calculate->setMaximumSize(QSize(110, 74));
         QFont font1;
-        font1.setFamilies({QString::fromUtf8("\320\223\320\236\320\241\320\242 \321\202\320\270\320\277 \320\220")});
         font1.setPointSize(12);
         PushButton_Calculate->setFont(font1);
         PushButton_Calculate->setStyleSheet(QString::fromUtf8("background-color: rgb(120, 144, 156)"));
@@ -349,7 +347,6 @@ public:
         PushButton_Rectifiers->setMinimumSize(QSize(95, 74));
         PushButton_Rectifiers->setMaximumSize(QSize(95, 74));
         QFont font2;
-        font2.setFamilies({QString::fromUtf8("\320\223\320\236\320\241\320\242 \321\202\320\270\320\277 \320\220")});
         font2.setPointSize(10);
         PushButton_Rectifiers->setFont(font2);
         PushButton_Rectifiers->setStyleSheet(QString::fromUtf8("background-color: rgb(120, 144, 156)"));
@@ -414,7 +411,7 @@ public:
         MainPowerSources->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainPowerSources);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1400, 21));
+        menubar->setGeometry(QRect(0, 0, 1400, 26));
         MainPowerSources->setMenuBar(menubar);
         statusbar = new QStatusBar(MainPowerSources);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

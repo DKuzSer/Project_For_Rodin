@@ -49,8 +49,11 @@ void FiltersKauer::Calculate()
     {
         //новый алгоритм вычисления:
         double KL, KC;
+
         KL = R / (2 * PI * f);
         KC = 1 / (2 * PI * f * R);
+
+
         if(n == 3)
         {
             C1 = KC*1.1395;
@@ -79,33 +82,28 @@ void FiltersKauer::Calculate()
     {
 
         double Q=f/deltaf;
-        double KL, KC, Omega, delta_f2, f2_, f2, koef1, koef2/*, KLa, KCa, KLb, KCb*/;
+        double KL, KC, Omega, delta_f2, f2_, f2, koef1, koef2;
         KL = R / (2 * PI * f);
         KC = 1 / (2 * PI * f * R);
         Omega = 3.7137;
         delta_f2 = Omega * deltaf;
 
-        f2 = sqrt(f * f + (delta_f2 / 2)*(delta_f2 / 2)) + delta_f2 / 2;
-        f2_ = sqrt(f * f + (delta_f2 / 2)*(delta_f2 / 2)) - delta_f2 / 2;
+        f2 = (delta_f2/2+ sqrt(delta_f2*delta_f2/4 + f*f));
+        f2_= (-delta_f2/2+ sqrt(delta_f2*delta_f2/4 + f*f));
 
         koef1 = 1 + f*f/(f2*f2);
         koef2 = 1 + f*f/(f2_*f2_);
 
-//        KLa = R / (2 * PI * (f-deltaf/2));
-//        KCa = 1 / (2 * PI * (f-deltaf/2) * R);
-//        KLb = R / (2 * PI * (f+deltaf/2));
-//        KCb = 1 / (2 * PI * (f+deltaf/2) * R);
-
         if(n == 3)
         {
             C1 = KC * 1.1395 * Q;
-            L1 = KL / (1.1395 * Q);
-            C2 = KC * (0.0669 * Q * koef1);
-            L2 = KL / (0.0669 * Q * koef2);
-            C3 = KC * 1.893 * Q * koef2;
-            L3 = KL / (1.893 * Q * koef1);
+            L1 = KL / 1.1395 / Q;
+            C2 = KC * 0.0669 * Q * koef1;
+            L2 = KL / 0.0669 / Q / koef2;
+            C3 = KC * 0.0669 * Q * koef2;
+            L3 = KL / 0.0669 / Q / koef1;
             C4 = KC * 1.1395 * Q;
-            L4 = KL / (1.1395 * Q);
+            L4 = KL / 1.1395 / Q;
         }
 
     }
@@ -113,34 +111,32 @@ void FiltersKauer::Calculate()
     if(flagFilters == 3) // Вычисление ЗФ
     {
         double Q=f/deltaf;
-        double KL, KC, Omega, delta_f2, f2_, f2, koef1, koef2/*, KLa, KCa, KLb, KCb*/;
+        double KL, KC, Omega, delta_f2, f2_, f2, koef1, koef2;
         KL = R / (2 * PI * f);
         KC = 1 / (2 * PI * f * R);
 
         Omega = 3.7137;
-        delta_f2 = Omega * deltaf;
+        delta_f2 =  deltaf * Omega;
 
-        f2 = sqrt(f * f + (delta_f2 / 2)*(delta_f2 / 2)) + delta_f2 / 2;
-        f2_ = sqrt(f * f + (delta_f2 / 2)*(delta_f2 / 2)) - delta_f2 / 2;
+        f2 = (delta_f2/2+ sqrt(delta_f2*delta_f2/4 + f*f));
+        f2_= (-delta_f2/2+ sqrt(delta_f2*delta_f2/4 + f*f));
 
         koef1 = 1 + f*f/(f2*f2);
         koef2 = 1 + f*f/(f2_*f2_);
 
-//        KLa = R / (2 * PI * (f-deltaf/2));
-//        KCa = 1 / (2 * PI * (f-deltaf/2) * R);
-//        KLb = R / (2 * PI * (f+deltaf/2));
-//        KCb = 1 / (2 * PI * (f+deltaf/2) * R);
-
         if(n == 3)
         {
             C1 = KC * 1.1395 / Q;
-            L1 = KL * Q / (1.1395);
-            C2 = KC * 0.0669 * koef1 / Q;
-            L2 = KL * Q / (0.0669 * koef2);
-            C3 = KC * 1.893 * koef2 / Q;
-            L3 = KL * Q / (1.893 * koef1);
+            L1 = KL / 1.1395 * Q;
+
+            C2 = KC * 0.0669 / Q * koef1;
+            L2 = KL / 0.0669 * Q / koef2;
+
+            C3 = KC * 0.0669 / Q * koef2;
+            L3 = KL / 0.0669 * Q / koef1;
+
             C4 = KC * 1.1395 / Q;
-            L4 = KL * Q / (1.1395);
+            L4 = KL / 1.1395 * Q;
         }
 
     }
@@ -209,12 +205,11 @@ double FiltersKauer::OutputWaveform(double f)
             complex<double> ZL4(0.0, 2 * PI * f * L4);
 
             complex<double> Z11=ZL1*ZC1/(ZC1+ZL1);
-            complex<double> Z33=ZL4*ZC4/(ZC4+ZL4);
             complex<double> Z3=ZL3*ZC3/(ZC3+ZL3);
             complex<double> Z2=ZL2*ZC2/(ZC2+ZL2);
             complex<double> Z22=Z2+Z3;
 
-            complex<double> promegAP11 = Z22 / Z33 + R*(Z22+Z11+Z33)/(Z11*Z33);
+            complex<double> promegAP11 = Z22 / Z11 + R*(Z22+Z11+Z11)/(Z11*Z11);
             complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
             complex<double> promegAP12 = Z22 + R * (Z22 + Z11) / Z11;
             complex<double> AP12(promegAP12.real(), promegAP12.imag());
@@ -236,13 +231,12 @@ double FiltersKauer::OutputWaveform(double f)
                complex<double> ZC4(0.0, -1 / (2 * PI * f * C4));
                complex<double> ZL4(0.0, 2 * PI * f * L4);
 
-               complex<double> Z11=ZL1*ZC1/(ZC1+ZL1);
-               complex<double> Z33=ZL4*ZC4/(ZC4+ZL4);
+               complex<double> Z11=ZC1+ZL1;
                complex<double> Z3=ZL3*ZC3/(ZC3+ZL3);
                complex<double> Z2=ZL2*ZC2/(ZC2+ZL2);
                complex<double> Z22=Z2+Z3;
 
-               complex<double> promegAP11 = Z22 / Z33 + R*(Z22+Z11+Z33)/(Z11*Z33);
+               complex<double> promegAP11 = Z22 / Z11 + R*(Z22+Z11+Z11)/(Z11*Z11);
                complex<double> AP11(1 + promegAP11.real(), promegAP11.imag());
                complex<double> promegAP12 = Z22 + R * (Z22 + Z11) / Z11;
                complex<double> AP12(promegAP12.real(), promegAP12.imag());
