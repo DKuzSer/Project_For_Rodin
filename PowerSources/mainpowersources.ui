@@ -39,10 +39,10 @@
      </colorrole>
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
-       <color alpha="255">
-        <red>64</red>
-        <green>65</green>
-        <blue>66</blue>
+       <color alpha="85">
+        <red>36</red>
+        <green>41</green>
+        <blue>67</blue>
        </color>
       </brush>
      </colorrole>
@@ -93,19 +93,19 @@
      </colorrole>
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
-       <color alpha="255">
-        <red>88</red>
-        <green>109</green>
-        <blue>127</blue>
+       <color alpha="85">
+        <red>36</red>
+        <green>41</green>
+        <blue>67</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
-       <color alpha="255">
-        <red>51</red>
-        <green>75</green>
-        <blue>90</blue>
+       <color alpha="85">
+        <red>36</red>
+        <green>41</green>
+        <blue>67</blue>
        </color>
       </brush>
      </colorrole>
@@ -149,10 +149,10 @@
      </colorrole>
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
-       <color alpha="255">
-        <red>64</red>
-        <green>65</green>
-        <blue>66</blue>
+       <color alpha="85">
+        <red>36</red>
+        <green>41</green>
+        <blue>67</blue>
        </color>
       </brush>
      </colorrole>
@@ -203,19 +203,19 @@
      </colorrole>
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
-       <color alpha="255">
-        <red>88</red>
-        <green>109</green>
-        <blue>127</blue>
+       <color alpha="85">
+        <red>36</red>
+        <green>41</green>
+        <blue>67</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
-       <color alpha="255">
-        <red>51</red>
-        <green>75</green>
-        <blue>90</blue>
+       <color alpha="85">
+        <red>36</red>
+        <green>41</green>
+        <blue>67</blue>
        </color>
       </brush>
      </colorrole>
@@ -259,10 +259,10 @@
      </colorrole>
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
-       <color alpha="255">
-        <red>64</red>
-        <green>65</green>
-        <blue>66</blue>
+       <color alpha="85">
+        <red>36</red>
+        <green>41</green>
+        <blue>67</blue>
        </color>
       </brush>
      </colorrole>
@@ -313,19 +313,19 @@
      </colorrole>
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
-       <color alpha="255">
-        <red>51</red>
-        <green>75</green>
-        <blue>90</blue>
+       <color alpha="85">
+        <red>36</red>
+        <green>41</green>
+        <blue>67</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
-       <color alpha="255">
-        <red>51</red>
-        <green>75</green>
-        <blue>90</blue>
+       <color alpha="85">
+        <red>36</red>
+        <green>41</green>
+        <blue>67</blue>
        </color>
       </brush>
      </colorrole>
@@ -365,6 +365,9 @@
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonTextBesideIcon</enum>
   </property>
@@ -374,17 +377,17 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QFrame" name="frame">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>150</height>
-         </size>
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
         <property name="frameShape">
          <enum>QFrame::Box</enum>
@@ -406,6 +409,188 @@
           <number>1</number>
          </property>
          <item>
+          <widget class="QLabel" name="label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>105</width>
+             <height>80</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>105</width>
+             <height>80</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap resource="resource.qrc">:/image/img/logo.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QLabel" name="label1_NameProject">
+             <property name="minimumSize">
+              <size>
+               <width>86</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>86</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Segoe Script</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Power</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label2_NameProject">
+             <property name="minimumSize">
+              <size>
+               <width>86</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>86</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Segoe Script</family>
+               <pointsize>14</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Sources</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QToolButton" name="PushButton_Calculate">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>110</width>
+             <height>74</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>110</width>
+             <height>74</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>ГОСТ тип А</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Вычисление</string>
+           </property>
+           <property name="icon">
+            <iconset resource="resource.qrc">
+             <normaloff>:/image/img/ButtonCalculate.png</normaloff>:/image/img/ButtonCalculate.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>48</width>
+             <height>48</height>
+            </size>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextUnderIcon</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="PushButton_Reference">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>110</width>
+             <height>74</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>110</width>
+             <height>74</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>ГОСТ тип А</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Справка</string>
+           </property>
+           <property name="icon">
+            <iconset resource="resource.qrc">
+             <normaloff>:/image/img/ButtonData.png</normaloff>:/image/img/ButtonData.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>48</width>
+             <height>48</height>
+            </size>
+           </property>
+           <property name="toolButtonStyle">
+            <enum>Qt::ToolButtonTextUnderIcon</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QSplitter" name="splitter">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -419,195 +604,6 @@
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <widget class="QFrame" name="Frame">
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_4">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>105</width>
-                 <height>80</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>105</width>
-                 <height>80</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="pixmap">
-                <pixmap resource="resource.qrc">:/image/img/logo.png</pixmap>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <layout class="QVBoxLayout" name="verticalLayout">
-               <item>
-                <widget class="QLabel" name="label1_NameProject">
-                 <property name="minimumSize">
-                  <size>
-                   <width>86</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>86</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Segoe Script</family>
-                   <pointsize>14</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Power</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="label2_NameProject">
-                 <property name="minimumSize">
-                  <size>
-                   <width>86</width>
-                   <height>0</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>86</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <family>Segoe Script</family>
-                   <pointsize>14</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Sources</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="0" column="2">
-              <widget class="QToolButton" name="PushButton_Calculate">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>110</width>
-                 <height>74</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>110</width>
-                 <height>74</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>ГОСТ тип А</family>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(120, 144, 156)</string>
-               </property>
-               <property name="text">
-                <string>Вычисление</string>
-               </property>
-               <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/image/img/ButtonCalculate.png</normaloff>:/image/img/ButtonCalculate.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>48</width>
-                 <height>48</height>
-                </size>
-               </property>
-               <property name="toolButtonStyle">
-                <enum>Qt::ToolButtonTextUnderIcon</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="3">
-              <widget class="QToolButton" name="PushButton_Reference">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>110</width>
-                 <height>74</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>110</width>
-                 <height>74</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <family>ГОСТ тип А</family>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(120, 144, 156)</string>
-               </property>
-               <property name="text">
-                <string>Справка</string>
-               </property>
-               <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/image/img/ButtonData.png</normaloff>:/image/img/ButtonData.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>48</width>
-                 <height>48</height>
-                </size>
-               </property>
-               <property name="toolButtonStyle">
-                <enum>Qt::ToolButtonTextUnderIcon</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
           </widget>
          </item>
          <item>
@@ -615,12 +611,9 @@
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::MinimumExpanding</enum>
-           </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>300</width>
+             <width>40</width>
              <height>20</height>
             </size>
            </property>
@@ -656,7 +649,7 @@
          <number>0</number>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="Page_SettingCalculate">
          <layout class="QGridLayout" name="gridLayout_3">
@@ -710,7 +703,7 @@
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(120, 144, 156)</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Теория</string>
@@ -738,7 +731,7 @@
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(120, 144, 156)</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Таблицы</string>
@@ -831,7 +824,7 @@
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(120, 144, 156)</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Выпрямители</string>
@@ -890,7 +883,7 @@
                   </font>
                  </property>
                  <property name="styleSheet">
-                  <string notr="true">background-color: rgb(120, 144, 156)</string>
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Фильтры</string>

@@ -25,6 +25,7 @@ SOURCES += \
     diod_base.cpp \
     main.cpp \
     mainpowersources.cpp \
+    stylehelper.cpp \
     svgview.cpp
 
 HEADERS += \
@@ -42,6 +43,7 @@ HEADERS += \
     constans.h \
     diod_base.h \
     mainpowersources.h \
+    stylehelper.h \
     svgview.h
 
 FORMS += \

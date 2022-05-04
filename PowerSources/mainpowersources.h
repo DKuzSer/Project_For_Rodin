@@ -5,6 +5,7 @@
 #include "MainpowerSourcesAbstract.h"
 #include "Rectifiers/Rectifiers.h"
 #include "Filters/Filters.h"
+#include <stylehelper.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainPowerSources; }
@@ -29,7 +30,12 @@ private slots:
 
     void on_PushButton_Filters_clicked();
 
+    void on_PushButton_Data_clicked();
+
+    void on_PushButton_Tables_clicked();
+
 private:
     Ui::MainPowerSources *ui;
+    StyleHelper *obj;
 };
 #endif // MAINPOWERSOURCES_H
