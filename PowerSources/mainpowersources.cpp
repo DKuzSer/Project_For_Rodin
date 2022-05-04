@@ -24,6 +24,19 @@ MainPowerSources::MainPowerSources(QWidget *parent)
                              "background-color:none;"
                              "}");
     ui->Frame_UsingData->setStyleSheet(obj->getFrameStyle());
+    ui->StackedWidget_Main->setStyleSheet("QStackedWidget{"
+                                          "border:1px solid rgb(255, 255, 255);"
+                                          "}");
+    ui->horizontalFrame_page1->setStyleSheet("QFrame{"
+                                             "background-color:none;"
+                                             "border:0.5px solid rgb(255, 255, 255);"
+                                             "background-color: rgba(54, 61, 100, 100);"
+                                             "}");
+    ui->horizontalFrame_2->setStyleSheet("QFrame{"
+                                         "background-color:none;"
+                                         "border:0.5px solid rgb(255, 255, 255);"
+                                         "background-color: rgba(54, 61, 100, 100);"
+                                         "}");
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MainPowerSources::~MainPowerSources()
