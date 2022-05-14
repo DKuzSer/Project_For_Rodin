@@ -49,7 +49,7 @@ void MainPowerSources::on_PushButton_Calculate_clicked()
 {
     ui->StackedWidget_Main->setCurrentIndex(1);
     ui->PushButton_Calculate->setStyleSheet("QToolButton{"
-                                            "background-color:rgb(88, 255, 163);"
+                                            "background-color:rgb(80, 255, 163);"
                                             "border:2px solid rgb(255, 255, 255);"
                                             "color:rgb(0, 0, 0);"
                                             "border-radius:5px;"
@@ -61,7 +61,7 @@ void MainPowerSources::on_PushButton_Reference_clicked()
 {
     ui->StackedWidget_Main->setCurrentIndex(0);
     ui->PushButton_Reference->setStyleSheet("QToolButton{"
-                                            "background-color:rgb(88, 255, 163);"
+                                            "background-color:rgb(80, 255, 163);"
                                             "border:2px solid rgb(255, 255, 255);"
                                             "color:rgb(0, 0, 0);"
                                             "border-radius:5px;"
@@ -72,7 +72,7 @@ void MainPowerSources::on_PushButton_Reference_clicked()
 void MainPowerSources::on_PushButton_Rectifiers_clicked()
 {
     ui->PushButton_Rectifiers->setStyleSheet("QToolButton{"
-                                             "background-color:rgb(88, 255, 163);"
+                                             "background-color:rgb(80, 255, 163);"
                                              "border:2px solid rgb(255, 255, 255);"
                                              "color:rgb(0, 0, 0);"
                                              "border-radius:5px;"
@@ -124,7 +124,7 @@ void MainPowerSources::on_PushButton_Rectifiers_clicked()
 void MainPowerSources::on_PushButton_Filters_clicked()
 {
     ui->PushButton_Filters->setStyleSheet("QToolButton{"
-                                             "background-color:rgb(88, 255, 163);"
+                                             "background-color:rgb(80, 255, 163);"
                                              "border:2px solid rgb(255, 255, 255);"
                                              "color:rgb(0, 0, 0);"
                                              "border-radius:5px;"
@@ -147,7 +147,7 @@ void MainPowerSources::on_PushButton_Filters_clicked()
 void MainPowerSources::on_PushButton_Data_clicked()
 {
     ui->PushButton_Data->setStyleSheet("QPushButton{"
-                                             "background-color:rgb(88, 255, 163);"
+                                             "background-color:rgb(80, 255, 163);"
                                              "border:2px solid rgb(255, 255, 255);"
                                              "color:rgb(0, 0, 0);"
                                              "border-radius:5px;"
@@ -159,7 +159,7 @@ void MainPowerSources::on_PushButton_Data_clicked()
 void MainPowerSources::on_PushButton_Tables_clicked()
 {
     ui->PushButton_Tables->setStyleSheet("QPushButton{"
-                                             "background-color:rgb(88, 255, 163);"
+                                             "background-color:rgb(80, 255, 163);"
                                              "border:2px solid rgb(255, 255, 255);"
                                              "color:rgb(0, 0, 0);"
                                              "border-radius:5px;"

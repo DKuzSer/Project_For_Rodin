@@ -22,6 +22,7 @@ SOURCES += \
     Rectifiers\RectifiersAbstract.cpp \
     Rectifiers\RectifiersOnePeriodCircuit.cpp \
     Rectifiers\RectifiersTwoPeriodCircuit.cpp \
+    Transmitter_Output_Stage.cpp \
     diod_base.cpp \
     main.cpp \
     mainpowersources.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     Rectifiers\RectifiersAbstract.h \
     Rectifiers\RectifiersOnePeriodCircuit.h \
     Rectifiers\RectifiersTwoPeriodCircuit.h \
+    Transmitter_Output_Stage.h \
     constans.h \
     diod_base.h \
     mainpowersources.h \
@@ -49,6 +51,7 @@ HEADERS += \
 FORMS += \
     Filters\Filters.ui \
     Rectifiers\Rectifiers.ui \
+    Transmitter_Output_Stage.ui \
     diod_base.ui \
     mainpowersources.ui
 
