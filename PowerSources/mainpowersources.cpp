@@ -9,12 +9,13 @@ MainPowerSources::MainPowerSources(QWidget *parent)
     ui->centralwidget->setStyleSheet("QMainWindow{"
                                      "background-color: rgba(36, 41, 67,85);"
                                      "}");
-    ui->PushButton_Data->setStyleSheet(obj->getButtonsStyle());
-    ui->PushButton_Tables->setStyleSheet(obj->getButtonsStyle());
+    ui->PushButton_Data->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Tables->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Calculate->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Reference->setStyleSheet(obj->getToolButtonsStyle());
-    ui->PushButton_Filters->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Rectifiers->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Filters->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Matching->setStyleSheet(obj->getToolButtonsStyle());
     ui->Frame_SettingCalculate->setStyleSheet(obj->getFrameStyle());
     ui->frame->setStyleSheet(obj->getFrameStyle());
     ui->label1_NameProject->setStyleSheet(obj->getLabelStyle());
@@ -48,36 +49,18 @@ MainPowerSources::~MainPowerSources()
 void MainPowerSources::on_PushButton_Calculate_clicked()
 {
     ui->StackedWidget_Main->setCurrentIndex(1);
-    ui->PushButton_Calculate->setStyleSheet("QToolButton{"
-                                            "background-color:rgb(80, 255, 163);"
-                                            "border:2px solid rgb(255, 255, 255);"
-                                            "color:rgb(0, 0, 0);"
-                                            "border-radius:5px;"
-                                            "}");
-    ui->PushButton_Reference->setStyleSheet(obj->getToolButtonsStyle());
+    HoldPushButton(ui->PushButton_Calculate);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MainPowerSources::on_PushButton_Reference_clicked()
 {
     ui->StackedWidget_Main->setCurrentIndex(0);
-    ui->PushButton_Reference->setStyleSheet("QToolButton{"
-                                            "background-color:rgb(80, 255, 163);"
-                                            "border:2px solid rgb(255, 255, 255);"
-                                            "color:rgb(0, 0, 0);"
-                                            "border-radius:5px;"
-                                            "}");
-    ui->PushButton_Calculate->setStyleSheet(obj->getToolButtonsStyle());
+    HoldPushButton(ui->PushButton_Reference);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MainPowerSources::on_PushButton_Rectifiers_clicked()
 {
-    ui->PushButton_Rectifiers->setStyleSheet("QToolButton{"
-                                             "background-color:rgb(80, 255, 163);"
-                                             "border:2px solid rgb(255, 255, 255);"
-                                             "color:rgb(0, 0, 0);"
-                                             "border-radius:5px;"
-                                             "}");
-    ui->PushButton_Filters->setStyleSheet(obj->getToolButtonsStyle());
+    HoldPushButton(ui->PushButton_Rectifiers);
     if(object_page1 == nullptr)
     {
         object_page1 = new Rectifiers;
@@ -123,13 +106,7 @@ void MainPowerSources::on_PushButton_Rectifiers_clicked()
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MainPowerSources::on_PushButton_Filters_clicked()
 {
-    ui->PushButton_Filters->setStyleSheet("QToolButton{"
-                                             "background-color:rgb(80, 255, 163);"
-                                             "border:2px solid rgb(255, 255, 255);"
-                                             "color:rgb(0, 0, 0);"
-                                             "border-radius:5px;"
-                                             "}");
-    ui->PushButton_Rectifiers->setStyleSheet(obj->getToolButtonsStyle());
+    HoldPushButton(ui->PushButton_Filters);
     if(object_page1 == nullptr)
     {
         object_page1 = new Filters;
@@ -143,27 +120,52 @@ void MainPowerSources::on_PushButton_Filters_clicked()
     ui->horizontalFrame_page1->layout()->addWidget(object_page1);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+void MainPowerSources::on_PushButton_Matching_clicked()
+{
+    HoldPushButton(ui->PushButton_Matching);
+    if(object_page1 == nullptr)
+    {
+        object_page1 = new Matching;
+    }
+    else
+    {
+        delete object_page1;
+        object_page1 = new Matching;
+    }
 
+    ui->horizontalFrame_page1->layout()->addWidget(object_page1);
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MainPowerSources::on_PushButton_Data_clicked()
 {
-    ui->PushButton_Data->setStyleSheet("QPushButton{"
-                                             "background-color:rgb(80, 255, 163);"
-                                             "border:2px solid rgb(255, 255, 255);"
-                                             "color:rgb(0, 0, 0);"
-                                             "border-radius:5px;"
-                                             "}");
-    ui->PushButton_Tables->setStyleSheet(obj->getButtonsStyle());
+    HoldPushButton(ui->PushButton_Data);
 }
 
 
 void MainPowerSources::on_PushButton_Tables_clicked()
 {
-    ui->PushButton_Tables->setStyleSheet("QPushButton{"
-                                             "background-color:rgb(80, 255, 163);"
-                                             "border:2px solid rgb(255, 255, 255);"
-                                             "color:rgb(0, 0, 0);"
-                                             "border-radius:5px;"
-                                             "}");
-    ui->PushButton_Data->setStyleSheet(obj->getButtonsStyle());
+    HoldPushButton(ui->PushButton_Tables);
+}
+
+void MainPowerSources::HoldPushButton(QToolButton* button)
+{
+    HoldClearPushButton();
+    button->setStyleSheet("QToolButton{"
+                          "background-color:rgb(80, 255, 163);"
+                          "border:2px solid rgb(255, 255, 255);"
+                          "color:rgb(0, 0, 0);"
+                          "border-radius:5px;"
+                          "}");
+}
+
+void MainPowerSources::HoldClearPushButton()
+{
+    ui->PushButton_Data->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Tables->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Calculate->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Reference->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Rectifiers->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Filters->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Matching->setStyleSheet(obj->getToolButtonsStyle());
 }
 

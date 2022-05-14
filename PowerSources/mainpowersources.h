@@ -5,7 +5,8 @@
 #include "MainpowerSourcesAbstract.h"
 #include "Rectifiers/Rectifiers.h"
 #include "Filters/Filters.h"
-#include <stylehelper.h>
+#include "Matching.h"
+#include "stylehelper.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainPowerSources; }
@@ -21,6 +22,10 @@ public:
 
     MainpowerSourcesAbstract* object_page1 = nullptr;
 
+    void HoldPushButton(QToolButton*);
+
+    void HoldClearPushButton();
+
 private slots:
     void on_PushButton_Calculate_clicked();
 
@@ -33,6 +38,8 @@ private slots:
     void on_PushButton_Data_clicked();
 
     void on_PushButton_Tables_clicked();
+
+    void on_PushButton_Matching_clicked();
 
 private:
     Ui::MainPowerSources *ui;

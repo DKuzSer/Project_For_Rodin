@@ -683,7 +683,7 @@
                 <number>6</number>
                </property>
                <item>
-                <widget class="QPushButton" name="PushButton_Data">
+                <widget class="QToolButton" name="PushButton_Data">
                  <property name="minimumSize">
                   <size>
                    <width>86</width>
@@ -711,7 +711,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="PushButton_Tables">
+                <widget class="QToolButton" name="PushButton_Tables">
                  <property name="minimumSize">
                   <size>
                    <width>86</width>
@@ -900,6 +900,25 @@
                  </property>
                  <property name="toolButtonStyle">
                   <enum>Qt::ToolButtonTextUnderIcon</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="PushButton_Matching">
+                 <property name="minimumSize">
+                  <size>
+                   <width>95</width>
+                   <height>74</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>95</width>
+                   <height>74</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Согласование</string>
                  </property>
                 </widget>
                </item>

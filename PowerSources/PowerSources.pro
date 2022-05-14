@@ -16,13 +16,13 @@ SOURCES += \
     Filters\FiltersAbstract.cpp \
     Filters\FiltersButterworth.cpp \
     MainpowerSourcesAbstract.cpp \
+    Matching.cpp \
     MyCharts.cpp \
     MyChartsView.cpp \
     Rectifiers\Rectifiers.cpp \
     Rectifiers\RectifiersAbstract.cpp \
     Rectifiers\RectifiersOnePeriodCircuit.cpp \
     Rectifiers\RectifiersTwoPeriodCircuit.cpp \
-    Transmitter_Output_Stage.cpp \
     diod_base.cpp \
     main.cpp \
     mainpowersources.cpp \
@@ -35,13 +35,13 @@ HEADERS += \
     Filters\FiltersAbstract.h \
     Filters\FiltersButterworth.h \
     MainpowerSourcesAbstract.h \
+    Matching.h \
     MyCharts.h \
     MyChartsView.h \
     Rectifiers\Rectifiers.h \
     Rectifiers\RectifiersAbstract.h \
     Rectifiers\RectifiersOnePeriodCircuit.h \
     Rectifiers\RectifiersTwoPeriodCircuit.h \
-    Transmitter_Output_Stage.h \
     constans.h \
     diod_base.h \
     mainpowersources.h \
@@ -50,8 +50,8 @@ HEADERS += \
 
 FORMS += \
     Filters\Filters.ui \
+    Matching.ui \
     Rectifiers\Rectifiers.ui \
-    Transmitter_Output_Stage.ui \
     diod_base.ui \
     mainpowersources.ui
 
