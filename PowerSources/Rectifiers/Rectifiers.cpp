@@ -22,7 +22,27 @@ Rectifiers::Rectifiers(MainpowerSourcesAbstract *parent) :
     //connect(m_view, &SvgView::zoomChanged, this, &Rectifiers::updateZoomLabel);
 
     //--------------------------------------------------------------------
+    ui->Label_InPut1->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut2->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut3->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut4->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut5->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut6->setStyleSheet(style_helper->getLabelStyle());
 
+    ui->Label_OutPut1->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_OutPut2->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_OutPut3->setStyleSheet(style_helper->getLabelStyle());
+
+    ui->groupBox->setStyleSheet(style_helper->getGroupBoxStyle());
+    ui->GroupBox_InPut->setStyleSheet(style_helper->getGroupBoxStyle());
+    ui->GroupBox_OutPut->setStyleSheet(style_helper->getGroupBoxStyle());
+
+    ui->label_2->setStyleSheet(style_helper->getLabelStyle());
+    ui->label_3->setStyleSheet(style_helper->getLabelStyle());
+    ui->label_4->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_OutPutF->setStyleSheet(style_helper->getLabelStyle());
+    ui->label->setStyleSheet(style_helper->getLabelStyle());
+    //--------------------------------------------------------------------
     base = new diod_base();
 
     View = new MyChartsView();
@@ -54,6 +74,7 @@ Rectifiers::~Rectifiers()
     delete ui;
     delete base;
     delete m_view;
+    delete style_helper;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Rectifiers::SetDiodsParameters(std::vector <QString> _names_of_diods, std::vector <int> _Uobr_max, std::vector <double> _Ipr)

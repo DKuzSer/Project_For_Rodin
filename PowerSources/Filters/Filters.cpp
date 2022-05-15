@@ -21,6 +21,28 @@ Filters::Filters(MainpowerSourcesAbstract *parent) :
     ui->ComboBox_View->addItem("ФВЧ", FVCH); // добавление ФВЧ
     ui->ComboBox_View->addItem("ПФ", PF);    // добавление ПФ
     ui->ComboBox_View->addItem("ЗФ", ZF);    // добавление ЗФ
+
+    //------------------------------------------------------------------
+    ui->Label_InPut1->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut2->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut3->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut4->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut5->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_InPut6->setStyleSheet(style_helper->getLabelStyle());
+
+    ui->Label_OutPut1->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_OutPut2->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_OutPut3->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_OutPut4->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_OutPut5->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_OutPut6->setStyleSheet(style_helper->getLabelStyle());
+
+    ui->groupBox->setStyleSheet(style_helper->getGroupBoxStyle());
+    ui->groupBox_2->setStyleSheet(style_helper->getGroupBoxStyle());
+
+    ui->Label_Type->setStyleSheet(style_helper->getLabelStyle());
+    ui->Label_View->setStyleSheet(style_helper->getLabelStyle());
+    //------------------------------------------------------------------
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Filters::~Filters()
@@ -30,6 +52,7 @@ Filters::~Filters()
     delete ViewFCHX;
     delete object_work;
     delete ui;
+    delete style_helper;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Filters::on_ComboBox_Type_currentIndexChanged(int index)

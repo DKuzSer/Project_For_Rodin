@@ -6,6 +6,7 @@
 #include "MyCharts.h"
 #include "FiltersAbstract.h"
 #include "constans.h"
+#include "stylehelper.h"
 
 #include "FiltersButterworth.h"
 #include "FiltersCHEBISHEV.h"
@@ -41,6 +42,8 @@ private:
 
     MyCharts *chrt = nullptr;
     MyCharts *chrtFCHX = nullptr;
+
+    StyleHelper* style_helper = new StyleHelper;
 };
 
 #endif // FILTERS_H

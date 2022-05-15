@@ -11,7 +11,12 @@ MainPowerSources::MainPowerSources(QWidget *parent)
                                      "}");
     ui->PushButton_Data->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Tables->setStyleSheet(obj->getToolButtonsStyle());
-    ui->PushButton_Calculate->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Calculate->setStyleSheet("QToolButton{"
+                                            "background-color:rgb(80, 255, 163);"
+                                            "border:2px solid rgb(255, 255, 255);"
+                                            "color:rgb(0, 0, 0);"
+                                            "border-radius:5px;"
+                                            "}");
     ui->PushButton_Reference->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Rectifiers->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Filters->setStyleSheet(obj->getToolButtonsStyle());

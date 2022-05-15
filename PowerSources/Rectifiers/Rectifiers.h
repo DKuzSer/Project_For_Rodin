@@ -12,6 +12,7 @@
 #include <QSvgRenderer>
 #include <QPixmap>
 #include <QMessageBox>
+#include "stylehelper.h"
 
 namespace Ui {
 class Rectifiers;
@@ -75,6 +76,8 @@ private:
     diod_base* base;
 
     SvgView *m_view;
+
+    StyleHelper* style_helper = new StyleHelper;
 };
 
 #endif // RECTIFIERS_H
