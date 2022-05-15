@@ -49,18 +49,18 @@ MainPowerSources::~MainPowerSources()
 void MainPowerSources::on_PushButton_Calculate_clicked()
 {
     ui->StackedWidget_Main->setCurrentIndex(1);
-    HoldPushButton(ui->PushButton_Calculate);
+    HoldTopPushButton(ui->PushButton_Calculate);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MainPowerSources::on_PushButton_Reference_clicked()
 {
     ui->StackedWidget_Main->setCurrentIndex(0);
-    HoldPushButton(ui->PushButton_Reference);
+    HoldTopPushButton(ui->PushButton_Reference);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MainPowerSources::on_PushButton_Rectifiers_clicked()
 {
-    HoldPushButton(ui->PushButton_Rectifiers);
+    HoldLeftPushButton(ui->PushButton_Rectifiers);
     if(object_page1 == nullptr)
     {
         object_page1 = new Rectifiers;
@@ -106,7 +106,7 @@ void MainPowerSources::on_PushButton_Rectifiers_clicked()
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MainPowerSources::on_PushButton_Filters_clicked()
 {
-    HoldPushButton(ui->PushButton_Filters);
+    HoldLeftPushButton(ui->PushButton_Filters);
     if(object_page1 == nullptr)
     {
         object_page1 = new Filters;
@@ -122,7 +122,7 @@ void MainPowerSources::on_PushButton_Filters_clicked()
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MainPowerSources::on_PushButton_Matching_clicked()
 {
-    HoldPushButton(ui->PushButton_Matching);
+    HoldLeftPushButton(ui->PushButton_Matching);
     if(object_page1 == nullptr)
     {
         object_page1 = new Matching;
@@ -138,18 +138,18 @@ void MainPowerSources::on_PushButton_Matching_clicked()
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void MainPowerSources::on_PushButton_Data_clicked()
 {
-    HoldPushButton(ui->PushButton_Data);
+    HoldLeftPushButton(ui->PushButton_Data);
 }
 
 
 void MainPowerSources::on_PushButton_Tables_clicked()
 {
-    HoldPushButton(ui->PushButton_Tables);
+    HoldLeftPushButton(ui->PushButton_Tables);
 }
 
-void MainPowerSources::HoldPushButton(QToolButton* button)
+void MainPowerSources::HoldTopPushButton(QToolButton* button)
 {
-    HoldClearPushButton();
+    HoldClearTopPushButton();
     button->setStyleSheet("QToolButton{"
                           "background-color:rgb(80, 255, 163);"
                           "border:2px solid rgb(255, 255, 255);"
@@ -158,14 +158,29 @@ void MainPowerSources::HoldPushButton(QToolButton* button)
                           "}");
 }
 
-void MainPowerSources::HoldClearPushButton()
+void MainPowerSources::HoldLeftPushButton(QToolButton* button)
+{
+    HoldClearLeftPushButton();
+    button->setStyleSheet("QToolButton{"
+                          "background-color:rgb(80, 255, 163);"
+                          "border:2px solid rgb(255, 255, 255);"
+                          "color:rgb(0, 0, 0);"
+                          "border-radius:5px;"
+                          "}");
+}
+
+void MainPowerSources::HoldClearLeftPushButton()
 {
     ui->PushButton_Data->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Tables->setStyleSheet(obj->getToolButtonsStyle());
-    ui->PushButton_Calculate->setStyleSheet(obj->getToolButtonsStyle());
-    ui->PushButton_Reference->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Rectifiers->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Filters->setStyleSheet(obj->getToolButtonsStyle());
     ui->PushButton_Matching->setStyleSheet(obj->getToolButtonsStyle());
+}
+
+void MainPowerSources::HoldClearTopPushButton()
+{
+    ui->PushButton_Calculate->setStyleSheet(obj->getToolButtonsStyle());
+    ui->PushButton_Reference->setStyleSheet(obj->getToolButtonsStyle());
 }
 
