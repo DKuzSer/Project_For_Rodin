@@ -101,11 +101,11 @@ void Matching::on_ComboBox_Type_currentIndexChanged(int index)
             ui->DoubleSpinBoxF_InPut2->setVisible(true);
 
             ui->Label_InPut3->setVisible(true);
-            ui->Label_InPut3->setText("F (Частота), Гц:");
+            ui->Label_InPut3->setText("F (Частота), МГц:");
             ui->IntSpinBoxF_InPut3->setVisible(true);
 
             ui->Label_InPut4->setVisible(true);
-            ui->Label_InPut4->setText("Rвых (сопротивление нагрузки), Ом:");
+            ui->Label_InPut4->setText("Rвых (Сопротивление нагрузки), Ом:");
             ui->DoubleSpinBoxF_InPut4->setVisible(true);
 
             ui->Label_InPut5->setVisible(true);
@@ -117,27 +117,7 @@ void Matching::on_ComboBox_Type_currentIndexChanged(int index)
             ui->DoubleSpinBoxF_InPut6->setVisible(false);
             //----------------------------------------------
 
-            //настройки выходных данных
-            //----------------------------------------------
-            ui->Label_OutPut1->setVisible(true);
-            ui->Label_OutPut1->setText("Rвх (Выходное сопротивление транзистора), Ом");
-            ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut1->setVisible(true);
 
-            ui->Label_OutPut2->setVisible(false);
-            ui->Label_OutPut2->setText("L1 (Индуктивность), Гн:");
-            ui->DoubleSpinBoxF_OutPut2->setVisible(false);
-            ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
-
-            ui->Label_OutPut3->setVisible(false);
-            ui->DoubleSpinBoxF_OutPut3->setVisible(false);
-            ui->Label_OutPut4->setVisible(false);
-            ui->DoubleSpinBoxF_OutPut4->setVisible(false);
-            ui->Label_OutPut5->setVisible(false);
-            ui->DoubleSpinBoxF_OutPut5->setVisible(false);
-            ui->Label_OutPut6->setVisible(false);
-            ui->DoubleSpinBoxF_OutPut6->setVisible(false);
-            //----------------------------------------------
         break;
     }
 }
@@ -147,10 +127,67 @@ void Matching::on_ComboBox_View_currentIndexChanged(int index)
     switch (index)
     {
         case PiCIRCUITMATCHING:
+            //настройки выходных данных
+            //----------------------------------------------
+            ui->Label_OutPut1->setVisible(true);
+            ui->Label_OutPut1->setText("Rвх (Выходное сопротивление транзистора), Ом");
+            ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut1->setVisible(true);
 
+            ui->Label_OutPut2->setVisible(true);
+            ui->Label_OutPut2->setText("С1 (Ёмкость), пФ:");
+            ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut2->setVisible(true);
+
+            ui->Label_OutPut3->setVisible(true);
+            ui->Label_OutPut3->setText("L1 (Индуктивность), мкГн:");
+            ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut3->setVisible(true);
+
+            ui->Label_OutPut4->setVisible(true);
+            ui->Label_OutPut4->setText("С2 (Ёмкость), пФ:");
+            ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut4->setVisible(true);
+
+            ui->Label_OutPut5->setVisible(false);
+            ui->DoubleSpinBoxF_OutPut5->setVisible(false);
+            ui->Label_OutPut6->setVisible(false);
+            ui->DoubleSpinBoxF_OutPut6->setVisible(false);
+            //----------------------------------------------
         break;
-        case MODIFPiCIRCUITMATCHING:
 
+        case MODIFPiCIRCUITMATCHING:
+            //настройки выходных данных
+            //----------------------------------------------
+            ui->Label_OutPut1->setVisible(true);
+            ui->Label_OutPut1->setText("Rвх (Выходное сопротивление транзистора), Ом");
+            ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut1->setVisible(true);
+
+            ui->Label_OutPut2->setVisible(true);
+            ui->Label_OutPut2->setText("С1 (Ёмкость), пФ:");
+            ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut2->setVisible(true);
+
+            ui->Label_OutPut3->setVisible(true);
+            ui->Label_OutPut3->setText("L1 (Индуктивность), мкГн:");
+            ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut3->setVisible(true);
+
+            ui->Label_OutPut4->setVisible(true);
+            ui->Label_OutPut4->setText("С2 (Ёмкость), пФ:");
+            ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut4->setVisible(true);
+
+            ui->Label_OutPut5->setVisible(true);
+            ui->Label_OutPut5->setText("L2 (Индуктивность), мкГн:");
+            ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+            ui->DoubleSpinBoxF_OutPut5->setVisible(true);
+
+
+            ui->Label_OutPut6->setVisible(false);
+            ui->DoubleSpinBoxF_OutPut6->setVisible(false);
+            //----------------------------------------------
         break;
     }
 }
