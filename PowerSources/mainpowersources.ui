@@ -409,6 +409,22 @@
           <number>1</number>
          </property>
          <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>10</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QLabel" name="label">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -649,7 +665,7 @@
          <number>0</number>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="Page_SettingCalculate">
          <layout class="QGridLayout" name="gridLayout_3">
@@ -917,8 +933,36 @@
                    <height>74</height>
                   </size>
                  </property>
+                 <property name="font">
+                  <font>
+                   <family>ГОСТ тип А</family>
+                   <pointsize>10</pointsize>
+                  </font>
+                 </property>
                  <property name="text">
                   <string>Согласование</string>
+                 </property>
+                 <property name="icon">
+                  <iconset>
+                   <normaloff>img/ButtonMatching.png</normaloff>img/ButtonMatching.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>55</width>
+                   <height>55</height>
+                  </size>
+                 </property>
+                 <property name="checkable">
+                  <bool>false</bool>
+                 </property>
+                 <property name="autoRepeat">
+                  <bool>false</bool>
+                 </property>
+                 <property name="autoExclusive">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolButtonStyle">
+                  <enum>Qt::ToolButtonTextUnderIcon</enum>
                  </property>
                 </widget>
                </item>

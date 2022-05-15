@@ -15,9 +15,9 @@
 #define PF   2
 #define ZF   3
 
-#define TYPEOFCIRCUIT   0
+#define TYPEOFCIRCUITMATCHING   0
 
-#define FIRSTCIRCUITMATCHING    0
-#define SECONDCIRCUITMATCHING   1
+#define PiCIRCUITMATCHING        0
+#define MODIFPiCIRCUITMATCHING   1
 
 #endif // CONSTANS_H

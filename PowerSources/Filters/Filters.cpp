@@ -1,11 +1,10 @@
 #include "Filters.h"
 #include "ui_Filters.h"
 
-#include "FiltersButterworth.h"
-#include "FiltersCHEBISHEV.h"
 Filters::Filters(MainpowerSourcesAbstract *parent) :
     ui(new Ui::Filters)
 {
+    Q_UNUSED(parent);
     ui->setupUi(this);
 
     View = new MyChartsView();

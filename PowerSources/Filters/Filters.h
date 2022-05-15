@@ -7,6 +7,9 @@
 #include "FiltersAbstract.h"
 #include "constans.h"
 
+#include "FiltersButterworth.h"
+#include "FiltersCHEBISHEV.h"
+
 namespace Ui {
 class Filters;
 }
