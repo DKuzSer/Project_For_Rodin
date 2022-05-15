@@ -43,7 +43,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>Входные данные фильтра:</string>
+          <string>Входные данные цепей согласовния:</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
@@ -53,7 +53,7 @@
               <item>
                <widget class="QLabel" name="Label_Type">
                 <property name="text">
-                 <string>Тип фильтра:</string>
+                 <string>Тип схемы:</string>
                 </property>
                </widget>
               </item>
@@ -110,10 +110,13 @@
                   <item>
                    <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut1">
                     <property name="minimum">
-                     <double>0.010000000000000</double>
+                     <double>0.000000000000000</double>
                     </property>
                     <property name="maximum">
                      <double>1000000000.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>15.000000000000000</double>
                     </property>
                    </widget>
                   </item>

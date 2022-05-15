@@ -5,7 +5,7 @@
 #include "MainpowerSourcesAbstract.h"
 #include "Rectifiers/Rectifiers.h"
 #include "Filters/Filters.h"
-#include "Matching.h"
+#include "Matching/Matching.h"
 #include "stylehelper.h"
 
 QT_BEGIN_NAMESPACE

@@ -193,7 +193,13 @@ QString StyleHelper::getTestComboBoxStyle()
      ;
 }
 
-
+QString StyleHelper::getGroupBoxStyle()
+{
+    return "QGroupBox{"
+           "color:rgb(255,255,255);"
+           "}"
+            ;
+}
 
 
 

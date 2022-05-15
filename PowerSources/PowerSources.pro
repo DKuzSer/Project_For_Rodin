@@ -16,7 +16,10 @@ SOURCES += \
     Filters\FiltersAbstract.cpp \
     Filters\FiltersButterworth.cpp \
     MainpowerSourcesAbstract.cpp \
-    Matching.cpp \
+    Matching\Matching.cpp \
+    Matching\MatchingAbstract.cpp \
+    Matching\MatchingOneCircuit.cpp \
+    Matching\MatchingTwoCircuit.cpp \
     MyCharts.cpp \
     MyChartsView.cpp \
     Rectifiers\Rectifiers.cpp \
@@ -35,7 +38,10 @@ HEADERS += \
     Filters\FiltersAbstract.h \
     Filters\FiltersButterworth.h \
     MainpowerSourcesAbstract.h \
-    Matching.h \
+    Matching\Matching.h \
+    Matching\MatchingAbstract.h \
+    Matching\MatchingOneCircuit.h \
+    Matching\MatchingTwoCircuit.h \
     MyCharts.h \
     MyChartsView.h \
     Rectifiers\Rectifiers.h \
@@ -50,7 +56,7 @@ HEADERS += \
 
 FORMS += \
     Filters\Filters.ui \
-    Matching.ui \
+    Matching\Matching.ui \
     Rectifiers\Rectifiers.ui \
     diod_base.ui \
     mainpowersources.ui
@@ -67,3 +73,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resource.qrc
+
+DISTFILES +=

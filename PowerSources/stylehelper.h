@@ -15,6 +15,7 @@ public:
     static QString getToolButtonsStyle();
     static QString getLabelStyle();
     static QString getFrameStyle();
+    static QString getGroupBoxStyle();
 };
 
 #endif // STYLEHELPER_H
