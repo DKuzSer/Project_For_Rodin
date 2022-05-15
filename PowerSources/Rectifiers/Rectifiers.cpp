@@ -694,7 +694,6 @@ void Rectifiers::on_PushButton_Interactive_clicked(bool checked)
         delete ellipceItem;
         flagEllipseItem = false;
     }
-
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 void Rectifiers::on_PushButton_Hands_clicked(bool checked)
