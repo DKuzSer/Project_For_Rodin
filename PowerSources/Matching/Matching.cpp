@@ -102,7 +102,7 @@ void Matching::on_ComboBox_Type_currentIndexChanged(int index)
 
             ui->Label_InPut3->setVisible(true);
             ui->Label_InPut3->setText("F (Частота), МГц:");
-            ui->IntSpinBoxF_InPut3->setVisible(true);
+            ui->DoubleSpinBoxF_InPut3->setVisible(true);
 
             ui->Label_InPut4->setVisible(true);
             ui->Label_InPut4->setText("Rвых (Сопротивление нагрузки), Ом:");
@@ -124,77 +124,204 @@ void Matching::on_ComboBox_Type_currentIndexChanged(int index)
 
 void Matching::on_ComboBox_View_currentIndexChanged(int index)
 {
+    int indexType = ui->ComboBox_Type->currentIndex();
+
     switch (index)
     {
-        case PiCIRCUITMATCHING:
-            //настройки выходных данных
-            //----------------------------------------------
-            ui->Label_OutPut1->setVisible(true);
-            ui->Label_OutPut1->setText("Rвх (Выходное сопротивление транзистора), Ом");
-            ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut1->setVisible(true);
+        if(indexType == TYPEOFCIRCUITMATCHING)
+        {
+            case PiCIRCUITMATCHING:
+                //настройки выходных данных
+                //----------------------------------------------
+                ui->Label_OutPut1->setVisible(true);
+                ui->Label_OutPut1->setText("Rвх (Выходное сопротивление транзистора), Ом");
+                ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut1->setVisible(true);
 
-            ui->Label_OutPut2->setVisible(true);
-            ui->Label_OutPut2->setText("С1 (Ёмкость), пФ:");
-            ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut2->setVisible(true);
+                ui->Label_OutPut2->setVisible(true);
+                ui->Label_OutPut2->setText("С1 (Ёмкость), пФ:");
+                ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut2->setVisible(true);
 
-            ui->Label_OutPut3->setVisible(true);
-            ui->Label_OutPut3->setText("L1 (Индуктивность), мкГн:");
-            ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut3->setVisible(true);
+                ui->Label_OutPut3->setVisible(true);
+                ui->Label_OutPut3->setText("L1 (Индуктивность), мкГн:");
+                ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut3->setVisible(true);
 
-            ui->Label_OutPut4->setVisible(true);
-            ui->Label_OutPut4->setText("С2 (Ёмкость), пФ:");
-            ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut4->setVisible(true);
+                ui->Label_OutPut4->setVisible(true);
+                ui->Label_OutPut4->setText("С2 (Ёмкость), пФ:");
+                ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut4->setVisible(true);
 
-            ui->Label_OutPut5->setVisible(false);
-            ui->DoubleSpinBoxF_OutPut5->setVisible(false);
-            ui->Label_OutPut6->setVisible(false);
-            ui->DoubleSpinBoxF_OutPut6->setVisible(false);
-            //----------------------------------------------
-        break;
+                ui->Label_OutPut5->setVisible(false);
+                ui->DoubleSpinBoxF_OutPut5->setVisible(false);
+                ui->Label_OutPut6->setVisible(false);
+                ui->DoubleSpinBoxF_OutPut6->setVisible(false);
+                //----------------------------------------------
+            break;
 
-        case MODIFPiCIRCUITMATCHING:
-            //настройки выходных данных
-            //----------------------------------------------
-            ui->Label_OutPut1->setVisible(true);
-            ui->Label_OutPut1->setText("Rвх (Выходное сопротивление транзистора), Ом");
-            ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut1->setVisible(true);
+            case MODIFPiCIRCUITMATCHING:
+                //настройки выходных данных
+                //----------------------------------------------
+                ui->Label_OutPut1->setVisible(true);
+                ui->Label_OutPut1->setText("Rвх (Выходное сопротивление транзистора), Ом");
+                ui->DoubleSpinBoxF_OutPut1->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut1->setVisible(true);
 
-            ui->Label_OutPut2->setVisible(true);
-            ui->Label_OutPut2->setText("С1 (Ёмкость), пФ:");
-            ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut2->setVisible(true);
+                ui->Label_OutPut2->setVisible(true);
+                ui->Label_OutPut2->setText("С1 (Ёмкость), пФ:");
+                ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut2->setVisible(true);
 
-            ui->Label_OutPut3->setVisible(true);
-            ui->Label_OutPut3->setText("L1 (Индуктивность), мкГн:");
-            ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut3->setVisible(true);
+                ui->Label_OutPut3->setVisible(true);
+                ui->Label_OutPut3->setText("L1 (Индуктивность), мкГн:");
+                ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut3->setVisible(true);
 
-            ui->Label_OutPut4->setVisible(true);
-            ui->Label_OutPut4->setText("С2 (Ёмкость), пФ:");
-            ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut4->setVisible(true);
+                ui->Label_OutPut4->setVisible(true);
+                ui->Label_OutPut4->setText("С2 (Ёмкость), пФ:");
+                ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut4->setVisible(true);
 
-            ui->Label_OutPut5->setVisible(true);
-            ui->Label_OutPut5->setText("L2 (Индуктивность), мкГн:");
-            ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
-            ui->DoubleSpinBoxF_OutPut5->setVisible(true);
+                ui->Label_OutPut5->setVisible(true);
+                ui->Label_OutPut5->setText("L2 (Индуктивность), мкГн:");
+                ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
+                ui->DoubleSpinBoxF_OutPut5->setVisible(true);
 
 
-            ui->Label_OutPut6->setVisible(false);
-            ui->DoubleSpinBoxF_OutPut6->setVisible(false);
-            //----------------------------------------------
-        break;
+                ui->Label_OutPut6->setVisible(false);
+                ui->DoubleSpinBoxF_OutPut6->setVisible(false);
+                //----------------------------------------------
+            break;
+        }
     }
 }
 
 void Matching::on_PushButton_Calculate_clicked()
 {
+    int index = ui->ComboBox_Type->currentIndex();
 
+    if (index == TYPEOFCIRCUITMATCHING)
+    {
+        if(chrt == nullptr)
+        {
+            chrt = new MyCharts();
+            View->setChart(chrt);
+            chrt->setTitle("АЧХ");
+            chrt->legend()->hide();
+
+            chrtFCHX = new MyCharts();
+            ViewFCHX->setChart(chrtFCHX);
+            chrtFCHX->setTitle("ФЧХ");
+            chrtFCHX->legend()->hide();
+
+//            interactive = false;
+//            hands = false;
+//            ui->PushButton_Interactive->setEnabled(true);
+//            ui->PushButton_Hands->setEnabled(true);
+//            ui->DoubleSpinBoxOX->setEnabled(false);
+//            ui->DoubleSpinBoxOY->setEnabled(false);
+//            ui->DoubleSpinBoxOX->setValue(0.0);
+//            ui->DoubleSpinBoxOY->setValue(0.0);
+
+        }
+        else if(chrt->flagChart == true)
+        {
+            chrt->DeleteChart();
+            chrtFCHX->DeleteChart();
+
+//            interactive = false;
+//            hands = false;
+//            ui->PushButton_Interactive->setEnabled(true);
+//            ui->PushButton_Hands->setEnabled(true);
+//            ui->DoubleSpinBoxOX->setEnabled(false);
+//            ui->DoubleSpinBoxOY->setEnabled(false);
+//            ui->DoubleSpinBoxOX->setValue(0.0);
+//            ui->DoubleSpinBoxOY->setValue(0.0);
+
+//            if(flagEllipseItem)
+//            {
+//                delete ellipceItem;
+//                flagEllipseItem = false;
+//            }
+
+        }
+
+        //--------------------------------------------------
+        double Ek = ui->DoubleSpinBoxF_InPut1->value();           //Напряжение питания
+        double P = ui->DoubleSpinBoxF_InPut2->value();            //Максимальная мощность на транзисторе
+        double F = ui->DoubleSpinBoxF_InPut3->value();            //Частота МГц
+        double Rout = ui->DoubleSpinBoxF_InPut4->value();         //Сопротивление нагрузки
+        double Q = ui->DoubleSpinBoxF_InPut5->value();            //Добротность катушки
+        //--------------------------------------------------
+
+//        int chose = ui->ComboBox_View->currentIndex();
+//           switch(chose)
+//           {
+//                case 0 :
+//                    object_work->SetBaseValue(Ek, P, F, Rout, Q);
+//                break;
+
+//                case 1 :
+//                    object_work->SetBaseValue(Ek, P, F, Rout, Q);
+//                break;
+//            }
+
+        // передаём данные в расчётный класс
+//        object_work->ViewFilters(chose);                          // передаём данные флага установки фильтра на выходе
+//        object_work->Calculate();
+
+//        if(object_work->flagCalculate == true)
+//        {
+//            QMessageBox::information(this,"Ошибка","Данные параметры нельзя реализовать");
+//            chrt->flagChart = false;
+//            return;
+//        }
+
+        //переписываем в удобный формат
+        //--------------------------------------------------
+
+//        double value_1 = object_work->Rin;
+//        double value_2 = object_work->C1;
+//        double value_3 = object_work->L1;
+//        double value_4 = object_work->C2;
+//        double value_5 = object_work->L2;
+
+//        switch(chose) // установка полученный значений для отображения в GUI
+//        {
+//            case 0:
+//                ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
+//                ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
+//                ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
+//                ui->DoubleSpinBoxF_OutPut4->setValue(value_4);
+//            break;
+
+//            case 1:
+//                ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
+//                ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
+//                ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
+//                ui->DoubleSpinBoxF_OutPut4->setValue(value_4);
+//                ui->DoubleSpinBoxF_OutPut5->setValue(value_5);
+//            break;
+//        }
+
+
+
+//        if(chose == 1)
+//        {
+//            if(value_3 > 10000)
+//            {
+//                value_3 = value_3/1000;
+//                ui->Label_OutPut3->setText("C, мФ:");
+//            }
+//            else
+//            {
+//                ui->Label_OutPut3->setText("C, мкФ:");
+//            }
+//        }
+
+        //-------------------------------------------------------
+    }
 }
 
 
