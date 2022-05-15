@@ -24,7 +24,13 @@ public:
 
     void HoldPushButton(QToolButton*);
 
-    void HoldClearPushButton();
+    void HoldClearLeftPushButton();
+
+    void HoldClearTopPushButton();
+
+    void HoldTopPushButton(QToolButton* button);
+
+    void HoldLeftPushButton(QToolButton* button);
 
 private slots:
     void on_PushButton_Calculate_clicked();
