@@ -255,21 +255,21 @@ void Matching::on_PushButton_Calculate_clicked()
         double Q = ui->DoubleSpinBoxF_InPut5->value();            //Добротность катушки
         //--------------------------------------------------
 
-//        int chose = ui->ComboBox_View->currentIndex();
-//           switch(chose)
-//           {
-//                case 0 :
-//                    object_work->SetBaseValue(Ek, P, F, Rout, Q);
-//                break;
+        int chose = ui->ComboBox_View->currentIndex();
+           switch(chose)
+           {
+                case 0 :
+                    object_work->SetBaseValue(Ek, P, F, Rout, Q);
+                break;
 
-//                case 1 :
-//                    object_work->SetBaseValue(Ek, P, F, Rout, Q);
-//                break;
-//            }
+                case 1 :
+                    object_work->SetBaseValue(Ek, P, F, Rout, Q);
+                break;
+            }
 
         // передаём данные в расчётный класс
-//        object_work->ViewFilters(chose);                          // передаём данные флага установки фильтра на выходе
-//        object_work->Calculate();
+        object_work->ViewFilters(chose);                          // передаём данные флага установки фильтра на выходе
+        object_work->Calculate();
 
 //        if(object_work->flagCalculate == true)
 //        {
@@ -281,29 +281,29 @@ void Matching::on_PushButton_Calculate_clicked()
         //переписываем в удобный формат
         //--------------------------------------------------
 
-//        double value_1 = object_work->Rin;
-//        double value_2 = object_work->C1;
-//        double value_3 = object_work->L1;
-//        double value_4 = object_work->C2;
-//        double value_5 = object_work->L2;
+        double value_1 = object_work->Rin;
+        double value_2 = object_work->C1;
+        double value_3 = object_work->L1;
+        double value_4 = object_work->C2;
+        double value_5 = object_work->L2;
 
-//        switch(chose) // установка полученный значений для отображения в GUI
-//        {
-//            case 0:
-//                ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-//                ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
-//                ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
-//                ui->DoubleSpinBoxF_OutPut4->setValue(value_4);
-//            break;
+        switch(chose) // установка полученный значений для отображения в GUI
+        {
+            case 0:
+                ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
+                ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
+                ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
+                ui->DoubleSpinBoxF_OutPut4->setValue(value_4);
+            break;
 
-//            case 1:
-//                ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
-//                ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
-//                ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
-//                ui->DoubleSpinBoxF_OutPut4->setValue(value_4);
-//                ui->DoubleSpinBoxF_OutPut5->setValue(value_5);
-//            break;
-//        }
+            case 1:
+                ui->DoubleSpinBoxF_OutPut1->setValue(value_1);
+                ui->DoubleSpinBoxF_OutPut2->setValue(value_2);
+                ui->DoubleSpinBoxF_OutPut3->setValue(value_3);
+                ui->DoubleSpinBoxF_OutPut4->setValue(value_4);
+                ui->DoubleSpinBoxF_OutPut5->setValue(value_5);
+            break;
+        }
 
 
 

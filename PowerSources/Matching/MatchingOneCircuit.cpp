@@ -43,7 +43,7 @@ void MatchingOneCircuit::Calculate()
         double kpd = 1 - (Q_temp/Q)+0.0000001;
 
         double ntr = Rin/Rh;
-        double xc2 = (Rin - kpd * Rin) / (sqrt((ntr * (Q_temp * Q_temp + 1 + kpd * kpd) / kpd) - ntr * ntr - 1) - Q_temp);
+        double xc2 = (Rin - kpd * Rh) / (sqrt((ntr * (Q_temp * Q_temp + 1 + kpd * kpd) / kpd) - ntr * ntr - 1) - Q_temp);
         double c2 =  1e6 / (2 * 3.1416 * F  * xc2) ;
 
         double xc1 = Rin * xc2 / (Q_temp * xc2 - kpd * Rh) ;
