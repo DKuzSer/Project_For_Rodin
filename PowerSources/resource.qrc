@@ -31,6 +31,8 @@
         <file>SVG/Most.svg</file>
         <file>SVG/Most_Conder.svg</file>
         <file>SVG/Most_Inuctivity.svg</file>
+        <file>SVG/Matching_option1.svg</file>
+        <file>SVG/Matching_option2.svg</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

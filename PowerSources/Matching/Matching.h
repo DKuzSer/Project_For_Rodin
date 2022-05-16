@@ -7,6 +7,7 @@
 #include "MyCharts.h"
 #include "MyChartsView.h"
 #include "constans.h"
+#include "svgview.h"
 
 #include "MatchingOneCircuit.h"
 #include "MatchingTwoCircuit.h"
@@ -42,6 +43,8 @@ private:
 
     MyCharts *chrt = nullptr;
     MyCharts *chrtFCHX = nullptr;
+
+    SvgView *m_viewM;
 };
 
 #endif // MATCHING_H

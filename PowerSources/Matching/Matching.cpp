@@ -3,10 +3,22 @@
 
 Matching::Matching(MainpowerSourcesAbstract *parent) :
     ui(new Ui::Matching)
+  , m_viewM(new SvgView)
 {
     ui->setupUi(this);
     Q_UNUSED(parent);
-//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------   
+    m_viewM->openFile(":/SVG/SVG/Matching_option1.svg");
+    ui->SVG_M->addWidget(m_viewM);
+
+    //const QSize availableSize = QApplication::desktop()->availableGeometry(this).size();
+    //resize(m_view->sizeHint().expandedTo(availableSize /4) + QSize(80, 80));
+    m_viewM->scale(1.5,1.5); //коэффициенты масштабирования
+    m_viewM->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
+    //statusBar()->addPermanentWidget(m_zoomLabel);
+    //updateZoomLabel();
+    //connect(m_view, &SvgView::zoomChanged, this, &Rectifiers::updateZoomLabel);
+//--------------------------------------------------------------------
     ui->Label_InPut1->setStyleSheet(style_helper->getLabelStyle());
     ui->Label_InPut2->setStyleSheet(style_helper->getLabelStyle());
     ui->Label_InPut3->setStyleSheet(style_helper->getLabelStyle());
@@ -73,6 +85,7 @@ Matching::~Matching()
     delete View;
     delete ViewFCHX;
     delete object_work;
+//    delete m_viewM;
 //    delete chrt;
 //    delete chrtFCHX;
 }
@@ -139,17 +152,17 @@ void Matching::on_ComboBox_View_currentIndexChanged(int index)
                 ui->DoubleSpinBoxF_OutPut1->setVisible(true);
 
                 ui->Label_OutPut2->setVisible(true);
-                ui->Label_OutPut2->setText("С1 (Ёмкость), пФ:");
+                ui->Label_OutPut2->setText("С4 (Ёмкость), пФ:");
                 ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
                 ui->DoubleSpinBoxF_OutPut2->setVisible(true);
 
                 ui->Label_OutPut3->setVisible(true);
-                ui->Label_OutPut3->setText("L1 (Индуктивность), мкГн:");
+                ui->Label_OutPut3->setText("L3 (Индуктивность), мкГн:");
                 ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
                 ui->DoubleSpinBoxF_OutPut3->setVisible(true);
 
                 ui->Label_OutPut4->setVisible(true);
-                ui->Label_OutPut4->setText("С2 (Ёмкость), пФ:");
+                ui->Label_OutPut4->setText("С5 (Ёмкость), пФ:");
                 ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
                 ui->DoubleSpinBoxF_OutPut4->setVisible(true);
 
@@ -157,6 +170,10 @@ void Matching::on_ComboBox_View_currentIndexChanged(int index)
                 ui->DoubleSpinBoxF_OutPut5->setVisible(false);
                 ui->Label_OutPut6->setVisible(false);
                 ui->DoubleSpinBoxF_OutPut6->setVisible(false);
+
+                m_viewM->openFile(":/SVG/SVG/Matching_option1.svg");
+                //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                m_viewM->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
                 //----------------------------------------------
             break;
 
@@ -169,28 +186,32 @@ void Matching::on_ComboBox_View_currentIndexChanged(int index)
                 ui->DoubleSpinBoxF_OutPut1->setVisible(true);
 
                 ui->Label_OutPut2->setVisible(true);
-                ui->Label_OutPut2->setText("С1 (Ёмкость), пФ:");
+                ui->Label_OutPut2->setText("С4 (Ёмкость), пФ:");
                 ui->DoubleSpinBoxF_OutPut2->setEnabled(false);
                 ui->DoubleSpinBoxF_OutPut2->setVisible(true);
 
                 ui->Label_OutPut3->setVisible(true);
-                ui->Label_OutPut3->setText("L1 (Индуктивность), мкГн:");
+                ui->Label_OutPut3->setText("L3 (Индуктивность), мкГн:");
                 ui->DoubleSpinBoxF_OutPut3->setEnabled(false);
                 ui->DoubleSpinBoxF_OutPut3->setVisible(true);
 
                 ui->Label_OutPut4->setVisible(true);
-                ui->Label_OutPut4->setText("С2 (Ёмкость), пФ:");
+                ui->Label_OutPut4->setText("С5 (Ёмкость), пФ:");
                 ui->DoubleSpinBoxF_OutPut4->setEnabled(false);
                 ui->DoubleSpinBoxF_OutPut4->setVisible(true);
 
                 ui->Label_OutPut5->setVisible(true);
-                ui->Label_OutPut5->setText("L2 (Индуктивность), мкГн:");
+                ui->Label_OutPut5->setText("L4 (Индуктивность), мкГн:");
                 ui->DoubleSpinBoxF_OutPut5->setEnabled(false);
                 ui->DoubleSpinBoxF_OutPut5->setVisible(true);
 
 
                 ui->Label_OutPut6->setVisible(false);
                 ui->DoubleSpinBoxF_OutPut6->setVisible(false);
+
+                m_viewM->openFile(":/SVG/SVG/Matching_option2.svg");
+                //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                m_viewM->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
                 //----------------------------------------------
             break;
         }

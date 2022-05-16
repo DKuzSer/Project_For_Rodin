@@ -75,7 +75,7 @@ private:
 
     diod_base* base;
 
-    SvgView *m_view;
+    SvgView* m_view;
 
     StyleHelper* style_helper = new StyleHelper;
 };
