@@ -13,7 +13,9 @@ Matching::Matching(MainpowerSourcesAbstract *parent) :
 
     //const QSize availableSize = QApplication::desktop()->availableGeometry(this).size();
     //resize(m_view->sizeHint().expandedTo(availableSize /4) + QSize(80, 80));
-    m_viewM->scale(1.5,1.5); //коэффициенты масштабирования
+    m_viewM->scale(0.5,0.5); //коэффициенты масштабирования
+    m_viewM->setBackgroundBrush(Qt::white);
+    m_viewM->setAlignment(Qt::AlignCenter);
     m_viewM->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
     //statusBar()->addPermanentWidget(m_zoomLabel);
     //updateZoomLabel();
@@ -105,6 +107,10 @@ void Matching::on_ComboBox_Type_currentIndexChanged(int index)
 
             //настройки входных данных
             //----------------------------------------------
+            //________Редактирование замечаний______________
+            ui->ComboBox_Type->setVisible(false);
+            ui->Label_Type->setVisible(false);
+            //----------------------------------------------
             ui->Label_InPut1->setVisible(true);
             ui->Label_InPut1->setText("Ек (Напряжение питания), В:");
             ui->DoubleSpinBoxF_InPut1->setVisible(true);
@@ -118,11 +124,11 @@ void Matching::on_ComboBox_Type_currentIndexChanged(int index)
             ui->DoubleSpinBoxF_InPut3->setVisible(true);
 
             ui->Label_InPut4->setVisible(true);
-            ui->Label_InPut4->setText("Rвых (Сопротивление нагрузки), Ом:");
+            ui->Label_InPut4->setText("Rн (Сопротивление нагрузки), Ом:");
             ui->DoubleSpinBoxF_InPut4->setVisible(true);
 
             ui->Label_InPut5->setVisible(true);
-            ui->Label_InPut5->setText("Q (Добротность катушки):");
+            ui->Label_InPut5->setText("Q (Добротность катушки L3):");
             ui->DoubleSpinBoxF_InPut5->setVisible(true);
 
             ui->Label_InPut6->setVisible(false);
@@ -172,7 +178,9 @@ void Matching::on_ComboBox_View_currentIndexChanged(int index)
                 ui->DoubleSpinBoxF_OutPut6->setVisible(false);
 
                 m_viewM->openFile(":/SVG/SVG/Matching_option1.svg");
-                //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                m_viewM->scale(0.5,0.5); //коэффициенты масштабирования
+                m_viewM->setBackgroundBrush(Qt::white);
+                m_viewM->setAlignment(Qt::AlignCenter);
                 m_viewM->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
                 //----------------------------------------------
             break;
@@ -210,7 +218,9 @@ void Matching::on_ComboBox_View_currentIndexChanged(int index)
                 ui->DoubleSpinBoxF_OutPut6->setVisible(false);
 
                 m_viewM->openFile(":/SVG/SVG/Matching_option2.svg");
-                //m_view->scale(1.2,1.2); //коэффициенты масштабирования
+                m_viewM->scale(0.5,0.5); //коэффициенты масштабирования
+                m_viewM->setBackgroundBrush(Qt::white);
+                m_viewM->setAlignment(Qt::AlignCenter);
                 m_viewM->setRenderer(static_cast<SvgView::RendererType>(0));//рендерим наше изображение
                 //----------------------------------------------
             break;
@@ -307,6 +317,26 @@ void Matching::on_PushButton_Calculate_clicked()
         double value_3 = object_work->L1;
         double value_4 = object_work->C2;
         double value_5 = object_work->L2;
+
+        if(value_2 > 10000)
+        {
+            value_2 = value_2/1000;
+            ui->Label_OutPut2->setText("C4 (Ёмкость), нФ:");
+        }
+        else
+        {
+            ui->Label_OutPut2->setText("C4 (Ёмкость), пФ:");
+        }
+
+        if(value_4 > 10000)
+        {
+            value_4 = value_4/1000;
+            ui->Label_OutPut4->setText("C5 (Ёмкость), нФ:");
+        }
+        else
+        {
+            ui->Label_OutPut4->setText("C5 (Ёмкость), пФ:");
+        }
 
         switch(chose) // установка полученный значений для отображения в GUI
         {

@@ -34,12 +34,12 @@ void MatchingOneCircuit::Calculate()
 
     if (flagFilters == 0)
     {
-        double l11 = 20/F;
+        double l11 = 20./F;
 
-        double ldr = 4*Rin/(2*PI*F);
+        double ldr = 4*Rin/(2*3.1416*F);
         double ldr1 = 2.5*ldr;
 
-        double Q_temp = 1*15;
+        double Q_temp = 1*15.0;
         double kpd = 1 - (Q_temp/Q)+0.0000001;
 
         double ntr = Rin/Rh;

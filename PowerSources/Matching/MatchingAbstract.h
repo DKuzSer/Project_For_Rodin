@@ -16,7 +16,7 @@ public:
 
     double Ek;
     double P;
-    int F;
+    double F;
     double Rh;    //сопротивление нагрузки
     double Q;
 

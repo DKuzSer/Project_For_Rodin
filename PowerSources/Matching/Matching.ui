@@ -48,7 +48,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>Входные данные цепей согласовния:</string>
+          <string>Входные данные цепей согласования:</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
@@ -133,10 +133,17 @@
                     <property name="maximum">
                      <double>10000.000000000000000</double>
                     </property>
+                    <property name="value">
+                     <double>3.000000000000000</double>
+                    </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut3"/>
+                   <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut3">
+                    <property name="value">
+                     <double>0.200000000000000</double>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
@@ -176,12 +183,18 @@
                     <property name="maximum">
                      <double>1000.000000000000000</double>
                     </property>
+                    <property name="value">
+                     <double>50.000000000000000</double>
+                    </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QDoubleSpinBox" name="DoubleSpinBoxF_InPut5">
                     <property name="maximum">
                      <double>1000.000000000000000</double>
+                    </property>
+                    <property name="value">
+                     <double>200.000000000000000</double>
                     </property>
                    </widget>
                   </item>
