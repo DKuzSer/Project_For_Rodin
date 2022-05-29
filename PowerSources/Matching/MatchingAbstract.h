@@ -10,8 +10,8 @@ class MatchingAbstract : public QObject
 public:
     MatchingAbstract();
 
-    virtual void SetBaseValue(double , double , double, double, double ){};
-    virtual void Calculate(){};
+    virtual void SetBaseValue(double , double , double, double, double , double ){};
+    virtual void Calculate(bool){};
     virtual void ViewFilters(int){};
 
     double Ek;
@@ -19,6 +19,7 @@ public:
     double F;
     double Rh;    //сопротивление нагрузки
     double Q;
+    double RinCorrect;
 
     double Rin = 0.0;     // сопротивление на выходе транхистора
     double C1 = 0.0;     // индуктивность

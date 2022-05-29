@@ -288,23 +288,24 @@ void Matching::on_PushButton_Calculate_clicked()
         double F = ui->DoubleSpinBoxF_InPut3->value();            //Частота МГц
         double Rout = ui->DoubleSpinBoxF_InPut4->value();         //Сопротивление нагрузки
         double Q = ui->DoubleSpinBoxF_InPut5->value();            //Добротность катушки
+        double RinCorrect = ui->doubleSpinBoxInPutCorrect->value();
         //--------------------------------------------------
 
         int chose = ui->ComboBox_View->currentIndex();
            switch(chose)
            {
                 case 0 :
-                    object_work->SetBaseValue(Ek, P, F, Rout, Q);
+                    object_work->SetBaseValue(Ek, P, F, Rout, Q, RinCorrect);
                 break;
 
                 case 1 :
-                    object_work->SetBaseValue(Ek, P, F, Rout, Q);
+                    object_work->SetBaseValue(Ek, P, F, Rout, Q, RinCorrect);
                 break;
             }
 
         // передаём данные в расчётный класс
         object_work->ViewFilters(chose);                          // передаём данные флага установки фильтра на выходе
-        object_work->Calculate();
+        object_work->Calculate(isCorrectRin);
 
 //        if(object_work->flagCalculate == true)
 //        {
@@ -379,6 +380,8 @@ void Matching::on_PushButton_Calculate_clicked()
     }
 }
 
-
-
+void Matching::on_Alignment_CheckBox_clicked(bool checked)
+{
+    isCorrectRin = checked;
+}
 

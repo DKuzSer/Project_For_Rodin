@@ -19,19 +19,25 @@ void MatchingOneCircuit::ViewFilters(int number)
     }
 }
 
-void MatchingOneCircuit::SetBaseValue(double _Ek, double _P, double _F, double _Rout, double _Q)
+void MatchingOneCircuit::SetBaseValue(double _Ek, double _P, double _F, double _Rout, double _Q, double _RinCorrect)
 {
     Ek = _Ek;
     P  = _P;
     F  = _F;
     Rh = _Rout;
     Q  = _Q;
+    RinCorrect = _RinCorrect;
 }
 
-void MatchingOneCircuit::Calculate()
+void MatchingOneCircuit::Calculate(bool _isCorrectRin)
 {
-    Rin = (Ek-0.5)*(Ek-0.5)*0.86/(2*P);
-
+    if (_isCorrectRin)
+    {
+        Rin = RinCorrect;
+    }else
+    {
+        Rin = (Ek-0.5)*(Ek-0.5)*0.86/(2*P);
+    }
     if (flagFilters == 0)
     {
         double l11 = 20./F;

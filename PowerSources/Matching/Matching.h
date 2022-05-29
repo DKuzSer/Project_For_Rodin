@@ -29,12 +29,16 @@ public:
 
     MatchingAbstract* object_work = nullptr;
 
+    bool isCorrectRin = false;
+
 private slots:
     void on_PushButton_Calculate_clicked();
 
     void on_ComboBox_Type_currentIndexChanged(int index);
 
     void on_ComboBox_View_currentIndexChanged(int index);
+
+    void on_Alignment_CheckBox_clicked(bool checked);
 
 private:
     Ui::Matching *ui;
