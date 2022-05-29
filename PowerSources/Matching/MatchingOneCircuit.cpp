@@ -30,7 +30,7 @@ void MatchingOneCircuit::SetBaseValue(double _Ek, double _P, double _F, double _
 
 void MatchingOneCircuit::Calculate()
 {
-    Rin = (Ek-0.3)*(Ek-0.3)/(2*P);
+    Rin = (Ek-0.5)*(Ek-0.5)*0.86/(2*P);
 
     if (flagFilters == 0)
     {

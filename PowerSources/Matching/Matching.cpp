@@ -135,6 +135,10 @@ void Matching::on_ComboBox_Type_currentIndexChanged(int index)
             ui->Label_InPut6->setText("Uн (Напряжение на нагрузке), В:");
             ui->DoubleSpinBoxF_InPut6->setVisible(false);
             //----------------------------------------------
+            //корректировка 29.05.2022 не ссы, все нормально, я отвечаю
+            ui->Label_InPut2->setVisible(false);
+            ui->DoubleSpinBoxF_InPut2->setVisible(false);
+            //
 
 
         break;
