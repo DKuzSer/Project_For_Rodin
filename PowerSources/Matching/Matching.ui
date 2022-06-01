@@ -48,7 +48,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>Входные данные цепей согласования:</string>
+          <string>Входные данные цепей согласования для предельного режима:</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="2" column="0">
@@ -234,7 +234,7 @@
                <string notr="true">color: rgb(255, 255, 255);</string>
               </property>
               <property name="text">
-               <string>Корректировка</string>
+               <string>Корректировка Rвх (рассматривается непредельный режим)</string>
               </property>
              </widget>
             </item>

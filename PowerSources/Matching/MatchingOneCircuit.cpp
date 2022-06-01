@@ -36,7 +36,7 @@ void MatchingOneCircuit::Calculate(bool _isCorrectRin)
         Rin = RinCorrect;
     }else
     {
-        Rin = (Ek-0.5)*(Ek-0.5)*0.86/(2*P);
+        Rin = (Ek-0.2)*(Ek-0.2)/(2*P);
     }
     if (flagFilters == 0)
     {
