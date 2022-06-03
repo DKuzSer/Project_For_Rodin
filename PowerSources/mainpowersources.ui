@@ -981,8 +981,8 @@
                   <string>Согласование</string>
                  </property>
                  <property name="icon">
-                  <iconset>
-                   <normaloff>img/ButtonMatching.png</normaloff>img/ButtonMatching.png</iconset>
+                  <iconset resource="resource.qrc">
+                   <normaloff>:/image/img/ButtonMatching.jpg</normaloff>:/image/img/ButtonMatching.jpg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
