@@ -57,6 +57,7 @@ Matching::Matching(MainpowerSourcesAbstract *parent) :
 
     ui->ComboBox_View->addItem("П-фильтр", PiCIRCUITMATCHING);
     ui->ComboBox_View->addItem("Модифицированный П-фильтр", MODIFPiCIRCUITMATCHING);
+    ui->doubleSpinBoxInPutCorrect->setEnabled(false);
 
 //    ui->Label_InPut3->setVisible(false);
 //    ui->Label_InPut4->setVisible(false);
@@ -383,5 +384,8 @@ void Matching::on_PushButton_Calculate_clicked()
 void Matching::on_Alignment_CheckBox_clicked(bool checked)
 {
     isCorrectRin = checked;
+    if(checked)
+        ui->doubleSpinBoxInPutCorrect->setEnabled(true);
+    else ui->doubleSpinBoxInPutCorrect->setEnabled(false);
 }
 
