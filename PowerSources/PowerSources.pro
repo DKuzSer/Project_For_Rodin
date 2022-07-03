@@ -61,7 +61,7 @@ FORMS += \
     diod_base.ui \
     mainpowersources.ui
 
-#win32:RC_FILE = file.rc
+win32:RC_FILE = file.rc
 
 TRANSLATIONS += \
     PowerSources_ru_RU.ts

@@ -725,8 +725,8 @@
                   <string>Теория</string>
                  </property>
                  <property name="icon">
-                  <iconset>
-                   <normaloff>img/ButtonTeor.png</normaloff>img/ButtonTeor.png</iconset>
+                  <iconset resource="resource.qrc">
+                   <normaloff>:/image/img/ButtonTeor.png</normaloff>:/image/img/ButtonTeor.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -766,8 +766,8 @@
                   <string>Таблицы</string>
                  </property>
                  <property name="icon">
-                  <iconset>
-                   <normaloff>img/ButtonTable.png</normaloff>img/ButtonTable.png</iconset>
+                  <iconset resource="resource.qrc">
+                   <normaloff>:/image/img/ButtonTable.jpg</normaloff>:/image/img/ButtonTable.jpg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -981,8 +981,8 @@
                   <string>Согласование</string>
                  </property>
                  <property name="icon">
-                  <iconset>
-                   <normaloff>img/ButtonMatching.png</normaloff>img/ButtonMatching.png</iconset>
+                  <iconset resource="resource.qrc">
+                   <normaloff>:/image/img/ButtonMatching.jpg</normaloff>:/image/img/ButtonMatching.jpg</iconset>
                  </property>
                  <property name="iconSize">
                   <size>

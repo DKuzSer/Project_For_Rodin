@@ -43,6 +43,10 @@ MainPowerSources::MainPowerSources(QWidget *parent)
                                          "border:0.5px solid rgb(255, 255, 255);"
                                          "background-color: rgba(54, 61, 100, 100);"
                                          "}");
+    ui->statusbar->showMessage("Разработчики программы: Дмитрий Кузищин ( kuzds321@gmail.com ) , Гилев Михаил ( mishagilevfgh@e1.ru ) , Слепцов Денис ( denis.slepczov@inbox.ru )");
+    ui->statusbar->setStyleSheet("QStatusBar{"
+                                 "color:rgb(255,255,255);"
+                                 "}");
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 MainPowerSources::~MainPowerSources()

@@ -17,9 +17,9 @@
         <file>img/ButtonFilters.png</file>
         <file>img/DopLogo.png</file>
         <file>img/logo.png</file>
-        <file>img/ButtonMatching.png</file>
+        <file>img/ButtonMatching.jpg</file>
         <file>img/ButtonTeor.png</file>
-        <file>img/ButtonTable.png</file>
+        <file>img/ButtonTable.jpg</file>
     </qresource>
     <qresource prefix="/Diods">
         <file>Diode_brands</file>
